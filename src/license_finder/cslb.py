@@ -161,16 +161,17 @@ class CslbSession:
 
     def enrich(self, row: LicenseRow) -> None:
         det = self.license_detail(row.license_number)
-        row.street = det["business"]["street"]
-        row.city = det["business"]["city"] or row.city
-        row.state = det["business"]["state"]
-        row.zip = det["business"]["zip"]
-        row.phone = det["business"]["phone"]
-        row.entity = det["entity"]
-        row.classes = det["classes"]
-        row.issue_date = det["issue_date"]
-        row.expire_date = det["expire_date"]
-        if det["status"]:
+        b = det.get("business", {})
+        row.street = b.get("street", "")
+        row.city = b.get("city", "") or row.city
+        row.state = b.get("state", "")
+        row.zip = b.get("zip", "")
+        row.phone = b.get("phone", "")
+        row.entity = det.get("entity", "")
+        row.classes = det.get("classes", "")
+        row.issue_date = det.get("issue_date", "")
+        row.expire_date = det.get("expire_date", "")
+        if det.get("status"):
             row.status = normalize_status(det["status"])
 
     def license_detail(self, lic_num: str) -> dict:
@@ -209,7 +210,9 @@ _PHONE_RE = re.compile(r"\((\d{3})\)\s*(\d{3}-\d{4})")
 
 def parse_detail(html: str) -> dict:
     txt = _pipe_text(html)
-    out: dict = {"business": {}, "entity": "", "classes": "", "issue_date": "",
+    out: dict = {"business": {"name": "", "street": "", "city": "", "state": "",
+                              "zip": "", "phone": ""},
+                 "entity": "", "classes": "", "issue_date": "",
                  "expire_date": "", "status": ""}
     seg = _piped(txt, "Business Information", "Entity")
     vals = [s for s in seg if s]
