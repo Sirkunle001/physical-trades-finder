@@ -63,17 +63,6 @@ The catalog only lists boards with a verified, tested, keyless access path and
 unit-tested parsers with recorded fixtures. It will grow; unknown states or
 trades guard against silently degraded access.
 
-## Honest limits
-
-- Output is a single board state per run; cross-state comparison is done by hand.
-- The sweep subdivides under name prefixes but a board search caps what a query
-  can widen past. Prefix strategies may occasionally miss records if a name
-  begins in an unexpected way; under cap prefixes that outgrow 50 rows are split
-  recursively, but this is by prefix not by legal name, so anything not starting
-  with the prefix itself would not be picked up.
-- Only one board is implemented. Other professional boards have different
-  anti-bot postures; adding a board means a new adapter and fixtures, which is
-  insurance against a parser diff error as board pages change over time.
 
 ## Install
 
