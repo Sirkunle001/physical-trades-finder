@@ -1,73 +1,91 @@
-# license-finder
+# Physical Trades Finder
 
-Keyless lookups against state professional-license boards, returned as clean,
-deduped CSVs instead of webpage fragments.
+Build prospect lists of local trade businesses in California: every electrician,
+plumber, roofer, landscaper, solar installer, pool builder, welder and 40 more
+trades, exported as a clean CSV that is ready for your CRM, dialer or mail merge.
 
-Most licensing boards in the US publish their full licensee registers as
-searchable websites. Each board, though, has its own interface, its own output
-format, and its own idea of "status". People selling to a profession usually
-want one thing from this data: a clean, filterable list of the operators worth
-talking to. Going board to board and re-formatting results by hand is the slow
-part; license-finder does the parsing, dedupe, and status normalisation for the
-boards included in its catalog.
+The data comes straight from the state's public contractors register, read
+directly. No API key, no account, no headless browser.
 
-## What it does
+## What you can build with it
 
-Every supported board gives you:
+- A list of every active electrician (C-10) in the state
+- A list of HVAC companies (C-20) in the cities you serve
+- A list of new businesses: anyone who got licensed in the last year
+- A list of sole owners (the operator answers the phone themselves) vs
+  companies (an office with staff)
+- A renewal-timing list: license expiry dates tell you when each business is
+  doing paperwork, which is a natural time to reach out
 
-```
-license-finder catalog
-license-finder list   --board ca-contractors --prefix ACME,REDWOOD --out.csv
-license-finder detail --board ca-contractors 1098046
-```
-
-`list` runs a board sweep (comma-separated name prefixes), applies status and
-classification filters, fetches the full record for each surviving row, dedupes
-by license number, and writes:
+Every list is one command. Pick a trade, optionally filter by city, get the CSV.
 
 ```
-license_number,name,name_type,classes,city,state,zip,street,phone,
-entity,status,issue_date,expire_date
+# all active pool builders
+license-finder list --prefix A*,B*,C*,D*,E*,F*,G*,H*,I*,J*,K*,L*,M*,N*,O*,P*,Q*,R*,S*,T*,U*,V*,W*,X*,Y*,Z* --class-filter "C-53" --status Active --out pool_builders.csv
+
+# quick sample: everything named ACME
+license-finder list --prefix ACME --out sample.csv
+
+# one full record, every field
+license-finder detail 1098046
 ```
 
-Fan counts are printed at every stage so you always know what got dropped and
-why.
+Small slices come out in seconds. A whole trade is one command and a batch run.
 
-Example output (real CSLB records):
+## What is on each row
 
-```
-license_number,name,classes,city,state,zip,phone,entity,status,issue_date,expire_date
-898355,WATT ELECTRIC,C10 - ELECTRICAL,HOLLISTER,CA,95023,(831) 637-1000,Corporation,Active,06/13/2007,05/31/2027
-1098046,REDWOOD ADU LLC,B - GENERAL BUILDING,SACRAMENTO,CA,95817,(916) 619-9585,Ltd Liability,Active,10/24/2022,10/31/2028
-```
+| column | what it tells you |
+|---|---|
+| `name` | the business name on the register |
+| `classes` | the trade(s) the business is licensed for, e.g. C-10 ELECTRICAL |
+| `city`, `state`, `zip`, `street` | where the business is located |
+| `phone` | the phone on the register |
+| `entity` | sole owner, corporation, LLC and so on |
+| `status` | Active, Expired, Cancelled, Suspended (normalized, filterable) |
+| `issue_date`, `expire_date` | when the license started, when it is up for renewal |
+| `license_number` | the register's own ID, kept for reference and dedupe |
 
-## Supported boards
+## The trades it covers
 
-| board | state | trade | provenance |
-|---|---|---|---|
-| `ca-contractors` | CA | Contractors (CSLB) | verified live, keyless |
-
-Every license class the board issues is listed inside the tool:
+California has 46 trade classes and all of them are inside the tool, captured
+from the board's own classifications page:
 
 ```
 license-finder classes
 ```
 
-46 classes ship with it (A General Engineering, B General Building, B-2
-Residential Remodeling, plus 43 specialty C-codes from C-2 Insulation to
-C-61 Limited Specialty), captured from the board's own classifications page
-with the source URL and capture date stored in the data file. Each class is
-its own slice for `--class-filter`.
+A sample of what is in there:
 
-The catalog only lists boards with a verified, tested, keyless access path and
-unit-tested parsers with recorded fixtures. It will grow; unknown states or
-trades guard against silently degraded access.
+- A: General Engineering
+- B: General Building (remodelers, homebuilders, GCs)
+- C-10: Electrical
+- C-20: HVAC
+- C-36: Plumbing
+- C-39: Roofing
+- C-46: Solar
+- C-27: Landscaping
+- C-53: Swimming Pool
+- C-60: Welding
+- C-49: Tree and Palm
+- ... and 35 more, from insulation (C-2) to well drilling (C-57)
 
+Each trade is its own list. The CSV's `classes` column carries the trade per
+row, so one export can be sliced any way you want afterward.
+
+## How it works for you
+
+1. Pick the trade (or run `classes` to browse the 46).
+2. Run the command. The tool sweeps the register by name prefix so nothing gets
+   skipped, fetches the full record for every match, normalizes the statuses,
+   dedupes, and prints exactly what it found and what it filtered.
+3. Open the CSV. City and zip are columns, so territory slicing is a
+   spreadsheet filter. Sole owner vs company is a column. Renewal date is a
+   column.
 
 ## Install
 
 ```
-pip install license-finder   # or: pip install -e .
+pip install physical-trades-finder   # or: pip install -e .
 ```
 
 Requires Python 3.10+.
