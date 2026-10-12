@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "license-finder"
+version = "0.1.0"
+description = "Keyless state professional-license board lookups -> clean, usable CSVs (California contractors board included)"
+requires-python = ">=3.10"
+dependencies = ["curl-cffi>=0.7"]
+
+[project.scripts]
+license-finder = "license_finder.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
