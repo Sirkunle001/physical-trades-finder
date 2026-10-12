@@ -8,10 +8,14 @@ One command family:
 from __future__ import annotations
 
 import argparse
+import json
+import pathlib
 import sys
 
 from .cslb import CslbSession, normalize_status
 from .export import write_csv
+
+_CLASSES_FILE = pathlib.Path(__file__).parent / "ca_classes.json"
 
 BOARDS = {
     "ca-contractors": {
@@ -36,6 +40,7 @@ def main(argv: list[str] | None = None) -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     sub.add_parser("catalog", help="list supported boards")
+    sub.add_parser("classes", help="ca-contractors: the board's official license classes")
 
     lp = sub.add_parser("list", help="board sweep -> clean CSV")
     lp.add_argument("--board", default="ca-contractors", choices=list(BOARDS))
@@ -52,6 +57,13 @@ def main(argv: list[str] | None = None) -> int:
     dp.add_argument("license")
 
     args = ap.parse_args(argv)
+
+    if args.cmd == "classes":
+        data = json.loads(_CLASSES_FILE.read_text(encoding="utf-8"))
+        for c in data["classes"]:
+            print(f"{c['code']:6s} {c['name']}")
+        print(f"source: {data['source']} (captured {data['captured']})")
+        return 0
 
     if args.cmd == "catalog":
         for key, cfg in BOARDS.items():

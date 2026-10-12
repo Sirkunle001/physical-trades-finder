@@ -1,0 +1,190 @@
+{
+  "source": "https://www.cslb.ca.gov/About_Us/Library/Licensing_Classifications/Default.aspx",
+  "captured": "2026-10-12",
+  "classes": [
+    {
+      "code": "A",
+      "name": "General Engineering Contractor"
+    },
+    {
+      "code": "B",
+      "name": "General Building Contractor"
+    },
+    {
+      "code": "B-2",
+      "name": "Residential Remodeling Contractor"
+    },
+    {
+      "code": "C-2",
+      "name": "Insulation and Acoustical Contractor"
+    },
+    {
+      "code": "C-4",
+      "name": "Boiler, Hot Water Heating and Steam Fitting Contractor"
+    },
+    {
+      "code": "C-5",
+      "name": "Framing and Rough Carpentry Contractor"
+    },
+    {
+      "code": "C-6",
+      "name": "Cabinet, Millwork and Finish Carpentry Contractor"
+    },
+    {
+      "code": "C-7",
+      "name": "Low Voltage Systems Contractor"
+    },
+    {
+      "code": "C-8",
+      "name": "Concrete Contractor"
+    },
+    {
+      "code": "C-9",
+      "name": "Drywall Contractor"
+    },
+    {
+      "code": "C-10",
+      "name": "Electrical Contractor"
+    },
+    {
+      "code": "C-11",
+      "name": "Elevator Contractor"
+    },
+    {
+      "code": "C-12",
+      "name": "Earthwork and Paving Contractors"
+    },
+    {
+      "code": "C-13",
+      "name": "Fencing Contractor"
+    },
+    {
+      "code": "C-15",
+      "name": "Flooring and Floor Covering Contractors"
+    },
+    {
+      "code": "C-16",
+      "name": "Fire Protection Contractor"
+    },
+    {
+      "code": "C-17",
+      "name": "Glazing Contractor"
+    },
+    {
+      "code": "C-20",
+      "name": "Warm-Air Heating, Ventilating and Air-Conditioning Contractor"
+    },
+    {
+      "code": "C-21",
+      "name": "Building Moving/Demolition Contractor"
+    },
+    {
+      "code": "C-22",
+      "name": "Asbestos Abatement Contractor"
+    },
+    {
+      "code": "C-23",
+      "name": "Ornamental Metal Contractor"
+    },
+    {
+      "code": "C-27",
+      "name": "Landscaping Contractor"
+    },
+    {
+      "code": "C-28",
+      "name": "Lock and Security Equipment Contractor"
+    },
+    {
+      "code": "C-29",
+      "name": "Masonry Contractor"
+    },
+    {
+      "code": "C-31",
+      "name": "Construction Zone Traffic Control Contractor"
+    },
+    {
+      "code": "C-32",
+      "name": "Parking and Highway Improvement Contractor"
+    },
+    {
+      "code": "C-33",
+      "name": "Painting and Decorating Contractor"
+    },
+    {
+      "code": "C-34",
+      "name": "Pipeline Contractor"
+    },
+    {
+      "code": "C-35",
+      "name": "Lathing and Plastering Contractor"
+    },
+    {
+      "code": "C-36",
+      "name": "Plumbing Contractor"
+    },
+    {
+      "code": "C-38",
+      "name": "Refrigeration Contractor"
+    },
+    {
+      "code": "C-39",
+      "name": "Roofing Contractor"
+    },
+    {
+      "code": "C-42",
+      "name": "Sanitation System Contractor"
+    },
+    {
+      "code": "C-43",
+      "name": "Sheet Metal Contractor"
+    },
+    {
+      "code": "C-45",
+      "name": "Sign Contractor"
+    },
+    {
+      "code": "C-46",
+      "name": "Solar Contractor"
+    },
+    {
+      "code": "C-47",
+      "name": "General Manufactured Housing Contractor"
+    },
+    {
+      "code": "C-49",
+      "name": "Tree and Palm Contractor"
+    },
+    {
+      "code": "C-50",
+      "name": "Reinforcing Steel Contractor"
+    },
+    {
+      "code": "C-51",
+      "name": "Structural Steel Contractor"
+    },
+    {
+      "code": "C-53",
+      "name": "Swimming Pool Contractor"
+    },
+    {
+      "code": "C-54",
+      "name": "Ceramic and Mosaic Tile Contractor"
+    },
+    {
+      "code": "C-55",
+      "name": "Water Conditioning Contractor"
+    },
+    {
+      "code": "C-57",
+      "name": "Well Drilling Contractor"
+    },
+    {
+      "code": "C-60",
+      "name": "Welding Contractor"
+    },
+    {
+      "code": "C-61",
+      "name": "Limited Specialty"
+    }
+  ]
+}

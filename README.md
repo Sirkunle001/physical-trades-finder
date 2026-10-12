@@ -47,6 +47,18 @@ license_number,name,classes,city,state,zip,phone,entity,status,issue_date,expire
 |---|---|---|---|
 | `ca-contractors` | CA | Contractors (CSLB) | verified live, keyless |
 
+Every license class the board issues is listed inside the tool:
+
+```
+license-finder classes
+```
+
+46 classes ship with it (A General Engineering, B General Building, B-2
+Residential Remodeling, plus 43 specialty C-codes from C-2 Insulation to
+C-61 Limited Specialty), captured from the board's own classifications page
+with the source URL and capture date stored in the data file. Each class is
+its own slice for `--class-filter`.
+
 The catalog only lists boards with a verified, tested, keyless access path and
 unit-tested parsers with recorded fixtures. It will grow; unknown states or
 trades guard against silently degraded access.
