@@ -19,18 +19,38 @@ _CLASSES_FILE = pathlib.Path(__file__).parent / "ca_classes.json"
 
 BOARDS = {
     "ca-contractors": {
-        "label": "California Contractors State License Board (CSLB)",
-        "transferLayer": "cslb",
+        "label": "CA: Contractors State License Board (CSLB)",
+        "impl": "cslb",
+    },
+    "tx-trades": {
+        "label": "TX: TDLR License Data Search (AC, plumbers, electricians, ...)",
+        "impl": "tdlr",
+    },
+    "nc-electrical": {
+        "label": "NC: Board of Examiners of Electrical Contractors",
+        "impl": "ncbeec",
+    },
+    "nyc-construction": {
+        "label": "NY (NYC): DOB construction-trades licenses (Socrata)",
+        "impl": "nyc_dob",
     },
 }
 
+PENDING_BOARDS = {
+    "FL": "DBPR - Cloudflare wall + async JS search (browser-mode build)",
+    "GA": "verify.sos.ga.gov - Cloudflare 403 (browser-mode build)",
+    "IL": "IDFPR - Human Verification gate on lookup endpoint",
+    "PA": "PALS - SPA with 'I'm not a robot' gate",
+    "MI": "LARA val app - search API not yet decoded",
+    "OH": "OCILB eLicense - webforms popup/async pattern not yet decoded",
+}
 
-def _rows_from_board(board: str) -> type:
-    if board != "ca-contractors":
+
+def _rows_from_board(board: str):
+    if board not in BOARDS:
         raise SystemExit(f"unknown board: {board}; catalog shows the supported ones")
-    from . import cslb as board_mod
-
-    return board_mod
+    from . import cslb, ncbeec, nyc_dob, tdlr
+    return {"cslb": cslb, "tdlr": tdlr, "ncbeec": ncbeec, "nyc_dob": nyc_dob}[BOARDS[board]["impl"]]
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -67,8 +87,9 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "catalog":
         for key, cfg in BOARDS.items():
-            print(f"{key:16s} {cfg['label']}")
-        print("catalog grows as more boards are verified. see README limits.")
+            print(f"live    {key:16s} {cfg['label']}")
+        for st, note in PENDING_BOARDS.items():
+            print(f"pending {st:16s} {note}")
         return 0
 
     mod = _rows_from_board(args.board)
@@ -81,23 +102,68 @@ def main(argv: list[str] | None = None) -> int:
 
     prefixes = [p for p in args.prefix.split(",") if p]
 
-    s = CslbSession(delay=args.delay)
-    status = normalize_status(args.status) if (args.status and normalize_status(args.status)) else args.status
-    counts = {"prefixes": len(prefixes), "rows": 0, "status_pass": 0,
-              "class_pass": 0, "written": 0}
+    # board dispatch: cslb keeps its own session type; others return dicts
+    from .cslb import CslbSession
+    if BOARDS[args.board]["impl"] == "cslb":
+        s = CslbSession(delay=args.delay)
+        rows = s.sweep(prefixes, details=not args.no_details, status=normalize_status(args.status) if args.status else None)
+        collected = []
+        counts = {"prefixes": len(prefixes), "rows": 0, "status_pass": 0, "class_pass": 0, "written": 0}
+        for row in rows:
+            counts["rows"] += 1
+            if args.class_filter and args.class_filter.lower() not in (getattr(row, "classes", "") or "").lower():
+                continue
+            counts["class_pass"] += 1
+            collected.append(row)
+        from .export import dedupe
+        deduped = dedupe(collected)
+        counts["written"] = len(deduped)
+        write_csv(deduped, args.out, source_col="")
+        print(" -> ".join(f"{k}:{v}" for k, v in counts.items()))
+        print(f"out: {args.out}")
+        return 0
+
+    if BOARDS[args.board]["impl"] == "tdlr":
+        from .tdlr import TxSession
+        session = TxSession(delay=args.delay)
+        rows = session.sweep(prefixes)
+    elif BOARDS[args.board]["impl"] == "ncbeec":
+        from .ncbeec import NcSession
+        session = NcSession(delay=args.delay)
+        rows = []
+        for letter in prefixes:
+            rows.extend(session.search(company_name=letter))
+    else:
+        from .nyc_dob import all_rows
+        rows = all_rows(status=args.status)
+
     collected = []
-    for row in s.sweep(prefixes, details=not args.no_details, status=status):
+    counts = {"prefixes": len(prefixes), "rows": 0, "status_pass": 0, "class_pass": 0, "written": 0}
+    status = normalize_status(args.status) if (args.status and args.status not in ("all", "All")) else ""
+    from .cslb import LicenseRow
+    for row in rows:
         counts["rows"] += 1
+        st = row.get("status", "")
+        if status and st and st != status:
+            continue
         counts["status_pass"] += 1
-        if args.class_filter and args.class_filter.lower() not in row.classes.lower():
+        classes_txt = row.get("classes", "") or row.get("classification", "") or row.get("license_type", "")
+        if args.class_filter and args.class_filter.lower() not in classes_txt.lower():
             continue
         counts["class_pass"] += 1
         collected.append(row)
 
-    from .export import dedupe
-    deduped = dedupe(collected)
+    from .export import write_csv_rows
+    seen = set()
+    deduped = []
+    for row in collected:
+        key = row.get("license_number") or row.get("account") or row.get("name")
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(row)
     counts["written"] = len(deduped)
-    write_csv(deduped, args.out, source_col="")
+    write_csv_rows(deduped, args.out)
     print(" -> ".join(f"{k}:{v}" for k, v in counts.items()))
     print(f"out: {args.out}")
     return 0

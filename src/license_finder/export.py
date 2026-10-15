@@ -51,3 +51,17 @@ def write_csv(rows: list[LicenseRow], out_path: str, source_col: str = "") -> Co
                 vals.append(source_col)
             w.writerow(vals)
     return Counter()  # callers track counts
+
+
+def write_csv_rows(dict_rows: list[dict], out_path: str) -> None:
+    """Write arbitrary-board dict rows with a normalized column order."""
+    cols: list[str] = []
+    for row in dict_rows:
+        for key in row:
+            if key not in cols:
+                cols.append(key)
+    with open(out_path, "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(cols)
+        for row in dict_rows:
+            w.writerow([row.get(c, "") for c in cols])
