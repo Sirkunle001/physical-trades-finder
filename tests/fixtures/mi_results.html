@@ -1,0 +1,1907 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html ng-app="appAca" xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head id="ctl00_Head1"><link href="../App_Themes/Default/form.css" type="text/css" rel="stylesheet" /><link href="../App_Themes/Default/style.css" type="text/css" rel="stylesheet" /><title>
+	
+        Accela Citizen Access
+    
+</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="icon" type="image/svg+xml" href="../Accela-Favicon.svg" /><link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <style type="text/css">
+        body, html {
+        overflow-y: visible!important;
+        }
+        .page-overlay-blocker {
+          position: fixed;
+          z-index: 999;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #ffffff;
+          opacity: 0.1;
+          display:none;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../css/main.css" /><link rel="stylesheet" type="text/css" href="../css/acaresponsive.min.css" /><script src="/LARA/bundles/aca-gis?v=qZBQzLf2g-HLVKRpUwySmf0HSY9NU1VUc_xUbESbAAs1"></script>
+<link href="../App_Themes/en-US/style.css" type="text/css" rel="stylesheet" /><link id="ctl00_CustomerCssStyle" style="text/css" rel="stylesheet" href="/LARA/Handlers/CustomizedCssStyle.ashx?agencyCode=LARA"></link><link id="ctl00_PageCustomizeCssStyle_GlobalCustomScriptBefore" style="text/css" rel="stylesheet" href="/LARA/Customization/LARA/globalcustomscriptbefore.css"></link></head>
+    
+<script type="text/javascript">
+    var firstErrorMsgId;
+
+    function isSafari(){
+        var ua = window.navigator.userAgent;
+        return ua.indexOf("Safari")>-1;
+    }
+
+    var original=0;
+    function iframeAutoFit()
+    {
+        try
+        {
+            if(window!=parent)
+            {
+                var ifrm = getParentDocument().getElementById("ACAFrame");
+                if(ifrm != null && ifrm.contentWindow==window)
+                {
+                    var h1 = 0, h2 = 0;
+
+                    if(document.documentElement&&document.documentElement.scrollHeight)
+                    {
+                        h1=ifrm.contentWindow.document.documentElement.scrollHeight;
+                    }
+                    if (isSafari()) {
+                        h1=ifrm.contentWindow.document.body.scrollHeight;
+                    }
+                
+                    var h=$(ifrm.contentWindow.document.body).innerHeight();
+                
+                    var temp = h1-60 - h;
+                    var chk = true;
+                    if (temp> 0 && temp<200) {
+                        chk = false;
+                    }
+
+                    var popupHeight = 0;
+                    var popupDialog = $("#dvACADialogLayer");
+                    if ($.exists(popupDialog)) {
+                        popupHeight = popupDialog[0].clientHeight;
+                        if (h < popupHeight) {
+                            h = popupHeight;
+                        }
+                    }
+
+                    if(original != h || !chk){ 
+                        if(isFireFox() == false)
+                        {
+                            if (chk) {
+                                h1 = parseInt(h)+60;
+                            }
+                        
+                            ifrm.style.height = ifrm.parentNode.style.height = h1 +"px";
+                        }
+                        else
+                        {
+                            if (chk) {
+                                if ($.exists(popupDialog)) {
+                                    h1 = parseInt(h) + 60;
+                                } else {
+                                    h1 = ifrm.contentDocument.body.scrollHeight;
+                                    h1 = parseInt(h1) + 60;
+                                }
+                            }
+                            
+                            ifrm.height = h1;
+                        }
+
+                        original = h;
+                    } 
+                }
+            }
+        }
+        catch (ex){}
+    }
+
+</script>
+
+<body>
+    <div id="iframeBlocker" class="page-overlay-blocker"></div>
+    <script type="text/javascript" src="/LARA/Scripts/GlobalConst.aspx"></script>  
+    <script src="/LARA/bundles/common?v=3frcyczFCCAemuR09W71PpqoQkdwvQy6MShBSNrJdrc1"></script>
+
+    <script src="/LARA/bundles/accela-common?v=BXje1z6NawBGOiQIEn0vAnHNsFfvdLkUx4SQxpy-akk1"></script>
+
+
+    <script type="text/javascript">
+        try {
+            var isEmbedded = (window.top !== window.self);
+            if (isEmbedded && !window.__ACA_DDRUM_LOADED) {
+                (function (h, o, u, n, d) {
+                    h = h[d] = h[d] || { q: [], onReady: function (c) { h.q.push(c) } }
+                    d = o.createElement(u); d.async = 1; d.src = n
+                    n = o.getElementsByTagName(u)[0]; n.parentNode.insertBefore(d, n)
+                })(window, document, 'script', 'https://www.datadoghq-browser-agent.com/datadog-rum-v4.js', 'DD_RUM');
+
+                DD_RUM.onReady(function () {
+                    var ddrumClientToken = 'pub4c296e8a953a31a53abb3617c2f840e4';
+                    if (!ddrumClientToken || ddrumClientToken.trim() === '') {
+                        console.error("DD_RUM Client Token is not configured or empty!");
+                        ddrumClientToken = "";
+                    }
+                    var ddrumApplicationId = 'e34bafed-755d-4362-89e6-2ea4af60cd0f';
+                    if (!ddrumApplicationId || ddrumApplicationId.trim() === '') {
+                        console.error("DD_RUM Application ID is not configured or empty!");
+                        ddrumApplicationId = "";
+                    }
+                    function initRUM() {
+                        DD_RUM.init({
+                            clientToken: ddrumClientToken.trim(),
+                            applicationId: ddrumApplicationId.trim(),
+                            site: 'datadoghq.com',
+                            env: 'aca-prod',
+                            sessionSampleRate: 50, // REDUCED for PROD usage
+                            sessionReplaySampleRate: 5,
+                            trackInteractions: true,
+                            // Safe fallback settings for restricted environments
+                            storeContextsAcrossPages: true,
+                            useSecureSessionCookie: true,
+                            useCrossSiteSessionCookie: true,
+                            trackSessionAcrossSubdomains: false,
+                            trackViewsManually: true
+                        });
+                        // EXPLICITLY START A VIEW
+                        DD_RUM.startView({
+                            name: 'ACAProdDefault-AllPages',
+                            service: 'aca-prod',
+                            version: '25.5.0'
+                        });
+                        console.log("DD_RUM view started.");
+                        window.__ACA_DDRUM_LOADED = true;
+                    }
+                    // If inside iframe and browser supports requestStorageAccess
+                    if (document.requestStorageAccess) {
+                        console.log("Requesting storage access is present.");
+                        document.requestStorageAccess()
+                            .then(() => {
+                                console.log("Storage access granted");
+                            })
+                            .catch(() => {
+                                console.warn("Storage access denied, proceeding with fallback");
+                            });
+                    } else {
+                        console.log("Requesting storage access is not supported by the browser.");
+                    }
+                    initRUM();
+                });
+            }
+        } catch (e) {
+            console.error("Error initializing DD_RUM", e);
+        }
+        try {
+            var isEmbedded = (window.top !== window.self);
+            if (isEmbedded) {
+                console.log("Embedding Detected. Referrer (document.referrer): " + document.referrer);
+                if (window.DD_RUM && typeof DD_RUM.onReady === 'function') {
+                    DD_RUM.onReady(function () {
+                        console.log("DD_RUM is ready - logging action.");
+                        DD_RUM.addAction("EmbeddingDetected", {
+                            referrer: document.referrer || "not present",
+                            env: 'aca-prod',
+                            appId: 'e34bafed-755d-4362-89e6-2ea4af60cd0f',
+                            identityClientId: '5f88dc68-6856-49a8-af5e-d0e237d13b9e' || "not present",
+                            superAgencyCode: 'LARA' || "not present",
+                            agencyCode: 'LARA' || "not present"
+                    });
+                    console.log("DD_RUM action 'EmbeddingDetected' successfully queued.");
+                });
+                } else {
+                    console.warn("DD_RUM not available or not ready");
+                }
+                console.log("DD_RUM didn't throw any error");
+            } else {
+                console.log("Not embedded (top === self). Referrer: " + document.referrer);
+            }
+        } catch (e) {
+            console.error("Error checking embedding: ", e);
+        }
+    </script>
+    
+    <script type="text/javascript" src="/LARA/Scripts/SessionTimeout.js"></script>
+
+    <script type="text/javascript">
+        $.global.isRTL = IsTrue('False');
+
+        //fix the issue that the confirm/alert box should also follows the current culture.
+        if ($.global.isRTL) {
+            document.dir = "rtl";
+        } else {
+            document.dir = "ltr";
+        }
+
+        $.global.isAdmin = IsTrue('False');
+        var isClassTemplate = IsTrue('True');
+        var isWelcomePage = IsTrue('False');
+        var isLoginPage = IsTrue('False');
+        var isAnonymous = IsTrue('True');
+        var isCapApplyDisclaimerPage = IsTrue('False');
+        var isCapEditPage = IsTrue('False');
+
+        if (!isAnonymous && !$.global.isAdmin) {
+            var opts = {
+                Culture: 'en-US',
+                TimeoutTime: 30,
+                WarningTime: 5,
+                WarnTitle: 'Warning',
+                ExpiredTitle: 'Session Expired',
+                MsgWarn: 'Your session will time out in {0} minute(s). Would you like to continue?',
+                MsgExpired: 'Your session has been timed out due to inactivity. Please click on Login to access your account.',
+                MsgHelp: 'Please press the Tab key to move the focus to the OK or Cancel button.',
+                BtnOK: 'OK',
+                BtnCancel: 'Cancel',
+                BtnLogin: 'Login',
+                UrlWelcome: '/LARA/Welcome.aspx',
+                UrlLogin: '/LARA/Login.aspx',
+                UrlLogic: '/LARA/Handlers/SessionTimeOutHandler.ashx',
+                UrlCloseImg: '/LARA/app_themes/Default/assets/closepopup.png',
+                UrlUserStatus: '/LARA/api/PublicUser/AccountStatus',
+                ApplicationRoot: '/LARA/'
+            };
+
+            if (isClassTemplate) {
+                $("body").SessionTimeoutTimer(opts);
+            }
+        }
+    </script>
+
+    
+<script type="text/javascript">
+    var walkMeOptions = '{"userID":"31BCA02094EB78126A517B206A88C73CFA9EC6F704C7030D18212CACE820F025F00BF0EA68DBF3F3A5436CA63B53BF7BF80AD8D5DE7D8359D0B7FED9DBC3AB99","module":"","userGroup":"Anonymous","walkMeJsUrl":"https://cdn.walkme.com/users/01c65c34a5d141bbac172b11d8b9fcbf/walkme_01c65c34a5d141bbac172b11d8b9fcbf_https.js"}';
+
+    if (walkMeOptions != undefined && walkMeOptions != null && walkMeOptions.length != 0) {
+        var walkMeData = JSON.parse(walkMeOptions);
+        if (walkMeData.walkMeJsUrl != undefined && walkMeData.walkMeJsUrl != null && walkMeData.walkMeJsUrl.length != 0) {
+            var accelaVariables = new Object()
+            accelaVariables.userId = walkMeData.userID;
+            accelaVariables.userGroup = walkMeData.userGroup;
+            accelaVariables.product = walkMeData.product;
+            accelaVariables.version = walkMeData.version;
+            accelaVariables.environment = walkMeData.environment;
+            accelaVariables.module = walkMeData.module;
+            accelaVariables.agency = walkMeData.agency;
+            window.accelaVariables = accelaVariables;
+
+            //How to Pass Agency Name?
+            (function () {
+                var walkme = document.createElement('script');
+                walkme.type = 'text/javascript';
+                walkme.async = true;
+                walkme.src = walkMeData.walkMeJsUrl;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(walkme, s);
+                window._walkmeConfig = { smartLoad: true };
+            })();
+        }
+    }
+</script>
+
+    
+<script>
+  (function(h,o,u,n,d) {
+     h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
+     d=o.createElement(u);d.async=1;d.src=n
+     n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
+  })(window,document,'script','https://www.datadoghq-browser-agent.com/datadog-rum-v4.js','DD_RUM')
+  DD_RUM.onReady(function() {
+    DD_RUM.init({
+      clientToken: 'pub4c296e8a953a31a53abb3617c2f840e4',
+      applicationId: 'e34bafed-755d-4362-89e6-2ea4af60cd0f',
+      site: 'datadoghq.com',
+      env: 'civp_prod_azure',
+      service: 'aca',
+      version: '26.3.1.2.260929',
+      sampleRate: 10,
+      sessionReplaySampleRate: 5,
+      premiumSampleRate: 5,
+      trackInteractions: true
+    })
+  })
+</script>
+
+    <DIV style="WIDTH: 1px; HEIGHT: 1px;" id="divctl00_hlSkipNavigation" class=""><a id="ctl00_hlSkipNavigation" accesskey="0" href="#" tabIndex="-1" onclick="skipToBeginningOfACA();" title="Skip to main content. Please make sure the Accessibility Support check box is marked."  class="NotShowLoading"><img alt="Skip to main content. Please make sure the Accessibility Support check box is marked." src="/LARA/WebResource.axd?d=_srwWNS1MSJOYH4C35b1oFn7VEYtvNa8YGGRg1sqtrF_faY_-fd0egWACbQyGWVnyPpONGyWOQylydrXXpHjvXdl4T0G4TrJ5TZlCzCCz424pMVoF3uq-ZWyjKkSQo7UFVPfshRXWd-tDgOs0est9E0Mlus1&t=639262789020000000" width='1px' height='1px' style='border-width:0px;'/></a></DIV>
+    <DIV style="WIDTH: 1px; HEIGHT: 1px;" id="divctl00_hlSkipToolBar" class=""><a id="ctl00_hlSkipToolBar" accesskey="1" href="#FirstAnchorInACAMainContent"  onclick="skipToMainContent();" title="Skip Module Navigation"  class="NotShowLoading"><img alt="Skip Module Navigation" src="/LARA/WebResource.axd?d=_srwWNS1MSJOYH4C35b1oFn7VEYtvNa8YGGRg1sqtrF_faY_-fd0egWACbQyGWVnyPpONGyWOQylydrXXpHjvXdl4T0G4TrJ5TZlCzCCz424pMVoF3uq-ZWyjKkSQo7UFVPfshRXWd-tDgOs0est9E0Mlus1&t=639262789020000000" width='1px' height='1px' style='border-width:0px;'/></a></DIV>
+    <form name="aspnetForm" method="post" action="./PropertyLookUp.aspx?isLicensee=Y&amp;TabName=APO" onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm">
+<div>
+<input type="hidden" name="ACA_CS_FIELD" id="ACA_CS_FIELD" value="24e83f53de604bc78f42434f653cb8ec" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/LARA/WebResource.axd?d=UK81IePOXTVsZN--6ZX3g4RlFAr7RgxiI7uqyim-g-VIvVHR4zblhbi9p-YGgBbvi5g5sUcNtYyJSdSIpy9_SFG--4U1&amp;t=639086680884218433" type="text/javascript"></script>
+
+
+<script src="/LARA/Scripts/dialog.js" type="text/javascript"></script>
+<script src="/LARA/Customization/LARA/globalcustomscriptbefore.js" type="text/javascript"></script><script type="text/javascript" language="javascript">
+var relevantControls_ctl00_PlaceHolderMain_educationRelationSearchForm_ddlCountry = new Array();
+relevantControls_ctl00_PlaceHolderMain_educationRelationSearchForm_ddlCountry[0]='ctl00_PlaceHolderMain_educationRelationSearchForm_txtPhone1_IDD';
+relevantControls_ctl00_PlaceHolderMain_educationRelationSearchForm_ddlCountry[1]='ctl00_PlaceHolderMain_educationRelationSearchForm_txtPhone2_IDD';
+relevantControls_ctl00_PlaceHolderMain_educationRelationSearchForm_ddlCountry[2]='ctl00_PlaceHolderMain_educationRelationSearchForm_txtFax_IDD';
+</script>
+<script type="text/javascript" language="javascript">
+var iddList = new Array();
+iddList[0] = new Array('TF','');
+iddList[1] = new Array('GS','');
+iddList[2] = new Array('BV','');
+iddList[3] = new Array('HM','');
+iddList[4] = new Array('SJ','');
+iddList[5] = new Array('UM','');
+iddList[6] = new Array('US','001');
+iddList[7] = new Array('CA','001');
+iddList[8] = new Array('MN','1');
+iddList[9] = new Array('EG','20');
+iddList[10] = new Array('MA','212');
+iddList[11] = new Array('DZ','213');
+iddList[12] = new Array('TN','216');
+iddList[13] = new Array('LY','218');
+iddList[14] = new Array('GM','220');
+iddList[15] = new Array('SN','221');
+iddList[16] = new Array('MR','222');
+iddList[17] = new Array('ML','223');
+iddList[18] = new Array('GN','224');
+iddList[19] = new Array('CI','225');
+iddList[20] = new Array('BF','226');
+iddList[21] = new Array('NE','227');
+iddList[22] = new Array('TG','228');
+iddList[23] = new Array('BJ','229');
+iddList[24] = new Array('MU','230');
+iddList[25] = new Array('LR','231');
+iddList[26] = new Array('SL','232');
+iddList[27] = new Array('GH','233');
+iddList[28] = new Array('NG','234');
+iddList[29] = new Array('TD','235');
+iddList[30] = new Array('CF','236');
+iddList[31] = new Array('CM','237');
+iddList[32] = new Array('CV','238');
+iddList[33] = new Array('ST','239');
+iddList[34] = new Array('GQ','240');
+iddList[35] = new Array('GA','241');
+iddList[36] = new Array('BS','242');
+iddList[37] = new Array('CG','242');
+iddList[38] = new Array('CD','243');
+iddList[39] = new Array('AO','244');
+iddList[40] = new Array('GW','245');
+iddList[41] = new Array('IO','246');
+iddList[42] = new Array('BB','246');
+iddList[43] = new Array('SC','248');
+iddList[44] = new Array('SD','249');
+iddList[45] = new Array('RW','250');
+iddList[46] = new Array('ET','251');
+iddList[47] = new Array('SO','252');
+iddList[48] = new Array('DJ','253');
+iddList[49] = new Array('KE','254');
+iddList[50] = new Array('TZ','255');
+iddList[51] = new Array('UG','256');
+iddList[52] = new Array('BI','257');
+iddList[53] = new Array('MZ','258');
+iddList[54] = new Array('ZM','260');
+iddList[55] = new Array('MG','261');
+iddList[56] = new Array('RE','262');
+iddList[57] = new Array('ZW','263');
+iddList[58] = new Array('NA','264');
+iddList[59] = new Array('AI','264');
+iddList[60] = new Array('MW','265');
+iddList[61] = new Array('LS','266');
+iddList[62] = new Array('BW','267');
+iddList[63] = new Array('SZ','268');
+iddList[64] = new Array('AG','268');
+iddList[65] = new Array('KM','269');
+iddList[66] = new Array('YT','269');
+iddList[67] = new Array('ZA','27');
+iddList[68] = new Array('VG','284');
+iddList[69] = new Array('SH','290');
+iddList[70] = new Array('ER','291');
+iddList[71] = new Array('AW','297');
+iddList[72] = new Array('FO','298');
+iddList[73] = new Array('GL','299');
+iddList[74] = new Array('GR','30');
+iddList[75] = new Array('NL','31');
+iddList[76] = new Array('BE','32');
+iddList[77] = new Array('FR','33');
+iddList[78] = new Array('ES','34');
+iddList[79] = new Array('VI','340');
+iddList[80] = new Array('KY','345');
+iddList[81] = new Array('GI','350');
+iddList[82] = new Array('PT','351');
+iddList[83] = new Array('LU','352');
+iddList[84] = new Array('IE','353');
+iddList[85] = new Array('IS','354');
+iddList[86] = new Array('AL','355');
+iddList[87] = new Array('MT','356');
+iddList[88] = new Array('CY','357');
+iddList[89] = new Array('FI','358');
+iddList[90] = new Array('AX','358');
+iddList[91] = new Array('BG','359');
+iddList[92] = new Array('HU','36');
+iddList[93] = new Array('LT','370');
+iddList[94] = new Array('LV','371');
+iddList[95] = new Array('EE','372');
+iddList[96] = new Array('MD','373');
+iddList[97] = new Array('AM','374');
+iddList[98] = new Array('BY','375');
+iddList[99] = new Array('AD','376');
+iddList[100] = new Array('MC','377');
+iddList[101] = new Array('SM','378');
+iddList[102] = new Array('VA','379');
+iddList[103] = new Array('UA','380');
+iddList[104] = new Array('CS','381');
+iddList[105] = new Array('HR','385');
+iddList[106] = new Array('SI','386');
+iddList[107] = new Array('BA','387');
+iddList[108] = new Array('MK','389');
+iddList[109] = new Array('IT','39');
+iddList[110] = new Array('RO','40');
+iddList[111] = new Array('CH','41');
+iddList[112] = new Array('CZ','420');
+iddList[113] = new Array('SK','421');
+iddList[114] = new Array('LI','423');
+iddList[115] = new Array('AT','43');
+iddList[116] = new Array('GB','44');
+iddList[117] = new Array('BM','441');
+iddList[118] = new Array('DK','45');
+iddList[119] = new Array('SE','46');
+iddList[120] = new Array('NO','47');
+iddList[121] = new Array('GD','473');
+iddList[122] = new Array('PN','48');
+iddList[123] = new Array('PL','48');
+iddList[124] = new Array('DE','49');
+iddList[125] = new Array('FK','500');
+iddList[126] = new Array('BZ','501');
+iddList[127] = new Array('GT','502');
+iddList[128] = new Array('SV','503');
+iddList[129] = new Array('HN','504');
+iddList[130] = new Array('NI','505');
+iddList[131] = new Array('CR','506');
+iddList[132] = new Array('PA','507');
+iddList[133] = new Array('PM','508');
+iddList[134] = new Array('HT','509');
+iddList[135] = new Array('PE','51');
+iddList[136] = new Array('MX','52');
+iddList[137] = new Array('CU','53');
+iddList[138] = new Array('AR','54');
+iddList[139] = new Array('BR','55');
+iddList[140] = new Array('CL','56');
+iddList[141] = new Array('CO','57');
+iddList[142] = new Array('VE','58');
+iddList[143] = new Array('GP','590');
+iddList[144] = new Array('BO','591');
+iddList[145] = new Array('GY','592');
+iddList[146] = new Array('EC','593');
+iddList[147] = new Array('GF','594');
+iddList[148] = new Array('PY','595');
+iddList[149] = new Array('MQ','596');
+iddList[150] = new Array('SR','597');
+iddList[151] = new Array('UY','598');
+iddList[152] = new Array('AN','599');
+iddList[153] = new Array('MY','60');
+iddList[154] = new Array('CC','61');
+iddList[155] = new Array('AU','61');
+iddList[156] = new Array('ID','62');
+iddList[157] = new Array('CX','62');
+iddList[158] = new Array('PH','63');
+iddList[159] = new Array('NZ','64');
+iddList[160] = new Array('TC','649');
+iddList[161] = new Array('SG','65');
+iddList[162] = new Array('TH','66');
+iddList[163] = new Array('TL','670');
+iddList[164] = new Array('MP','670');
+iddList[165] = new Array('GU','671');
+iddList[166] = new Array('AQ','672');
+iddList[167] = new Array('NF','672');
+iddList[168] = new Array('BN','673');
+iddList[169] = new Array('NR','674');
+iddList[170] = new Array('PG','675');
+iddList[171] = new Array('TO','676');
+iddList[172] = new Array('SB','677');
+iddList[173] = new Array('VU','678');
+iddList[174] = new Array('FJ','679');
+iddList[175] = new Array('PW','680');
+iddList[176] = new Array('WF','681');
+iddList[177] = new Array('CK','682');
+iddList[178] = new Array('NU','683');
+iddList[179] = new Array('AS','684');
+iddList[180] = new Array('EH','685');
+iddList[181] = new Array('WS','685');
+iddList[182] = new Array('KI','686');
+iddList[183] = new Array('NC','687');
+iddList[184] = new Array('TV','688');
+iddList[185] = new Array('PF','689');
+iddList[186] = new Array('TK','690');
+iddList[187] = new Array('FM','691');
+iddList[188] = new Array('MH','692');
+iddList[189] = new Array('RU','7');
+iddList[190] = new Array('KZ','7');
+iddList[191] = new Array('LC','758');
+iddList[192] = new Array('DM','767');
+iddList[193] = new Array('VC','784');
+iddList[194] = new Array('PR','787');
+iddList[195] = new Array('DO','809');
+iddList[196] = new Array('JP','81');
+iddList[197] = new Array('KR','82');
+iddList[198] = new Array('VN','84');
+iddList[199] = new Array('KP','850');
+iddList[200] = new Array('HK','852');
+iddList[201] = new Array('MO','853');
+iddList[202] = new Array('KH','855');
+iddList[203] = new Array('LA','856');
+iddList[204] = new Array('CN','86');
+iddList[205] = new Array('TT','868');
+iddList[206] = new Array('KN','869');
+iddList[207] = new Array('JM','876');
+iddList[208] = new Array('BD','880');
+iddList[209] = new Array('TW','886');
+iddList[210] = new Array('TR','90');
+iddList[211] = new Array('IN','91');
+iddList[212] = new Array('PK','92');
+iddList[213] = new Array('AF','93');
+iddList[214] = new Array('LK','94');
+iddList[215] = new Array('MM','95');
+iddList[216] = new Array('MV','960');
+iddList[217] = new Array('LB','961');
+iddList[218] = new Array('JO','962');
+iddList[219] = new Array('SY','963');
+iddList[220] = new Array('IQ','964');
+iddList[221] = new Array('KW','965');
+iddList[222] = new Array('SA','966');
+iddList[223] = new Array('YE','967');
+iddList[224] = new Array('OM','968');
+iddList[225] = new Array('PS','970');
+iddList[226] = new Array('AE','971');
+iddList[227] = new Array('IL','972');
+iddList[228] = new Array('BH','973');
+iddList[229] = new Array('QA','974');
+iddList[230] = new Array('BT','975');
+iddList[231] = new Array('MS','976');
+iddList[232] = new Array('NP','977');
+iddList[233] = new Array('IR','98');
+iddList[234] = new Array('TJ','992');
+iddList[235] = new Array('TM','993');
+iddList[236] = new Array('AZ','994');
+iddList[237] = new Array('GE','995');
+iddList[238] = new Array('KG','996');
+iddList[239] = new Array('UZ','998');
+
+            function onCountryChange(selectedLangId,relPhoneCltsArrName) {
+                var relevantControls = eval(relPhoneCltsArrName);
+
+                if(relevantControls != null) {
+                    var idd = getIDDbyLanguageID(selectedLangId);
+                    for(var i=0;i<relevantControls.length;i++) {
+                        var objCountryCode = document.getElementById(relevantControls[i]);
+                        if(objCountryCode != null) {
+                            objCountryCode.value = idd;
+                        }
+                    }
+                }
+
+                if (typeof (myValidationErrorPanel) != 'undefined'){
+                    myValidationErrorPanel.clearErrors();
+                }
+            }
+
+            function getIDDbyLanguageID(langId) {
+                for(var i=0;i<iddList.length;i++) {
+                    if(iddList[i][0] == langId) {
+                        return iddList[i][1];
+                    }
+                }
+                return '';
+            }</script>
+<script type="text/javascript" language="javascript">
+var relevantControls_ctl00_PlaceHolderMain_refExamSearchForm_ddlCountry = new Array();
+relevantControls_ctl00_PlaceHolderMain_refExamSearchForm_ddlCountry[0]='ctl00_PlaceHolderMain_refExamSearchForm_txtPhone1_IDD';
+relevantControls_ctl00_PlaceHolderMain_refExamSearchForm_ddlCountry[1]='ctl00_PlaceHolderMain_refExamSearchForm_txtPhone2_IDD';
+relevantControls_ctl00_PlaceHolderMain_refExamSearchForm_ddlCountry[2]='ctl00_PlaceHolderMain_refExamSearchForm_txtFax_IDD';
+</script>
+<script type="text/javascript" language="javascript">
+var relevantControls_ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlCountry = new Array();
+relevantControls_ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlCountry[0]='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_IDD';
+relevantControls_ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlCountry[1]='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone2_IDD';
+relevantControls_ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlCountry[2]='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFax_IDD';
+</script>
+<script type="text/javascript" language="javascript">
+var relevantControls_ctl00_PlaceHolderMain_refFoodFacilitySearchForm_ddlCountry = new Array();
+relevantControls_ctl00_PlaceHolderMain_refFoodFacilitySearchForm_ddlCountry[0]='ctl00_PlaceHolderMain_refFoodFacilitySearchForm_txtPhone1_IDD';
+relevantControls_ctl00_PlaceHolderMain_refFoodFacilitySearchForm_ddlCountry[1]='ctl00_PlaceHolderMain_refFoodFacilitySearchForm_txtPhone2_IDD';
+relevantControls_ctl00_PlaceHolderMain_refFoodFacilitySearchForm_ddlCountry[2]='ctl00_PlaceHolderMain_refFoodFacilitySearchForm_txtFax_IDD';
+</script>
+
+<script src="/LARA/Scripts/ACCELAGRIDVIEW_JS.js" type="text/javascript"></script>
+<script src="/LARA/Scripts/Validation.js" type="text/javascript"></script>
+<script src="/LARA/WebResource.axd?d=oOLzn4x6UCkzDk73gJEjyKKHBYQK3oAV4jz8ILoDiFUB0rh9ozcZSe3imzCBf_Duyl__EapJej0Deb0PtYtWa9dMpVwaTG5XH6Vejmft0MGi01ZJrKNq7rONVdj54k9Tl3ee4fq5gvzN596JQCMDgQ1muWo1&amp;t=639262789020000000" type="text/javascript"></script>
+<script src="/LARA/WebResource.axd?d=l2dj_uwwJYhrJ3qNqC4b0L7FEp3BC8DcOMrfmLxAJahv1j9cpcp_oGRddWyTFQp38ONn3xqPWoSatadkXluZjeh2RbgrYWdnTjhrvteAv1b4BIpoOpgYSPBbRcHVAebV7h8JSEv9R4D771xyeVa1uHtTYPY1&amp;t=639262789020000000" type="text/javascript"></script>
+<script src="/LARA/WebResource.axd?d=-7h3I5JBId5Q_Xci-Y7iPoEJkfh296P15DDDyNjehZ_vw5UGZpCBR0bPNEDAHVz2DpVT-1-fzbsti_kFR6qEe2nDTva9fH9BL-bMLW4dzLTfoM_ghrOYRqtOiPvv4S8AZ00r3g2&amp;t=639262789020000000" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=wQwJQnCf4VrBgOtY_DWaUr3ly0VaGOqiiYm-97e4StdKZDiGPv6V8zQwaDCWtFGLUqgGlu8yoWO5C7oentWK5xnjAFcdO9BLng-y4ghfditBDrD5PQ5Cpd72GMdxPFKJv0cAxr24evAVsPf2j1ykmSjNwiQ1&amp;t=ffffffff8f138758" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=OcV1U1y3l60Dg6nZY9pswmiI6xtTFc0Zmo0r9NSM7vwr9Fx5ueiX2Aaoxqv60IbVyX-GwnXaHXbpNVr1bCZVRLRH7bSzibtexy5fFFcim4pkGQFKDbq906R_Q3sflRXXb7sr5Q8g6aLw0MRl4O4suvES-dY1&amp;t=ffffffffa57c377b" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=BuJKyuMlQ9ihDHkKRspv5-_M9_7RuSRHVkgkhfGbmJu2rtTtHDfNysfQHNQ_nnJJbmLH8R_ActQjxmw2InzKeIXmKhnezDeaW1LhYxtTwLLTvJoriHX9JQHnf8_EKPHAlVhdwpGPUOSmXUe4QcTUqXNH6J81&amp;t=ffffffffacea8b1a" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=dw-rli8fVv9LQT7sT_P_ykkYemDq5tURAhS13SdOcVmy6E7hYiOLbpG1GbTdxR7JPnldq_rjiy3OuTVLEk_D32KC2QqiyFsRMzqbnhXYUVFtYS6oIU08w0K38iwj8uRxWCTs2qe9GTFvEEiFeR_bb6gYSfc_6KSGg_IKPSB1wT5wLwW40&amp;t=ffffffffacea8b1a" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=3kGmvhuaAP9dGtHTIF50VOEl9G0gy28pAivS6cMq1JYRCkt0Af-8yf-YVZRBy9xarMqWHpx2NIIuEvCqZz3mpHeBhd0ercSU3gqB7zPQ4GFZN0FLXrTQ2EW682CEALnwpwjqgw5Kw5aMhpZEup-VkUAlX681&amp;t=ffffffffe525b3b7" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=QgfAO-tRhnhlx26x49MXiPv7zsDB12G-R9qA14QClh_RqqEbgSgmmnU3-umGxNA-mvoPxupdycw2F9twBmIV2QXxnNVaABwcCJNXshZoa4nCbMKBcsO7S1eCA7q9Km3wERDs2_J5etlnTXT64_EeqtKYkPfQS2ooBFhdArByEN3th8gz0&amp;t=ffffffff8f138758" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=ghojreccdB-4Qaaa1y_khDYUdpPmWMerb_66RoKXcPTi8lmZE0EYp1uttpEbm9n2qYtpHiHSYdgRcuuunV2kLxdPz_Z7bX8rDE5MoXE5vp1InsynfhaC4HtO_HrMOF25e5CkChe-8UjD9mZXKU_Cdfe8FdqjRZIlzU00kHq5Fg2_uQ7v0&amp;t=ffffffff8f138758" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=bSg4AcnZvnlZXtUyFbdSfutakh9Efi_y0U9udXpw1xf-J5CbrIfFjoGrOBesCI7KZyDNSJFqdd3nQerM5WWN4pBdJTOqwTna1IQQy1dVaR_uxDO3dp6SND6cMt6yUcNJ6sGSU2RFIO701oKb2_LjZ9rq8f81&amp;t=ffffffffe525b3b7" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=leqhdTDm3KvvgwTvLsWy3eAX_GV2b4lmQYE2nW4VI7dittBoKclSSTMnfIuuvptRpD9a4xwm4oQGHW5rid72HRwvPa9ZKN9Lw8oFNDoUQ6ksC2xb9vYRscIZiynEbnd2J_kld4IktnAjtSiTU5ynG17FSd41&amp;t=ffffffffe525b3b7" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=XrTxqTg2YVG8ULuP95ebAwKGzP6Y7mAjPbkgOAZkrHmhidOKcy3mRIM--qCXIdBDqZ74UiVUCcSUsQYkv-sWcvlMcCD9NkQgtfLJCQtAVhl9ON74vkDH4EX-eO5ROxmCkB2Q_FGpEhqO0gE2MHrlKxr0qQ01&amp;t=ffffffffe525b3b7" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=iP_NdaKPnOQzjvlk4Iv2iyJNJvZwI0ndBDoutEtGDVjIFKIzjFxaL_8L3YaU5Fxi9ZM0siZcbmiwFxO3qY0M-tCJAwWKpDeJ35hdoafYOuxT-QGvVnhfoeNOxF_3x0tzAQpoX3p2ExkgR8tQvrtNhI-2Rus1&amp;t=ffffffffe525b3b7" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=e18LL80YhD5pjf5C_u9s8prWQxo_o5m6ZsuwAfy35aYZxq9tWawa9gZw7qUG_NgWbQlxeThIfTnXxtQEALQkEIm49kZWjA53N7846T9QVcoszcqCByZ58zk9LIG3YCd8neCC_MZiOQL_8djG46wemzcS66A1&amp;t=ffffffffe525b3b7" type="text/javascript"></script>
+<script src="/LARA/ScriptResource.axd?d=C_lWjIzLlyqJruOmK99zYEK7Z_jNA9cbbn2hecYxPQoz6s12VKbP4ef9fP4WlBeCFfwOvooSirDz9JOHrxutJoLPTMvexujBsp_EUaM3r2uQXPTG1rCo3nm7fZx2e1VzEj3kW2kr8sBtSj4b8KnWEOPdsdKTy9uBTMF7MQThsZLRaZtPV0345csvvKq71If4mLZF3g2&amp;t=ffffffff8f138758" type="text/javascript"></script>
+<script src="/LARA/WebService/AnnouncementService.asmx/js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var PageMethods = function() {
+PageMethods.initializeBase(this);
+this._timeout = 0;
+this._userContext = null;
+this._succeeded = null;
+this._failed = null;
+}
+PageMethods.prototype = {
+_get_path:function() {
+ var p = this.get_path();
+ if (p) return p;
+ else return PageMethods._staticInstance.get_path();},
+GetContactAddressUsedInDailyAsPrimary:function(contactAddressID,agencyCode,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetContactAddressUsedInDailyAsPrimary',false,{contactAddressID:contactAddressID,agencyCode:agencyCode},succeededCallback,failedCallback,userContext); },
+ClearUIData:function(serializedUIDataTypes,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ClearUIData',false,{serializedUIDataTypes:serializedUIDataTypes},succeededCallback,failedCallback,userContext); },
+GetInstructionByKey:function(labelKey,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetInstructionByKey',false,{labelKey:labelKey},succeededCallback,failedCallback,userContext); }}
+PageMethods.registerClass('PageMethods',Sys.Net.WebServiceProxy);
+PageMethods._staticInstance = new PageMethods();
+PageMethods.set_path = function(value) { PageMethods._staticInstance.set_path(value); }
+PageMethods.get_path = function() { return PageMethods._staticInstance.get_path(); }
+PageMethods.set_timeout = function(value) { PageMethods._staticInstance.set_timeout(value); }
+PageMethods.get_timeout = function() { return PageMethods._staticInstance.get_timeout(); }
+PageMethods.set_defaultUserContext = function(value) { PageMethods._staticInstance.set_defaultUserContext(value); }
+PageMethods.get_defaultUserContext = function() { return PageMethods._staticInstance.get_defaultUserContext(); }
+PageMethods.set_defaultSucceededCallback = function(value) { PageMethods._staticInstance.set_defaultSucceededCallback(value); }
+PageMethods.get_defaultSucceededCallback = function() { return PageMethods._staticInstance.get_defaultSucceededCallback(); }
+PageMethods.set_defaultFailedCallback = function(value) { PageMethods._staticInstance.set_defaultFailedCallback(value); }
+PageMethods.get_defaultFailedCallback = function() { return PageMethods._staticInstance.get_defaultFailedCallback(); }
+PageMethods.set_enableJsonp = function(value) { PageMethods._staticInstance.set_enableJsonp(value); }
+PageMethods.get_enableJsonp = function() { return PageMethods._staticInstance.get_enableJsonp(); }
+PageMethods.set_jsonpCallbackParameter = function(value) { PageMethods._staticInstance.set_jsonpCallbackParameter(value); }
+PageMethods.get_jsonpCallbackParameter = function() { return PageMethods._staticInstance.get_jsonpCallbackParameter(); }
+PageMethods.set_path("PropertyLookUp.aspx");
+PageMethods.GetContactAddressUsedInDailyAsPrimary= function(contactAddressID,agencyCode,onSuccess,onFailed,userContext) {PageMethods._staticInstance.GetContactAddressUsedInDailyAsPrimary(contactAddressID,agencyCode,onSuccess,onFailed,userContext); }
+PageMethods.ClearUIData= function(serializedUIDataTypes,onSuccess,onFailed,userContext) {PageMethods._staticInstance.ClearUIData(serializedUIDataTypes,onSuccess,onFailed,userContext); }
+PageMethods.GetInstructionByKey= function(labelKey,onSuccess,onFailed,userContext) {PageMethods._staticInstance.GetInstructionByKey(labelKey,onSuccess,onFailed,userContext); }
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="EEB9E6BF" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'aspnetForm', ['tctl00$HeaderNavigation$panButton','','tctl00$PlaceHolderMain$updatePanel','','tctl00$UpdatePanel4Expression',''], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+        <div class="aca_wrapper">
+            <div style="width: 80em; margin: 0 auto;">
+                
+
+<script src="/LARA/Scripts/Announcement.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+
+    function RedirectTo(url) {
+        location.href = '/LARA/' + url;
+        return false;
+    }
+
+    function showTabPropertyPanel(navBar) {
+        parent.LoadTabInfo(navBar);
+        parent.LoadEastPanelTitle(2);
+    }
+
+    function updateCartNumber(cartNumber) {
+        $get("ctl00_HeaderNavigation_lblShoppingCart").innerHTML = cartNumber;
+    }
+
+    // hide report link and report arrow if no reports available.
+    function hideReportLink(hasLogin) {
+        var reportLinkId = hasLogin ? 'reportLink2' : 'reportLink';
+
+        $get(reportLinkId).style.display = 'none';
+    }
+
+    var menu;
+    var reportMenuTimeOutId;
+    var menuId;
+    var isRTL = false;   // in Arabic, it's true
+
+    // bind reports menu
+    function bindReports(reports, hasLogin, reportLabel) {
+        if ($.global.isAdmin || typeof (reports) == "undefined" || reports == null) {
+            return;
+        }
+
+        var targetId;
+        //var isRTL = false;   // in Arabic, it's true
+
+        if (!hasLogin) {
+            menuId = 'reportList';
+            targetId = 'reportLink';
+            $get('ctl00_HeaderNavigation_lblReports').innerHTML = reportLabel;
+        }
+        else {
+            menuId = 'reportList2';
+            targetId = 'reportLink2';
+            $get('ctl00_HeaderNavigation_lblReports2').innerHTML = reportLabel;
+        }
+
+        if ('False' == 'True') {
+            isRTL = true;
+        }
+
+        var prop = [['isRTL', isRTL], ['align', 'right'], ['menuId', menuId], ['targetId', targetId], ['sign', 'report_menu']];
+        var items = reports;
+        var events = [[['eventType', 'click'], ['func', openReport]]];
+
+        menu = new Menu(items, prop, events);
+    }
+
+    // when clicking report link, show report list and set time out 
+    function showReports() {
+        CheckAndSetNoAsk();
+        if (menu == undefined) return;
+        $get(menuId).style.display = 'block';
+        menu.showMenu();
+
+        hideReportByTimer();
+
+        //when click report link or a report, don't need pop up the query window.
+        SetNotAskWhenClick();
+    }
+
+    if ($.global.isAdmin == false && 'True'.toLowerCase() == 'true') {
+        if ('5' != null && '5' != '') {
+            setInterval("ShowAnnouncementByTimer()", '5' * 60000);
+        }
+        else {
+            setInterval("ShowAnnouncementByTimer()", 5 * 60000);
+        }
+    }
+
+    function hideReportByTimer() {
+        clearTimeout(reportMenuTimeOutId);
+        reportMenuTimeOutId = null;
+        reportMenuTimeOutId = setTimeout(hideReport, 3000);
+    }
+
+
+    function SetFocusIn() {
+        clearTimeout(reportMenuTimeOutId);
+        reportMenuTimeOutId = null;
+    }
+
+    function SetBlurOut() {
+        hideReportByTimer();
+    }
+
+    function SetNotAskWhenClick() {
+        if (typeof (SetNotAsk) != 'undefined') {
+            SetNotAsk();
+        }
+    }
+
+    function onMouseOver() {
+        if (menu) {
+            menu.showMenu();
+            clearTimeout(reportMenuTimeOutId);
+            reportMenuTimeOutId = null;
+        }
+    }
+
+    function onMouseOut() {
+        var e = getEvent();
+        var el = $get(menuId);
+        var target = e.target || e.srcElement;
+        var relatedTarget = e.relatedTarget || e.toElement;
+
+        if (relatedTarget == undefined) {
+            return;
+        }
+        //closeMenu();
+        clearTimeout(reportMenuTimeOutId);
+        reportMenuTimeOutId = null;
+        reportMenuTimeOutId = setTimeout(hideReport, 700);
+    }
+
+    var isMultiWindow = false;
+    var url;
+
+    function openReport(e) {
+        var obj = e.srcElement ? e.srcElement : e.target;
+        if (obj.nodeName != "A")  // if click img or space, don't open parameter window
+        {
+            return;
+        }
+        isMultiWindow = this.isMultiWindow;
+        url = this.url;
+        // do post back for getting the latest cap ids.
+        __doPostBack('ctl00_HeaderNavigation_btnPostForReport');
+    }
+
+    function openParamWin(altIDs) {
+        var IDs = altIDs;
+        var idStr = '';
+        // the requried number of parameter windows. 
+        // If single window or no alt ids, open a window. 1 means one window
+        var openNumbers = (IDs.length > 0 && isMultiWindow) ? IDs.length : 1;
+
+        // if single window, concat the cap alt ids with ",".
+        if (IDs.length > 0 && openNumbers == 1) {
+            for (var i = 0; i < IDs.length; i++) {
+                idStr += IDs[i] + ",";
+            }
+            idStr = idStr.substring(0, idStr.length - 1);  // remove the last ","         
+        }
+
+        var paramWindows = new Array(); // use the array to store the opened windows.
+
+        for (var i = 0; i < openNumbers; i++) {
+            var newUrl = url;
+            if (IDs.length > 0) {
+                var id = openNumbers > 1 ? IDs[i] : idStr;  // if multiple window, pass each id to each window.
+                //newUrl = url + "&ID=" + id;
+                var appendUrl = String.format("&{0}={1}", 'ID', id)
+                newUrl = url + appendUrl;
+            }
+
+            var iLeft = 200;
+            if (i > 0) {
+                // resize the window. Set it padding 50px to the previous window. 
+                // if the open window is more than 5(i>3), set it overlapped the previous window(i=3).
+                var m = i > 3 ? 3 : i - 1;
+                var preWinLeft = paramWindows[m].screenLeft == undefined ?
+                    paramWindows[m].screenX : paramWindows[m].screenLeft;  //FF use screeX
+
+                iLeft = isRTL ? preWinLeft - 50 : preWinLeft + 50;  //if in Arabic, set the next window padding right the previous one.
+            }
+
+            var parameters =
+            String.format("top=200,left={0},height=600,width=800,status=yes,toolbar=no,menubar=no,location=no,resizable=yes,scrollbars=yes", iLeft);
+
+            paramWindows[i] = window.open(newUrl, "_blank", parameters);
+        }
+
+        hideReport();
+
+        SetNotAskWhenClick();
+    }
+
+    function hideReport() {
+        $GetObject(menuId).style.display = 'none';
+    }
+
+    async function validateSSOLogin(ele) {
+        let isPPEnabled = 'False';
+        let isACASSOEnabled = 'False';
+
+        if (IsTrue(isPPEnabled) && ele.id?.endsWith('btnLogin')) {
+            ele.href = "#";
+            let ppLoginUrl = '/auth/login';
+            navigateToPortalpage(ppLoginUrl);
+            return false;
+        }
+        else if (IsTrue(isACASSOEnabled)) {
+            ele.href = "#";
+
+            let superAgencyCode = 'LARA';
+            let cloudApiUrl = 'https://api-prod.accela.com';
+            let tenantName = 'LARA-PROD';
+            loadSSOLogin(superAgencyCode, cloudApiUrl, tenantName);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function navigateToPortalpage(url) {
+        if (window !== window.parent) {
+            window.parent.location.href = url;
+        }
+        else {
+            window.location.href = url;
+        }
+        return false;
+    }
+</script>
+
+<div id="overlayAnnouncement" class="ACA_Announcement_Window_Detail_Overlayer"></div>
+<div id="winAnnouncement" class="ACA_Hide PopUpDlg ACA_Announcement_Window">
+  
+     
+    <div id="announcementWindowHeader" class="ACA_Announcement_Window_Header">
+        <span id="close">
+            <span class="ACA_AlignRightOrLeft CloseImage ACA_FRight" >        
+                <input id="closeWinAnn" onclick="return false;" type="image" src='/LARA/app_themes/Default/assets/closepopup.png' class="ACA_ActionIMG" alt="Close" title="Close"/>
+            </span>
+        </span>
+    </div>
+    <div class="ACA_Announcement_Window_Detail">
+        <div id="winAnnouncementContentTitle" class="ACA_Popup_Title ACA_Announcement_Title_Center"></div> 
+        <div class="ACA_TabRow ACA_Line_Content"></div>
+        <div id="winAnnouncementContentAll" class="ACA_Announcement_Content"></div> 
+    </div>
+    
+</div>
+
+<!-- Start HeadNavigation Block -->
+<div id="ctl00_HeaderNavigation_hsLine" style="height:2px;clear:both;width:100%;">&nbsp;</div>
+
+<div id="ctl00_HeaderNavigation_divNavigation" ng-non-bindable="true">
+    <div class="ACA_NaviTitle">
+        <div id="ACARegisterLoginMenu" class="ACA_RegisterLogin ACA_RegisterLogin_FontSize">
+            <table role='presentation' border="0" cellpadding="0" cellspacing="0" summary="">
+                <tr valign="bottom">
+                    <td>
+                        
+                        <div id="ctl00_HeaderNavigation_beforeLogin">
+                            <!--Login link-->
+                            <div class="ACA_FRight">
+                                <table role='presentation' border='0' cellspacing='0' cellpadding='0'>
+                                    <tr>
+                                        <td>
+                                            <a href="/LARA/Login.aspx" id="ctl00_HeaderNavigation_btnLogin" onclick="validateSSOLogin(this);">
+                                                <span id="ctl00_HeaderNavigation_lblLogin" class="ACA_Body_Text ACA_Body_Text_FontSize">Login</span>
+                                            </a>
+                                        </td>
+                                        <td class="ACA_TabRow_Line">
+                                            &nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--Login link-->
+                            
+                            <!--Report-->
+                            <div class="ACA_FRight">
+                                <div>
+                                    <table role='presentation' border='0' cellspacing='0' cellpadding='0'>
+                                        <tr id='reportLink'>
+                                            <td class="ACA_TabRow_Line">
+                                                <a href="javascript:void(0);" onclick="showReports();" class="nav_more_arro ACA_Report_Arrow NotShowLoading" title="Report List">
+                                                    <span id="ctl00_HeaderNavigation_lblReports"></span>
+                                                    <span id="ctl00_HeaderNavigation_lblAdminReports" class="ACA_Body_Text ACA_Body_Text_FontSize" style="display:none;"></span>
+                                                    <img alt="Report List" src="/LARA/app_themes/Default/assets/caret_expanded.gif"
+                                                        style="border-width: 0px;" />
+                                                </a>
+                                            </td>
+                                            <td class="ACA_TabRow_Line">
+                                                
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style='display: none; position: absolute; z-index: 10;'>
+                                    <div id='reportList' class='ACA_Report_Menu ActionMenu_Link' onmouseover="onMouseOver();"
+                                        onmouseout="onMouseOut();">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Report-->
+                            <!--Register link-->
+                            <div class="ACA_FRight">
+                                <table role='presentation' border='0' cellspacing='0' cellpadding='0'>
+                                    <tr>
+                                        <td class="ACA_TabRow_Line">
+                                            <a href="/LARA/CommunityView/account/new" id="ctl00_HeaderNavigation_btnRegister" onclick="validateSSOLogin(this);">
+                                                <span id="ctl00_HeaderNavigation_lblRegister" class="ACA_Body_Text ACA_Body_Text_FontSize">Register for an Account</span>
+                                            </a>
+                                        </td>
+                                        <td class="ACA_TabRow_Line">
+                                            <span id="ctl00_HeaderNavigation_lblSplit2">&nbsp; | &nbsp;</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--Register link-->
+                            <!--Announcement-->
+                            
+<div class="ACA_FRight">
+    <div>
+        <table role='presentation' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td class="ACA_TabRow_Line">
+                    <span class="ACA_FLeft"><a href="/LARA/Announcement/AnnouncementList.aspx" id="ctl00_HeaderNavigation_ucAnnBeforeLogin_A2">
+                        <span id="ctl00_HeaderNavigation_ucAnnBeforeLogin_lblAnnounementLink" class="ACA_Body_Text ACA_Body_Text_FontSize">Announcements</span></a></span><span
+                                class="ACA_FLeft" id="spanAnnouncementCount" style="display: none"><a href="/LARA/Announcement/AnnouncementList.aspx" id="ctl00_HeaderNavigation_ucAnnBeforeLogin_A3">(<span id="announcementCount"></span>)</a></span>
+                </td>
+                <td valign="top" class="ACA_TabRow_Line">
+                    <div id="divExpandAnnouncement" style="display: block;">
+                        <a id="A4" href="javascript:void(0)" onclick="OpenAnnouncementAuto(); return false;"
+                             class="nav_more_arrow NotShowLoading" title="Announcement List">
+                            <img alt="Announcement List" src="/LARA/app_themes/Default/assets/caret_expanded.gif" /></a>
+                    </div>
+                </td>
+                <td class="ACA_TabRow_Line">
+                    <span id="ctl00_HeaderNavigation_ucAnnBeforeLogin_lblSplitAnnouncement">&nbsp; | &nbsp;</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <div id='divAnnouncement' class="ACA_Anouncement_Popup_Window ACA_Report_Menu">
+            <div id="announcementId" class="ACA_Hide">
+            </div>
+            <div id="announcementContentFull" class="ACA_Hide">
+            </div>
+            <div id="announcementContentTitle" class="ACA_Hide">
+            </div>
+            <div id="announcementContentPart" class="ACA_Anouncement_Poupu_Window_Part_Height">
+            </div>
+            <div class="ACA_Anouncement_Poupu_Window_MarkAsRead">
+                <div id="closeMarkAsReadOfAnnouncementBtn" class="ACA_FRight">
+                    <a href="javascript:void(0);" onclick="MarkAsReadOfAnnouncement(); return false;" class="ACA_LinkButton NotShowLoading">
+                        Mark as Read</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+                            </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="ACA_BannerAndSearch">
+            <div class="ACA_NavBanner">
+                <span id="ctl00_HeaderNavigation_lblNavBanner"></span>
+            </div>
+            
+<div id="gsContainer" class="gs_container">
+    <table role='presentation' class="gs_top_table" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td id="tdSpace">
+                &nbsp;
+            </td>
+            <td class="gs_border" style="width:16.5em">
+                <p>
+                    <input class="gs_search_box" type="text" autocomplete="off" id="txtSearchCondition" name="txtSearchCondition" title='First Last or License #' 
+                        aria-label='First Last or License #'/>
+                    
+                </p>
+            </td>
+            <td style="width:2px">
+            <span>&nbsp;</span>
+            </td>
+            <td class="gs_border gs_nowidth" style="width:18px;text-align:center;vertical-align:middle;">
+                <a id="btnSearch" class="gs_go NotShowLoading" title="Search" href="#">
+                    <img class="gs_go_img" alt="Search" src="/LARA/app_themes/Default/assets/gsearch_disabled.png"/>
+                </a>
+            </td>
+            <td class="gs_border_right gs_nowidth" style='width: 24px;height: 24px; text-align:center;vertical-align:middle;' id="tdSearchHistory">
+                <a id="btnSearchHistory" class="gs_history NotShowLoading" title="Search History" href="#">
+                    <img class="gs_history_img" alt="Search History" src="/LARA/app_themes/Default/assets/Caret_down_sml.gif"/>
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="divHistoryList" class="gs_border gs_history_list" style="display:none">
+</div>
+<script type="text/javascript">
+    var searchText = 'First Last or License #';
+    var minLimitMessage = 'Please enter a key word with more than 2 characters.';
+    var historyNoResult = 'No recent searches available';
+    var searchResult = 'Recent Searches:';
+    var historyHint = 'Reload the latest search results';
+    var loading = 'Loading...';
+    rootURL = '/LARA/';
+    searchImg = '/LARA/app_themes/Default/assets/gsearch.png';
+    searchDisabledImg = '/LARA/app_themes/Default/assets/gsearch_disabled.png';
+    
+    // preload image
+    var img = new Image();
+    img.src = searchImg;
+    
+    var globalHistory = null;
+    var globalSearch = null;
+
+    if (IsTrue('False')) {
+        var txtSearchCondition = $get("txtSearchCondition");
+        txtSearchCondition.style.display = "none";
+        document.getElementById("btnSearch").disabled = true;
+    }else{
+        globalSearch = new GlobalSearch("txtSearchCondition","btnSearch",searchText,minLimitMessage);
+        $("#btnSearchHistory").popUp({ oTarget: 'divHistoryList', onShowEvent: 'mouseover', onHideEvent: 'mouseout', onFocusEvent: 'focus', align: 'right', offsetTop: 6});
+        globalHistory = new GlobalSearchHistory("divHistoryList",historyNoResult,searchResult);
+    }
+    
+    var timerForSearchHistory = null;
+    
+    function SetFocusInForSearchHistory()
+    {        
+        clearTimeout(timerForSearchHistory);
+        timerForSearchHistory = null;
+    }
+    
+    function SetBlurOutForSearchHistory()
+    {
+        clearTimeout(timerForSearchHistory);
+        timerForSearchHistory = null;
+        timerForSearchHistory = setTimeout(hideHistoryList, 1000);
+    }
+    
+    function hideHistoryList()
+    {
+        $("#divHistoryList").hide();
+    }
+
+</script>
+
+
+        </div>
+
+    </div>
+    
+    <div class="nav_bar_container">
+        <div id="ctl00_HeaderNavigation_divMenu">
+            <div id="divNaviMenu">
+                <div id="divMoreTabTemplate" style="display:none;">
+	<div id="__divMoreTemplate">
+		
+                            <table role='presentation' id="span_more_tab" border="0" cellspacing="0" cellpadding="0" summary="See More Tab Item">
+                                <tr>
+                                    <td class="ACA_MoreItemLeft ACA_LeftOff">
+                                    </td>
+                                    <td class="ACA_MoreItemCenter ACA_CenterOff more_tab">
+                                        <a href="#" onfocus="onfocusMore();" onblur="SetBlurOutForMore();" class="NotShowLoading">
+                                            <span id="ctl00_HeaderNavigation___divMoreTemplate_lblMoreTab" module="more" class="more_button font12px">more</span>
+                                        </a>
+                                    </td>
+                                    <td class='ACA_CenterOff' style="width: 15px;">
+                                        <a href="javascript:void(0)" onclick="CheckAndSetNoAsk();" id="moreArrowLink" class="nav_more_arrow NotShowLoading"
+                                            title="more">
+                                            <img alt="more" src="/LARA/app_themes/Default/assets/caret_arrow.gif"
+                                                style="border-width: 0px;" /></a>
+                                    </td>
+                                    <td class="ACA_MoreItemRight ACA_RightOff">
+                                    </td>
+                                </tr>
+                            </table>
+                        
+	</div><div id="__divMoreLinkBtnTemplate">
+		
+                            <a href="javascript:void(0)" onfocus="onfocusMoreLink();" class="NotShowLoading" title="more menu, press tab to expand">
+                                <span id="ctl00_HeaderNavigation___divMoreLinkBtnTemplate_lblMoreLinks" class="more_button font12px">more</span>
+                                <img alt="" src="/LARA/app_themes/Default/assets/caret_arrow.gif" />
+                            </a>
+                        
+	</div>
+</div><table role='presentation' style='visibility:hidden'><tr><td id='tdTabContainer'></td></tr></table><div id='nav_parent_container' class='ACA_NaviMenu'><span id='tab_item_place_holder' style='visibility:hidden;'></span><span id='more_tab_place_holder'></span><div id='divNavMenu' style='display:none;position:absolute;'></div></div><div id='nav_link_place_holder' class='ACA_SubMenuList' align='center'><b><span id='nav_link_content'><span id='nav_span_links' class='font11px'></span><span id='nav_span_more_link'></span></span><div id='divLinkMenu' class='font11px' style='display:none;'></div></b></div><script type="text/javascript">
+//<![CDATA[
+window.__TabInit = function() {
+if(!window.NavBar_Loaded || !window.TabBar_Utils_Loaded)
+	{window.setTimeout('window.__TabInit()', 50); return; }
+
+window.__Tab = new TabBar();
+__Tab.TabItems= [['Tabs',[[['Links',[[['Links',[[['Active','False'],['Label','Search for a Licensee'],['Key','Home_Search'],['Title',],['URL','/LARA/GeneralProperty/PropertyLookUp.aspx?isLicensee=Y&TabName=Home'],['Module',],['Order',0]],[['Links',[[['Active','False'],['Label','BCC Licenses/Courses'],['Key','Home_Search_Records'],['Title',],['URL','/LARA/Cap/CapHome.aspx?module=Licenses&TabName=Home'],['Module',],['Order',0]],[['Active','False'],['Label','BCC Permits'],['Key','Home_Search_Records'],['Title',],['URL','/LARA/Cap/CapHome.aspx?module=Building&TabName=Home'],['Module',],['Order',1]],[['Active','False'],['Label','Plan Review'],['Key','Home_Search_Records'],['Title',],['URL','/LARA/Cap/CapHome.aspx?module=PlanReview&TabName=Home'],['Module',],['Order',2]],[['Active','False'],['Label','Fire Services'],['Key','Home_Search_Records'],['Title',],['URL','/LARA/Cap/CapHome.aspx?module=FireServices&TabName=Home'],['Module',],['Order',3]],[['Active','False'],['Label','OLSR'],['Key','Home_Search_Records'],['Title',],['URL','/LARA/Cap/CapHome.aspx?module=OLSR&TabName=Home'],['Module',],['Order',4]],[['Active','False'],['Label','Device Permits'],['Key','Home_Search_Records'],['Title',],['URL','/LARA/Cap/CapHome.aspx?module=Devices&TabName=Home'],['Module',],['Order',5]]]],['Active','False'],['Label','Search Records/Applications'],['Key','Home_Search'],['Title','Search Records/Applications menu, press tab to expand'],['URL','/LARA/Welcome.aspx?TabName=Home'],['Module',],['Order',1]]]],['Active','False'],['Label','Advanced Search'],['Key','Home'],['Title','Advanced Search menu, press tab to expand'],['URL','/LARA/Welcome.aspx?TabName=Home'],['Module',],['Order',0]]]],['Active','False'],['Label','Home'],['Key','Home'],['Title','Home'],['URL','/LARA/Welcome.aspx?TabName=Home'],['Module',],['Order',0]],[['Links',[[['Active','False'],['Label','Track &amp; Renew Licenses'],['Key','Licenses'],['Title',],['URL','/LARA/Cap/CapHome.aspx?module=Licenses&TabName=Licenses'],['Module',],['Order',0]]]],['Active','False'],['Label','BCC Licenses/Courses'],['Key','Licenses'],['Title','BCC Licenses/Courses'],['URL','/LARA/Cap/CapHome.aspx?module=Licenses&TabName=Licenses'],['Module','Licenses'],['Order',1]],[['Links',[[['Active','False'],['Label','Search Applications'],['Key','Building'],['Title',],['URL','/LARA/Cap/CapHome.aspx?module=Building&TabName=Building'],['Module',],['Order',0]]]],['Active','False'],['Label','BCC Permits'],['Key','Building'],['Title','BCC Permits'],['URL','/LARA/Cap/CapHome.aspx?module=Building&TabName=Building'],['Module','Building'],['Order',2]],[['Links',[[['Active','False'],['Label','Search Applications'],['Key','PlanReview'],['Title',],['URL','/LARA/Cap/CapHome.aspx?module=PlanReview&TabName=PlanReview'],['Module',],['Order',0]]]],['Active','False'],['Label','Plan Review'],['Key','PlanReview'],['Title','Plan Review'],['URL','/LARA/Cap/CapHome.aspx?module=PlanReview&TabName=PlanReview'],['Module','PlanReview'],['Order',3]],[['Links',[[['Active','False'],['Label','Search Applications'],['Key','FireServices'],['Title',],['URL','/LARA/Cap/CapHome.aspx?module=FireServices&TabName=FireServices'],['Module',],['Order',0]]]],['Active','False'],['Label','Fire Services'],['Key','FireServices'],['Title','Fire Services'],['URL','/LARA/Cap/CapHome.aspx?module=FireServices&TabName=FireServices'],['Module','FireServices'],['Order',4]],[['Links',[[['Active','False'],['Label','Search Applications'],['Key','OLSR'],['Title',],['URL','/LARA/Cap/CapHome.aspx?module=OLSR&TabName=OLSR'],['Module',],['Order',0]]]],['Active','False'],['Label','OLSR'],['Key','OLSR'],['Title','OLSR'],['URL','/LARA/Cap/CapHome.aspx?module=OLSR&TabName=OLSR'],['Module','OLSR'],['Order',5]],[['Links',[[['Active','False'],['Label','Search Applications'],['Key','Devices'],['Title',],['URL','/LARA/Cap/CapHome.aspx?module=Devices&TabName=Devices'],['Module',],['Order',0]]]],['Active','False'],['Label','Device Permits'],['Key','Devices'],['Title','Device Permits'],['URL','/LARA/Cap/CapHome.aspx?module=Devices&TabName=Devices'],['Module','Devices'],['Order',6]],[['Links',[[['Active','False'],['Label','Create an Application'],['Key','ServiceRequest'],['Title',],['URL','/LARA/Cap/CapApplyDisclaimer.aspx?module=ServiceRequest&TabName=ServiceRequest&FilterName=ENTER+COMPLAINT'],['Module',],['Order',0]]]],['Active','False'],['Label','Express Pay'],['Key','ServiceRequest'],['Title','Express Pay'],['URL','/LARA/Cap/CapApplyDisclaimer.aspx?module=ServiceRequest&TabName=ServiceRequest&FilterName=ENTER COMPLAINT'],['Module','ServiceRequest'],['Order',7]]]]];
+__Tab.ItemTemplate='                        <table role=\'presentation\' tag="navbar" border="0" cellspacing="0" cellpadding="0" class="tab_bar_table ACA_Nowrap" summary="Tab Item">            	            <tr>            		            <td class="ACA_ItemLeft ACA_LeftOff"></td>            		                <td class="ACA_ItemCenter ACA_ItemCenter_FontSize ACA_CenterOff">                                        <div>                                            <a  title="## getItem(\'Title\') ##" href="javascript:void(0);" module="## getItem(\'Module\') ##">## getItem(\'Label\') ##</a>                                        </div>            		                </td>            		                <td class="ACA_ItemRight ACA_RightOff"></td>            	            </tr>                        </table>                    ';
+__Tab.SelectedItemTemplate='                        <table role=\'presentation\' tag="navbar" border="0" cellspacing="0" cellpadding="0" class="tab_bar_table ACA_Nowrap" summary="Selected Tab Item">            	            <tr>            		            <td class="ACA_ItemLeft ACA_LeftOn"></td>            		            <td class="ACA_ItemCenter ACA_ItemCenter_FontSize ACA_CenterOn">                                    <div>                                        <a title="## getItem(\'Title\') ##" href="javascript:void(0);" module="## getItem(\'Module\') ##">## getItem(\'Label\') ##</a>                                    </div>            		            </td>            		            <td class="ACA_ItemRight ACA_RightOn"></td>            	            </tr>                        </table>                    ';
+__Tab.DropDownMenuTemplate='                        <div class="ACA_MenuItem ACA_MenuItem_FontSize">                            <a title=\'## getItem(\'Title\') ##\' onfocus="SetFocusInForMore();" onblur="SetBlurOutForMore();"  href="javascript:void(0);"  module="## getItem(\'Module\') ##">## getItem(\'Label\') ##</a>                        </div>                    ';
+__Tab.LinkItemTemplate='                        <span style="display: inline-block;">                            <a title=\'## getItem(\'Title\') ##\'  href="javascript:void(0);">## getItem(\'Label\') ##</a>                        </span>                    ';
+var tab_properties = [['IsFirstLoad',1],['LinkAlign','center'],['CurrentTabName','apo'],['DefaultTabName','home'],['CurrentTabIndex',0]];
+__Tab.PPHomeUrl='';
+window.setProperties(__Tab, tab_properties);
+__Tab.preRender();
+}
+
+__TabInit();
+
+//]]>
+</script>
+
+            </div>
+        </div>
+    </div>
+    </div>
+<input type="hidden" name="ctl00$HeaderNavigation$hdnShoppingCartItemNumber" id="ctl00_HeaderNavigation_hdnShoppingCartItemNumber" />
+<input type="hidden" name="ctl00$HeaderNavigation$hdnShowReportLink" id="ctl00_HeaderNavigation_hdnShowReportLink" value="N" />
+<div id="ctl00_HeaderNavigation_panButton">
+	
+        <a id="ctl00_HeaderNavigation_btnPostForReport" tabindex="-1" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$HeaderNavigation$btnPostForReport&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))" style="display: none"></a>
+    
+</div>
+<!-- End HeadNavigation Block -->
+
+<script language="javascript" type="text/javascript">
+
+    var objTimeout = null;
+
+    function hideMenu() {
+        clearTimeout(objTimeout);
+        objTimeout = null;
+        objTimeout = setTimeout(DelayShowMenu, 3000);
+    }
+
+    function SetFocusInForCollection() {
+        clearTimeout(objTimeout);
+        objTimeout = null;
+    }
+
+    function SetBlurOutForCollection() {
+        hideMenu();
+    }
+
+    function displayMenu() {
+        clearTimeout(objTimeout);
+        objTimeout = null;
+    }
+
+    function DelayShowMenu() {
+        collection_menu.hideMenu();
+    }
+
+    function showMenu(target) {
+        CheckAndSetNoAsk();
+        if (collection_menu == undefined) return;
+        collection_menu.showMenu();
+        hideMenu();
+    }
+
+    var objTimerForMore = null;
+    function onfocusMore(obj) {
+        window.popUp(window.__Tab.dropDownMenu.element, $get('span_more_tab'), $.global.isRTL);
+        //$("#divNavMenu").find('a').get(0).focus();
+        $("#moreArrowLink").attr("tabindex", "-1");
+        clearTimeout(objTimerForMore);
+        objTimerForMore = null;
+    }
+
+    function onfocusMoreLink() {
+        window.popUp($get('divLinkMenu'), $get('nav_span_more_link'), $.global.isRTL);
+    }
+
+    function SetFocusInForMore() {
+        clearTimeout(objTimerForMore);
+        objTimerForMore = null;
+    }
+
+    function SetBlurOutForMore() {
+        clearTimeout(objTimerForMore);
+        objTimerForMore = null;
+        objTimerForMore = setTimeout(onblurMore, 700);
+    }
+
+    function onblurMore() {
+        window.__Tab.moreTab.closeMenu(window.__Tab.dropDownMenu);
+    }
+
+    //The method defined in Bage page.
+    function SupportAccessibility(obj) {
+        if (obj) {
+            PageMethods.SetAccessibilityCookie(obj.checked, RefreshPage);
+        }
+    }
+
+    // When check/uncheck Accessibility Support, refresh the whole page.
+    function RefreshPage() {
+        window.parent.location.reload(true);
+    }
+
+    var OnAnnouncementList = 'False';
+
+    $(document).ready(function () {
+        if ($.global.isAdmin == false && 'True'.toLowerCase() == 'true') {
+            ShowAnnouncementInit();
+        }
+    });
+
+    //Header responsive
+    if (window.matchMedia("(max-width: 480px)").matches) {
+        var showRegisterPopup = true;
+        setRegisterListMenuItems();
+    }
+    
+    function showRegisterListMenu(obj) {
+        if (showRegisterPopup) {
+            document.getElementById("ACARegisterLoginMenu").style.display = "block";
+            obj.src = '/LARA/app_themes/Default/assets/closepopup.png';
+            showRegisterPopup = false;
+        } else {
+            document.getElementById("ACARegisterLoginMenu").style.display = "none";
+            obj.src = '/LARA/app_themes/Default/assets/u15_normal.png';
+            showRegisterPopup = true;
+        }
+    }
+    function setRegisterListMenuItems() {
+         var beforeLoginNode = document.getElementById("ctl00_HeaderNavigation_beforeLogin");
+        var afterLoginNode = document.getElementById("ctl00_HeaderNavigation_afterLogin");
+        var actualReturnTo = document.getElementById("divRtaTitle");
+        var returnToNode = document.createElement("DIV");
+        returnToNode.className = "ACA_FRight";
+        returnToNode.style.paddingTop = "0.2em";
+        while (actualReturnTo.childNodes.length) { returnToNode.appendChild(actualReturnTo.firstChild); }
+        
+        if(beforeLoginNode) beforeLoginNode.insertBefore(returnToNode, beforeLoginNode.childNodes[0]);
+        if(afterLoginNode) afterLoginNode.insertBefore(returnToNode, afterLoginNode.childNodes[0]);
+    }
+</script>
+
+                <span id="goTOMessage" href="#messageSpan" tabindex="-1"></span>
+                <div class="ACA_Content ACA_Hide">
+                    <!-- The h1 element is only for WCAG2.0 rule 1.1.1 H42 -->
+                    <h1 class="ACA_Hide">Message Bar</h1>
+                    <span id="messageSpan" name="messageSpan"></span>
+                </div>
+                <script type="text/javascript" language="javascript">
+                    //Init validation error panel for form validation.
+                    if (typeof (InitValidationErrorPanel) == "function") {
+                        $(document).ready(InitValidationErrorPanel);
+                    }
+                </script>
+                <div>
+                    <a class="skip-link" href="#mainContent" aria-label="Skip to main content"  ></a>
+                    <span id="ErrorList1"></span>
+                    <main id="mainContent" tabindex="-1">
+                        
+
+    <script language="javascript" type="text/javascript">
+         var prm = Sys.WebForms.PageRequestManager.getInstance();
+         prm.add_initializeRequest(InitializeRequest);
+         prm.add_endRequest(EndRequest);
+         prm.add_beginRequest(beginRequest);
+
+         function InitializeRequest(sender, args)
+         {
+             document.body.style.cursor = 'wait';
+             var btn = document.getElementById('ctl00_PlaceHolderMain_btnNewSearch');
+             if(btn)
+             {
+                btn.style.cursor = 'wait';
+             }       
+         }
+         
+         function EndRequest(sender, args){
+             document.body.style.cursor = '';
+             var btn = document.getElementById('ctl00_PlaceHolderMain_btnNewSearch');
+             if(btn)
+             {
+                 btn.style.cursor = 'pointer';
+             }
+
+             if ($.global.isAdmin)
+             { 
+                 var ddl = $get('ctl00_PlaceHolderMain_ddlSearchType'); 
+                 ddl.click(); 
+             }
+             
+             //export file.
+             ExportCSV(sender, args);
+         }
+        
+        function beginRequest()
+        {
+            prm._scrollPosition = null;
+        }
+    </script>
+
+    <div class="ACA_Content">
+        <iframe width="0" height="0" id="iframeExport" class="ACA_Hide" title="Sorry, your browser does not support iframes; try a browser that supports W3 standards.">Sorry, your browser does not support iframes; try a browser that supports W3 standards.</iframe>
+        <h1>
+            <div ng-non-bindable="true">
+               <span id="ctl00_PlaceHolderMain_lblSearchTypeTitle">Search for Provider/Education/Licensee</span>
+            </div>
+        </h1>
+        <div ng-non-bindable="true" class="ACA_Page ACA_Page_FontSize">
+            <span id="ctl00_PlaceHolderMain_lblSearchDescription" class="ACA_Body_Text ACA_Body_Text_FontSize">Enter information below to search for a Licensee in the Agency's database. Licensee information can be searched by entering any of the following information:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;•&nbsp;Name<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;•&nbsp;Business Name<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;•&nbsp;License Type<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;•&nbsp;License Number<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• City, State</span>
+        </div>
+        <div>
+            <div id="ctl00_PlaceHolderMain_updatePanel">
+	
+                 <a name="SearchForm_Start" id="SearchForm_Start"></a>
+                    <div ng-non-bindable="true" class="ACA_InfoTitle ACA_InfoTitle_FontSize">
+                        <h1>
+                            <span id="ctl00_PlaceHolderMain_lblSelectedSearchType" class="ACA_FLeft">Search for Licensee</span>
+                        </h1>
+                        <span class="ACA_FRight">
+                            <table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_ddlSearchType_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_ddlSearchType_element_group'><div class='ACA_Label font12px'><div id='ctl00_PlaceHolderMain_ddlSearchType_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_ddlSearchType_label_0'></span><span id='ctl00_PlaceHolderMain_ddlSearchType_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_ddlSearchType_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_ddlSearchType_td' style='width:100%; '><select name="ctl00$PlaceHolderMain$ddlSearchType" onchange="var p = new ProcessLoading();p.showLoading();setTimeout(&#39;__doPostBack(\&#39;ctl00$PlaceHolderMain$ddlSearchType\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_PlaceHolderMain_ddlSearchType" title="Select a dropdown value to load the associated form. Keyboard Operating Instruction: Please hold ALT and press UP ARROW to expand the list, then press UP ARROW or DOWN ARROW to select an item, and finally press ENTER.">
+		<option value="5">Search Documents by Geographic Location</option>
+		<option value="4">Search for Certified Businesses</option>
+		<option value="3">Search for Food Facility Inspection</option>
+		<option value="2" selected="selected">Search for Licensee</option>
+
+	</select></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table>
+                        </span>
+                    </div>
+                    
+
+                    <div id="divSearchPaneltoPressEnter" class="ACA_TabRow">
+                        <div id="ctl00_PlaceHolderMain_divLicenseeSearchForm" ng-non-bindable="true">
+                            <div class="container_40">
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_parentGrid" class="grid_7 suffix_1">
+	<table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType'>License Type:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_td' style='width:100%; '><select name="ctl00$PlaceHolderMain$refLicenseeSearchForm$ddlLicenseType" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType" title="Keyboard Operating Instruction: Please hold ALT and press UP ARROW to expand the list, then press UP ARROW or DOWN ARROW to select an item, and finally press ENTER." style="width:100%;z-index:10;">
+		<option value="" selected="selected">--Select--</option>
+		<option value="Aboveground Storage Tanks Facility">Aboveground Storage Tanks Facility</option>
+		<option value="Architect">Architect</option>
+		<option value="BFS Certified Firm">BFS Certified Firm</option>
+		<option value="Boiler Inspector">Boiler Inspector</option>
+		<option value="Boiler Installer">Boiler Installer</option>
+		<option value="Boiler Operator">Boiler Operator</option>
+		<option value="Boiler Repairer">Boiler Repairer</option>
+		<option value="Building ACT 54 OFFICIAL">Building ACT 54 OFFICIAL</option>
+		<option value="Consumer Permanent">Consumer Permanent</option>
+		<option value="Consumer Temporary">Consumer Temporary</option>
+		<option value="County Representative LP">County Representative LP</option>
+		<option value="Electrical Apprentice">Electrical Apprentice</option>
+		<option value="Electrical Contractor">Electrical Contractor</option>
+		<option value="Electrical Fire Alarm Apprentice">Electrical Fire Alarm Apprentice</option>
+		<option value="Electrical Fire Alarm Contractor">Electrical Fire Alarm Contractor</option>
+		<option value="Electrical Fire Alarm Specialty Tech">Electrical Fire Alarm Specialty Tech</option>
+		<option value="Electrical Journey">Electrical Journey</option>
+		<option value="Electrical Master">Electrical Master</option>
+		<option value="Electrical Reciprocal Registration">Electrical Reciprocal Registration</option>
+		<option value="Electrical Registered Fire Alarm Cont">Electrical Registered Fire Alarm Cont</option>
+		<option value="Electrical Registered Sign Contractor">Electrical Registered Sign Contractor</option>
+		<option value="Electrical Sign Contractor">Electrical Sign Contractor</option>
+		<option value="Electrical Sign Specialist">Electrical Sign Specialist</option>
+		<option value="Elevator Contractor">Elevator Contractor</option>
+		<option value="Elevator Journeyperson">Elevator Journeyperson</option>
+		<option value="Elevator Serial Number">Elevator Serial Number</option>
+		<option value="Engineer">Engineer</option>
+		<option value="Inspection and Evaluation Agency">Inspection and Evaluation Agency</option>
+		<option value="Low Impact Permanent">Low Impact Permanent</option>
+		<option value="Low Impact Temporary">Low Impact Temporary</option>
+		<option value="Manufactured Home Community">Manufactured Home Community</option>
+		<option value="Manufactured Home Installer Servicer">Manufactured Home Installer Servicer</option>
+		<option value="Manufactured Home Retailer">Manufactured Home Retailer</option>
+		<option value="Mechanical Contractor">Mechanical Contractor</option>
+		<option value="Plumbing Affidavit">Plumbing Affidavit</option>
+		<option value="Plumbing Apprentice">Plumbing Apprentice</option>
+		<option value="Plumbing Contractor">Plumbing Contractor</option>
+		<option value="Plumbing Journey">Plumbing Journey</option>
+		<option value="Plumbing Master">Plumbing Master</option>
+		<option value="PROVIDER">PROVIDER</option>
+		<option value="Residential Builder Branch Office">Residential Builder Branch Office</option>
+		<option value="Residential Builder Company">Residential Builder Company</option>
+		<option value="Residential Builder Individual">Residential Builder Individual</option>
+		<option value="Residential Builder Individual Salesperson">Residential Builder Individual Salesperson</option>
+		<option value="Residential Builder M and A Company">Residential Builder M and A Company</option>
+		<option value="Residential Builder M and A Individual">Residential Builder M and A Individual</option>
+		<option value="Residential Builder Temp Mil Spouse Individual">Residential Builder Temp Mil Spouse Individual</option>
+		<option value="Residential Builder Temp Mil Spouse M and A Individual">Residential Builder Temp Mil Spouse M and A Individual</option>
+		<option value="Underground Storage Tanks Facility">Underground Storage Tanks Facility</option>
+
+	</select></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_parentGrid" class="grid_10 suffix_1">
+	<table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber'>License Number:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtLicenseNumber" type="text" maxlength="40" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber" class="ACA_NLonger" style="width:15.5em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseState_State1_parentGrid" class="grid_7"><table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseState_State1_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseState_State1_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseState_State1_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseState_State1_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseState_State1_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseState_State1'>License State:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseState_State1_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseState_State1_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseState_State1_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtLicenseState$State1" type="text" maxlength="30" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseState_State1" style="width:100%;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div class="clear"></div>
+	</div>
+	<div class="container_40">
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderName_parentGrid" class="grid_19 suffix_1">
+	<table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderName_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderName_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderName_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderName_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderName_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderName'>Provider Name:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderName_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderName_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderName_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtProviderName" type="text" maxlength="30" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderName" class="ACA_XLong" style="width:29.9em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderNumber_parentGrid" class="grid_8"><table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderNumber_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderNumber_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderNumber_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderNumber_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderNumber_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderNumber'>Provider Number:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderNumber_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderNumber_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderNumber_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtProviderNumber" type="text" maxlength="30" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtProviderNumber" class="ACA_NLong" style="width:12.3em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div class="clear"></div>
+	</div>
+	<div class="container_40">
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_parentGrid" class="grid_8 suffix_1">
+	<table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName'>First Name:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtFirstName" type="text" maxlength="70" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName" class="ACA_NLong" style="width:12.3em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_parentGrid" class="grid_6 suffix_1">
+	<table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial'>Middle Initial:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtMiddleInitial" type="text" maxlength="70" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial" class="ACA_NShot" style="width:9.1em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_parentGrid" class="grid_8"><table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName'>Last Name:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtLastName" type="text" maxlength="70" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName" class="ACA_NLong" style="width:12.3em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div class="clear"></div>
+	</div>
+	<div class="container_40">
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_parentGrid" class="grid_19"><table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName'>Business Name:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtBusiName" type="text" maxlength="255" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName" class="ACA_XLong" style="width:29.9em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div class="clear"></div>
+	</div>
+	<div class="container_40">
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtAddress1_parentGrid" class="grid_16"><table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtAddress1_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtAddress1_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtAddress1_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtAddress1_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtAddress1_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtAddress1'>Address:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtAddress1_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtAddress1_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtAddress1_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtAddress1" type="text" maxlength="200" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtAddress1" class="ACA_MLonger" style="width:25.1em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div class="clear"></div>
+	</div>
+	<div class="container_40">
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtCity_parentGrid" class="grid_8 suffix_1">
+	<table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtCity_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtCity_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtCity_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtCity_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtCity_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtCity'>City:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtCity_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtCity_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtCity_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtCity" type="text" maxlength="30" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtCity" class="ACA_NLong" style="width:12.3em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtState_State1_parentGrid" class="grid_7 suffix_1">
+	<table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtState_State1_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtState_State1_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtState_State1_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtState_State1_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtState_State1_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtState_State1'>State:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtState_State1_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtState_State1_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtState_State1_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtState$State1" type="text" maxlength="30" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtState_State1" style="width:100%;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_parentGrid" class="grid_7"><table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode'>Zip:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtZipCode" type="text" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode" class="ACA_Medium maskedfields" inputmode="numeric" onblur="ClearSplitChar(this, true);ToUpperCase(this);" isusezip="true" autocomplete="off" autocorrect="off" spellcheck="false" style="width:10.7em;z-index:10;" /><input type="hidden" name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtZipCode_ZipFromAA" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_ZipFromAA" value="0" /><input type="hidden" name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtZipCode_zipMask" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_zipMask" /><input type="hidden" name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtZipCode_ext_ClientState" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_ext_ClientState" /><span id="ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_maskedit_vad" TooltipMessage="" MaximumValueMessage="" MinimumValueMessage="" ValidEmpty="true" ClientValidationFunction="" lastMaskPosition="9" FirstMaskPosition="0" MinimumValue="" MaximumValue="" ValidationExpression="" IsMaskedEdit="true" CssFocus="MaskedEditFocus" InvalidValueMessage="Invalid" TargetValidator="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode" InvalidValueCssClass="MaskedEditError" CssBlurNegative="MaskedEditBlurNegative" CssFocusNegative="MaskedEditFocusNegative" EmptyValueMessage="" InitialValue="" style="color:Red;display:none;"></span><span id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad" style="color:Red;display:none;"></span></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div class="clear"></div>
+	</div>
+	<div class="container_40">
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_parentGrid" class="grid_8"><table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/LARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1'>Phone Number1:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtPhone1" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1" type="tel" onblur="ClearSplitChar(this, true)" autocomplete="off" autocorrect="off" spellcheck="false" class="ACA_NLong maskedfields" style="width:12.3em;z-index:10;" /><input type="hidden" name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtPhone1_phoneMask" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_phoneMask" /><input type="hidden" name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtPhone1_ext_ClientState" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_ext_ClientState" /><span id="ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_maskedit_vad" TooltipMessage="" MaximumValueMessage="" MinimumValueMessage="" ValidEmpty="true" ClientValidationFunction="" lastMaskPosition="40" FirstMaskPosition="0" MinimumValue="" MaximumValue="" ValidationExpression="" IsMaskedEdit="true" CssFocus="MaskedEditFocus" InvalidValueMessage="Invalid" TargetValidator="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1" InvalidValueCssClass="MaskedEditError" CssBlurNegative="MaskedEditBlurNegative" CssFocusNegative="MaskedEditFocusNegative" EmptyValueMessage="" InitialValue="" style="color:Red;display:none;"></span></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div class="clear"></div>
+	</div>
+	
+
+                        </div>
+                        
+                        
+						
+                        
+                        
+                    </div>
+
+                    <div class="ACA_TabRow">  &nbsp;</div>
+                    <div ng-non-bindable="true" class="ACA_Row ACA_LiLeft">
+                        <div>
+                            <ul>                      
+                                <li>
+                                    <div id='ctl00_PlaceHolderMain_btnNewSearch_container'><div class='ACA_LgButton ACA_LgButton_FontSize'><a id="ctl00_PlaceHolderMain_btnNewSearch" title="Search" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$PlaceHolderMain$btnNewSearch&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))"><span>Search</span></a></div></div>
+                                </li>
+                                <li>
+                                    <div id='ctl00_PlaceHolderMain_btnResetSearch_container'><div class='ACA_LgButton ACA_LgButton_FontSize'><a id="ctl00_PlaceHolderMain_btnResetSearch" title="Clear" href="javascript:__doPostBack(&#39;ctl00$PlaceHolderMain$btnResetSearch&#39;,&#39;&#39;)"><span>Clear</span></a></div></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div ng-non-bindable="true" class="ACA_Row">
+                        
+ <div class="ACA_Show">
+ 
+
+ 
+</div>  
+
+                    </div>
+                    <a name="PageResult" id="PageResult" href="#PageResult" tabindex="-1" aria-label="Page Results"></a>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <script type="text/javascript">
+                            $("#divSearchPaneltoPressEnter").keydown(function (event) {
+                                pressEnter2TriggerClick(event, $("#ctl00_PlaceHolderMain_btnNewSearch"));
+                            });
+                        </script>
+                    
+
+                
+</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (typeof (myValidationErrorPanel) != "undefined") {
+                myValidationErrorPanel.registerIDs4Recheck("ctl00_PlaceHolderMain_ddlSearchType");
+            }
+        });
+
+        var prefix = "#ctl00_PlaceHolderMain_";
+        if ($.global.isAdmin) {
+            HideAllSections();
+            var lblSearchInstruction = $get("ctl00_PlaceHolderMain_lblSearchInstruction");
+
+            if('Y' == 'Y')
+            {
+                $(prefix + "divLicenseeSearchForm").show();
+                lblSearchInstruction.labelKey = "per_propertylookup_instruction_searchforlicensee";
+            }
+            else if ('' == 'Y') {
+                $(prefix + "divFoodFacilitySearchForm").show();
+                lblSearchInstruction.labelKey = "aca_foodfacility_label_searchinstruction";
+            }
+            else if ('' == 'Y') {
+                $(prefix + "divCertBusinessSearchForm").show();
+                lblSearchInstruction.labelKey = "aca_certbusiness_label_searchinstruction";
+            }
+            else if ('' == 'Y') {
+                $(prefix + "divDocumentSearchForm").show();
+                lblSearchInstruction.labelKey = "aca_searchdocument_label_searchinstruction";
+                $('#ctl00_PlaceHolderMain_btnNewSearch').hide();
+            }
+            else
+            {
+                $(prefix + "divEduRelationSearchForm").show();
+                lblSearchInstruction.labelKey = "per_propertylookup_instruction_searchforprovider";
+                
+            }
+            
+            $get("ctl00_PlaceHolderMain_ddlSearchType").SectionInfo = new KeyValuePair();
+        }
+
+        function HideAllSections() {
+            $(prefix + "divLicenseeSearchForm").hide();
+            $(prefix + "divEduRelationSearchForm").hide();
+            $(prefix + "divRefExamSearchForm").hide();
+            $(prefix + "divFoodFacilitySearchForm").hide();
+            $(prefix + "divCertBusinessSearchForm").hide();
+            $(prefix + "divDocumentSearchForm").hide();
+        }
+
+        function ChangeType(ddl) {
+            HideAllSections();
+            var divId;
+            var sectionId;
+            var elementPrefix;
+            var myArray = ddl.value.split("||");
+            var str = myArray[myArray.length - 1];
+            $get("ctl00_PlaceHolderMain_lblSelectedSearchType").innerHTML = ddl[ddl.selectedIndex].text;
+            var selectedSection = myArray[0].replace("-", "");
+            var lblInstruction = $get("ctl00_PlaceHolderMain_lblSearchInstruction");
+            $('#ctl00_PlaceHolderMain_btnNewSearch').show();
+            $('#ctl00_PlaceHolderMain_btnResetSearch').show();
+            
+            switch (selectedSection) {
+                case '0':
+                    divId = "divEduRelationSearchForm";
+                    sectionId = "60075";
+                    elementPrefix = "ctl00_PlaceHolderMain_educationRelationSearchForm_";
+                    lblInstruction.labelKey = 'per_propertylookup_instruction_searchforprovider';
+                    break;
+                case '1':
+                    divId = "divRefExamSearchForm";
+                    sectionId = "60076";
+                    elementPrefix = "ctl00_PlaceHolderMain_refExamSearchForm_";
+                    lblInstruction.labelKey = 'per_propertylookup_instruction_searchforeducation';                   
+                    break;
+                case '2':
+                    divId = "divLicenseeSearchForm";
+                    sectionId = "60086";
+                    elementPrefix = "ctl00_PlaceHolderMain_refLicenseeSearchForm_";
+                    lblInstruction.labelKey = 'per_propertylookup_instruction_searchforlicensee';
+                    break;
+                case '3':
+                    divId = "divFoodFacilitySearchForm";
+                    sectionId = "60115";
+                    elementPrefix = "ctl00_PlaceHolderMain_refFoodFacilitySearchForm_";
+                    lblInstruction.labelKey = 'aca_foodfacility_label_searchinstruction';
+                    break;
+                case '4':
+                    divId = "divCertBusinessSearchForm";
+                    sectionId = "60119";
+                    elementPrefix = "ctl00_PlaceHolderMain_certifiedBusinessSearchForm_";
+                    lblInstruction.labelKey = 'aca_certbusiness_label_searchinstruction';
+                    break;
+                case '5':
+                    divId = "divDocumentSearchForm";
+                    elementPrefix = "ctl00_PlaceHolderMain_documentSearchForm_";
+                    lblInstruction.labelKey = 'aca_searchdocument_label_searchinstruction';
+                    $('#ctl00_PlaceHolderMain_btnNewSearch').hide();
+                    $('#ctl00_PlaceHolderMain_btnResetSearch').hide();
+                    break;
+            }
+
+            var storedInstruction = ddl.SectionInfo.GetByKey(lblInstruction.labelKey);
+            if (!storedInstruction) {
+                PageMethods.GetInstructionByKey(lblInstruction.labelKey, function(value)
+                {
+                   lblInstruction.innerHTML = value;
+                   ddl.SectionInfo.Add(lblInstruction.labelKey, value);
+                });
+            }
+            else
+            {
+               lblInstruction.innerHTML = storedInstruction;
+            }
+            
+            $(prefix + divId).show();
+            ddl.SectionInfo.Add(ddl.parentObj._sectionIdValue, ddl.parentObj._sectionFields);
+            var sectionIdValue = "LARA" + "\f" + sectionId + "\f" + elementPrefix;
+
+            if (selectedSection == "5") {
+                sectionIdValue = "LARA" + "\f" + elementPrefix;
+            }
+
+            ddl.parentObj._sectionFields = ddl.SectionInfo.GetByKey(sectionIdValue);
+            ddl.parentObj._sectionIdValue = sectionIdValue;
+
+            parent.parent.LoadProperties(16, ddl.parentObj);
+        }
+    </script>
+
+                    </main>
+                    <!--
+                In Chorme and Opera 15, need add the div,
+                because when content div set float property, not hodler height in container
+                -->
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="divLoadingTemplate" class="ACA_Loading_Message" style="width: auto">
+                    <img alt="Please wait..." src="/LARA/app_themes/Default/assets/loading.gif" />
+                    <span id="ctl00_lblLoading" class="ACA_SmLabel ACA_SmLabel_FontSize">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <div id="ctl00_UpdatePanel4Expression">
+	
+                <input name="ctl00$HDExpressionParam" type="hidden" id="ctl00_HDExpressionParam" class="HDExpressionResultCss" />
+            
+</div>
+        <script type="text/javascript">
+            setInterval("iframeAutoFit()", 300);
+
+            with (Sys.WebForms.PageRequestManager.getInstance()) {
+                add_beginRequest(onBeginRequest);
+                add_endRequest(onEndRequest);
+                add_pageLoaded(onPageLoaded);
+            }
+            
+            function onBeginRequest(sender, args) {
+                if ($.global.isAdmin) {
+                    //1. in admin, if async request, we need record the client id of last selected object.
+                    var obj = document.currentSelectedObj;
+
+                    if (obj && obj._element) {
+                        parent.document.currentSelectedID = obj._element.id;
+                    }
+
+                    $('*').css('cursor', 'wait');
+                }
+            }
+
+            var processLoading = new ProcessLoading();
+            function onPageLoaded(sender, args) {
+                if ($.global.isAdmin) {
+                    //2. in admin, if async request, use last selected object id to get the object and trigger it select.
+                    var selectedId = parent.document.currentSelectedID;
+
+                    if (selectedId) {
+                        invokeClick($get(selectedId));
+
+                        //3. when it select completed, clear this.
+                        parent.document.currentSelectedID = null;
+                    }
+
+                    $('*').css('cursor', '');
+                } else {
+                    firstErrorMsgId = '';
+                    processLoading.initControlLoading();
+
+                    addPrintErrors2SubmitButton();
+                }
+            }
+
+            function onEndRequest(sender, arg) {
+                if (!$.global.isAdmin) {
+                    var sourceElement = sender._postBackSettings.sourceElement;
+
+                    if (sourceElement == null || (sourceElement != null && $(sourceElement).hasClass('NotShowLoading') == false)) {
+                        processLoading.hideLoading();
+                    }
+
+                    if (delayShowLoadingTimer) {
+                        window.clearTimeout(delayShowLoadingTimer);
+                    }
+                }
+            }
+
+            function ShowLoading() {
+                var processLoading = new ProcessLoading();
+                processLoading.showLoading();
+            }
+
+            function HideLoading(needHide) {
+                var processLoading = new ProcessLoading();
+                processLoading.hideLoading(needHide);
+            }
+
+        </script>
+
+        
+
+        <input type="hidden" name="Submit" value="Submit" class="HiddenButton" onclick="return false;" />
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_maskedit_vad"), document.getElementById("ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad"), document.getElementById("ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_maskedit_vad"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_maskedit_vad = document.all ? document.all["ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_maskedit_vad"] : document.getElementById("ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_maskedit_vad");
+ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_maskedit_vad.controltovalidate = "ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode";
+ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_maskedit_vad.display = "None";
+ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_maskedit_vad.evaluationfunction = "MaskedEditValidatorNone";
+var ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad = document.all ? document.all["ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad"] : document.getElementById("ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad");
+ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad.controltovalidate = "ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode";
+ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad.errormessage = "Must be less than 10 characters.";
+ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad.display = "None";
+ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad.evaluationfunction = "checkLength";
+ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad.maxLength = "10";
+ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad.minLength = "0";
+ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad.mask = "NNNNNNNNN";
+ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad.displayEntered = "True";
+ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad.errorMessage = "Must be less than 10 characters.";
+var ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_maskedit_vad = document.all ? document.all["ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_maskedit_vad"] : document.getElementById("ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_maskedit_vad");
+ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_maskedit_vad.controltovalidate = "ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1";
+ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_maskedit_vad.display = "None";
+ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_maskedit_vad.evaluationfunction = "MaskedEditValidatorNone";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+ACADialog.close_image_url='/LARA/app_themes/Default/assets/closepopup.png';ACADialog.spacer_image_url='/LARA/app_themes/Default/assets/spacer.gif';ACADialog.begin_alt='It is at the beginning of the form.';ACADialog.end_alt='This is the end of the form. Press the Tab key to move the focus to the beginning.';ACADialog.close_alt='Close';ACADialog.iframe_title='Accela Citizen Access popup page.';ACADialog.agencyCode='LARA';var curWindow = this.window;
+                                  curWindow.scrollTo(0, 0);
+                                  while (curWindow.parent!= null && curWindow.parent != curWindow) { 
+                                        try{                                           
+                                            curWindow = curWindow.parent;
+                                            curWindow.scrollTo(0, 0);
+                                        }catch(ex){
+                                           
+                                        }
+                                  };if(globalHistory != null || globalHistory != undefined){globalHistory.setNoResult();}hideReportLink(false);
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.MaskedEditBehavior, {"AutoComplete":false,"ClearMaskOnLostFocus":false,"ClientStateFieldID":"ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_ext_ClientState","CultureAMPMPlaceholder":"AM;PM","CultureCurrencySymbolPlaceholder":"$","CultureDateFormat":"MDY","CultureDatePlaceholder":"/","CultureDecimalPlaceholder":".","CultureName":"en-US","CultureThousandsPlaceholder":",","CultureTimePlaceholder":":","Filtered":"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ","Mask":"NNNNNNNNN","PromptCharacter":" ","id":"ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_ext"}, null, null, $get("ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode"));
+});
+
+document.getElementById('ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_maskedit_vad').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_maskedit_vad'));
+}
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ValidatorCallbackBehavior, {"callbackControlID":"ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode","callbackFailFunction":"doErrorCallbackFun","highlightCssClass":"HighlightCssClass","id":"ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00","validationByHiddenTextBox":false,"validationIgnoreCase":false}, null, null, $get("ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_maskedit_vad"));
+});
+
+document.getElementById('ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad'));
+}
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ValidatorCallbackBehavior, {"callbackControlID":"ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode","callbackFailFunction":"doErrorCallbackFun","highlightCssClass":"HighlightCssClass","id":"ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl01","validationByHiddenTextBox":false,"validationIgnoreCase":false}, null, null, $get("ctl00_PlaceHolderMain_refLicenseeSearchForm_txtZipCode_length_vad"));
+});
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.MaskedEditBehavior, {"AutoComplete":false,"ClearMaskOnLostFocus":false,"ClientStateFieldID":"ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_ext_ClientState","CultureAMPMPlaceholder":"AM;PM","CultureCurrencySymbolPlaceholder":"$","CultureDateFormat":"MDY","CultureDatePlaceholder":"/","CultureDecimalPlaceholder":".","CultureName":"en-US","CultureThousandsPlaceholder":",","CultureTimePlaceholder":":","Mask":"9999999999999999999999999999999999999999","PromptCharacter":" ","id":"ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_ext"}, null, null, $get("ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1"));
+});
+
+document.getElementById('ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_maskedit_vad').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_maskedit_vad'));
+}
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ValidatorCallbackBehavior, {"callbackControlID":"ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1","callbackFailFunction":"doErrorCallbackFun","highlightCssClass":"HighlightCssClass","id":"ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl02","validationByHiddenTextBox":false,"validationIgnoreCase":false}, null, null, $get("ctl00_PlaceHolderMain_refLicenseeSearchForm_ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_maskedit_vad"));
+});
+//]]>
+</script>
+</form>
+    <noscript>Your browser does not support JavaScript.</noscript>
+</body>
+</html>

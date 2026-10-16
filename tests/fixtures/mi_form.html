@@ -1,0 +1,1837 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html ng-app="appAca" xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head id="ctl00_Head1"><link href="../App_Themes/Default/form.css" type="text/css" rel="stylesheet" /><link href="../App_Themes/Default/style.css" type="text/css" rel="stylesheet" /><title>
+	
+        Accela Citizen Access
+    
+</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="icon" type="image/svg+xml" href="../Accela-Favicon.svg" /><link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <style type="text/css">
+        body, html {
+        overflow-y: visible!important;
+        }
+        .page-overlay-blocker {
+          position: fixed;
+          z-index: 999;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #ffffff;
+          opacity: 0.1;
+          display:none;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../css/main.css" /><link rel="stylesheet" type="text/css" href="../css/acaresponsive.min.css" /><script src="/MILARA/bundles/aca-gis?v=qZBQzLf2g-HLVKRpUwySmf0HSY9NU1VUc_xUbESbAAs1"></script>
+<link href="../App_Themes/en-US/style.css" type="text/css" rel="stylesheet" /><link id="ctl00_CustomerCssStyle" style="text/css" rel="stylesheet" href="/MILARA/Handlers/CustomizedCssStyle.ashx?agencyCode=MILARA"></link><link id="ctl00_PageCustomizeCssStyle_GlobalCustomScriptBefore" style="text/css" rel="stylesheet" href="/MILARA/Customization/MILARA/globalcustomscriptbefore.css"></link></head>
+    
+<script type="text/javascript">
+    var firstErrorMsgId;
+
+    function isSafari(){
+        var ua = window.navigator.userAgent;
+        return ua.indexOf("Safari")>-1;
+    }
+
+    var original=0;
+    function iframeAutoFit()
+    {
+        try
+        {
+            if(window!=parent)
+            {
+                var ifrm = getParentDocument().getElementById("ACAFrame");
+                if(ifrm != null && ifrm.contentWindow==window)
+                {
+                    var h1 = 0, h2 = 0;
+
+                    if(document.documentElement&&document.documentElement.scrollHeight)
+                    {
+                        h1=ifrm.contentWindow.document.documentElement.scrollHeight;
+                    }
+                    if (isSafari()) {
+                        h1=ifrm.contentWindow.document.body.scrollHeight;
+                    }
+                
+                    var h=$(ifrm.contentWindow.document.body).innerHeight();
+                
+                    var temp = h1-60 - h;
+                    var chk = true;
+                    if (temp> 0 && temp<200) {
+                        chk = false;
+                    }
+
+                    var popupHeight = 0;
+                    var popupDialog = $("#dvACADialogLayer");
+                    if ($.exists(popupDialog)) {
+                        popupHeight = popupDialog[0].clientHeight;
+                        if (h < popupHeight) {
+                            h = popupHeight;
+                        }
+                    }
+
+                    if(original != h || !chk){ 
+                        if(isFireFox() == false)
+                        {
+                            if (chk) {
+                                h1 = parseInt(h)+60;
+                            }
+                        
+                            ifrm.style.height = ifrm.parentNode.style.height = h1 +"px";
+                        }
+                        else
+                        {
+                            if (chk) {
+                                if ($.exists(popupDialog)) {
+                                    h1 = parseInt(h) + 60;
+                                } else {
+                                    h1 = ifrm.contentDocument.body.scrollHeight;
+                                    h1 = parseInt(h1) + 60;
+                                }
+                            }
+                            
+                            ifrm.height = h1;
+                        }
+
+                        original = h;
+                    } 
+                }
+            }
+        }
+        catch (ex){}
+    }
+
+</script>
+
+<body>
+    <div id="iframeBlocker" class="page-overlay-blocker"></div>
+    <script type="text/javascript" src="/MILARA/Scripts/GlobalConst.aspx"></script>  
+    <script src="/MILARA/bundles/common?v=3frcyczFCCAemuR09W71PpqoQkdwvQy6MShBSNrJdrc1"></script>
+
+    <script src="/MILARA/bundles/accela-common?v=BXje1z6NawBGOiQIEn0vAnHNsFfvdLkUx4SQxpy-akk1"></script>
+
+
+    <script type="text/javascript">
+        try {
+            var isEmbedded = (window.top !== window.self);
+            if (isEmbedded && !window.__ACA_DDRUM_LOADED) {
+                (function (h, o, u, n, d) {
+                    h = h[d] = h[d] || { q: [], onReady: function (c) { h.q.push(c) } }
+                    d = o.createElement(u); d.async = 1; d.src = n
+                    n = o.getElementsByTagName(u)[0]; n.parentNode.insertBefore(d, n)
+                })(window, document, 'script', 'https://www.datadoghq-browser-agent.com/datadog-rum-v4.js', 'DD_RUM');
+
+                DD_RUM.onReady(function () {
+                    var ddrumClientToken = 'pub4c296e8a953a31a53abb3617c2f840e4';
+                    if (!ddrumClientToken || ddrumClientToken.trim() === '') {
+                        console.error("DD_RUM Client Token is not configured or empty!");
+                        ddrumClientToken = "";
+                    }
+                    var ddrumApplicationId = 'e34bafed-755d-4362-89e6-2ea4af60cd0f';
+                    if (!ddrumApplicationId || ddrumApplicationId.trim() === '') {
+                        console.error("DD_RUM Application ID is not configured or empty!");
+                        ddrumApplicationId = "";
+                    }
+                    function initRUM() {
+                        DD_RUM.init({
+                            clientToken: ddrumClientToken.trim(),
+                            applicationId: ddrumApplicationId.trim(),
+                            site: 'datadoghq.com',
+                            env: 'aca-prod',
+                            sessionSampleRate: 50, // REDUCED for PROD usage
+                            sessionReplaySampleRate: 5,
+                            trackInteractions: true,
+                            // Safe fallback settings for restricted environments
+                            storeContextsAcrossPages: true,
+                            useSecureSessionCookie: true,
+                            useCrossSiteSessionCookie: true,
+                            trackSessionAcrossSubdomains: false,
+                            trackViewsManually: true
+                        });
+                        // EXPLICITLY START A VIEW
+                        DD_RUM.startView({
+                            name: 'ACAProdDefault-AllPages',
+                            service: 'aca-prod',
+                            version: '25.5.0'
+                        });
+                        console.log("DD_RUM view started.");
+                        window.__ACA_DDRUM_LOADED = true;
+                    }
+                    // If inside iframe and browser supports requestStorageAccess
+                    if (document.requestStorageAccess) {
+                        console.log("Requesting storage access is present.");
+                        document.requestStorageAccess()
+                            .then(() => {
+                                console.log("Storage access granted");
+                            })
+                            .catch(() => {
+                                console.warn("Storage access denied, proceeding with fallback");
+                            });
+                    } else {
+                        console.log("Requesting storage access is not supported by the browser.");
+                    }
+                    initRUM();
+                });
+            }
+        } catch (e) {
+            console.error("Error initializing DD_RUM", e);
+        }
+        try {
+            var isEmbedded = (window.top !== window.self);
+            if (isEmbedded) {
+                console.log("Embedding Detected. Referrer (document.referrer): " + document.referrer);
+                if (window.DD_RUM && typeof DD_RUM.onReady === 'function') {
+                    DD_RUM.onReady(function () {
+                        console.log("DD_RUM is ready - logging action.");
+                        DD_RUM.addAction("EmbeddingDetected", {
+                            referrer: document.referrer || "not present",
+                            env: 'aca-prod',
+                            appId: 'e34bafed-755d-4362-89e6-2ea4af60cd0f',
+                            identityClientId: '5f88dc68-6856-49a8-af5e-d0e237d13b9e' || "not present",
+                            superAgencyCode: 'MILARA' || "not present",
+                            agencyCode: 'MILARA' || "not present"
+                    });
+                    console.log("DD_RUM action 'EmbeddingDetected' successfully queued.");
+                });
+                } else {
+                    console.warn("DD_RUM not available or not ready");
+                }
+                console.log("DD_RUM didn't throw any error");
+            } else {
+                console.log("Not embedded (top === self). Referrer: " + document.referrer);
+            }
+        } catch (e) {
+            console.error("Error checking embedding: ", e);
+        }
+    </script>
+    
+    <script type="text/javascript" src="/MILARA/Scripts/SessionTimeout.js"></script>
+
+    <script type="text/javascript">
+        $.global.isRTL = IsTrue('False');
+
+        //fix the issue that the confirm/alert box should also follows the current culture.
+        if ($.global.isRTL) {
+            document.dir = "rtl";
+        } else {
+            document.dir = "ltr";
+        }
+
+        $.global.isAdmin = IsTrue('False');
+        var isClassTemplate = IsTrue('True');
+        var isWelcomePage = IsTrue('False');
+        var isLoginPage = IsTrue('False');
+        var isAnonymous = IsTrue('True');
+        var isCapApplyDisclaimerPage = IsTrue('False');
+        var isCapEditPage = IsTrue('False');
+
+        if (!isAnonymous && !$.global.isAdmin) {
+            var opts = {
+                Culture: 'en-US',
+                TimeoutTime: 30,
+                WarningTime: 5,
+                WarnTitle: 'Warning',
+                ExpiredTitle: 'Session Expired',
+                MsgWarn: 'Your session will time out in {0} minute(s). Would you like to continue?',
+                MsgExpired: 'Your session has been timed out due to inactivity. Please click on Login to access your account.',
+                MsgHelp: 'Please press the Tab key to move the focus to the OK or Cancel button.',
+                BtnOK: 'OK',
+                BtnCancel: 'Cancel',
+                BtnLogin: 'Login',
+                UrlWelcome: '/MILARA/Welcome.aspx',
+                UrlLogin: '/MILARA/Login.aspx',
+                UrlLogic: '/MILARA/Handlers/SessionTimeOutHandler.ashx',
+                UrlCloseImg: '/MILARA/app_themes/Default/assets/closepopup.png',
+                UrlUserStatus: '/MILARA/api/PublicUser/AccountStatus',
+                ApplicationRoot: '/MILARA/'
+            };
+
+            if (isClassTemplate) {
+                $("body").SessionTimeoutTimer(opts);
+            }
+        }
+    </script>
+
+    
+<script type="text/javascript">
+    var walkMeOptions = '{"userID":"31BCA02094EB78126A517B206A88C73CFA9EC6F704C7030D18212CACE820F025F00BF0EA68DBF3F3A5436CA63B53BF7BF80AD8D5DE7D8359D0B7FED9DBC3AB99","module":"","userGroup":"Anonymous","walkMeJsUrl":"https://cdn.walkme.com/users/01c65c34a5d141bbac172b11d8b9fcbf/walkme_01c65c34a5d141bbac172b11d8b9fcbf_https.js"}';
+
+    if (walkMeOptions != undefined && walkMeOptions != null && walkMeOptions.length != 0) {
+        var walkMeData = JSON.parse(walkMeOptions);
+        if (walkMeData.walkMeJsUrl != undefined && walkMeData.walkMeJsUrl != null && walkMeData.walkMeJsUrl.length != 0) {
+            var accelaVariables = new Object()
+            accelaVariables.userId = walkMeData.userID;
+            accelaVariables.userGroup = walkMeData.userGroup;
+            accelaVariables.product = walkMeData.product;
+            accelaVariables.version = walkMeData.version;
+            accelaVariables.environment = walkMeData.environment;
+            accelaVariables.module = walkMeData.module;
+            accelaVariables.agency = walkMeData.agency;
+            window.accelaVariables = accelaVariables;
+
+            //How to Pass Agency Name?
+            (function () {
+                var walkme = document.createElement('script');
+                walkme.type = 'text/javascript';
+                walkme.async = true;
+                walkme.src = walkMeData.walkMeJsUrl;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(walkme, s);
+                window._walkmeConfig = { smartLoad: true };
+            })();
+        }
+    }
+</script>
+
+    
+<script>
+  (function(h,o,u,n,d) {
+     h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
+     d=o.createElement(u);d.async=1;d.src=n
+     n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
+  })(window,document,'script','https://www.datadoghq-browser-agent.com/datadog-rum-v4.js','DD_RUM')
+  DD_RUM.onReady(function() {
+    DD_RUM.init({
+      clientToken: 'pub4c296e8a953a31a53abb3617c2f840e4',
+      applicationId: 'e34bafed-755d-4362-89e6-2ea4af60cd0f',
+      site: 'datadoghq.com',
+      env: 'civp_prod_azure',
+      service: 'aca',
+      version: '26.3.1.2.260929',
+      sampleRate: 10,
+      sessionReplaySampleRate: 5,
+      premiumSampleRate: 5,
+      trackInteractions: true
+    })
+  })
+</script>
+
+    <DIV style="WIDTH: 1px; HEIGHT: 1px;" id="divctl00_hlSkipNavigation" class=""><a id="ctl00_hlSkipNavigation" accesskey="0" href="#" tabIndex="-1" onclick="skipToBeginningOfACA();" title="Skip to main content. Please make sure the Accessibility Support check box is marked."  class="NotShowLoading"><img alt="Skip to main content. Please make sure the Accessibility Support check box is marked." src="/MILARA/WebResource.axd?d=_srwWNS1MSJOYH4C35b1oFn7VEYtvNa8YGGRg1sqtrF_faY_-fd0egWACbQyGWVnyPpONGyWOQylydrXXpHjvXdl4T0G4TrJ5TZlCzCCz424pMVoF3uq-ZWyjKkSQo7UFVPfshRXWd-tDgOs0est9E0Mlus1&t=639262789020000000" width='1px' height='1px' style='border-width:0px;'/></a></DIV>
+    <DIV style="WIDTH: 1px; HEIGHT: 1px;" id="divctl00_hlSkipToolBar" class=""><a id="ctl00_hlSkipToolBar" accesskey="1" href="#FirstAnchorInACAMainContent"  onclick="skipToMainContent();" title="Skip Module Navigation"  class="NotShowLoading"><img alt="Skip Module Navigation" src="/MILARA/WebResource.axd?d=_srwWNS1MSJOYH4C35b1oFn7VEYtvNa8YGGRg1sqtrF_faY_-fd0egWACbQyGWVnyPpONGyWOQylydrXXpHjvXdl4T0G4TrJ5TZlCzCCz424pMVoF3uq-ZWyjKkSQo7UFVPfshRXWd-tDgOs0est9E0Mlus1&t=639262789020000000" width='1px' height='1px' style='border-width:0px;'/></a></DIV>
+    <form name="aspnetForm" method="post" action="./PropertyLookUp.aspx?isLicensee=Y&amp;TabName=APO" id="aspnetForm">
+<div>
+<input type="hidden" name="ACA_CS_FIELD" id="ACA_CS_FIELD" value="f313113d338d4180802f692e25ef4520" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/MILARA/WebResource.axd?d=UK81IePOXTVsZN--6ZX3g4RlFAr7RgxiI7uqyim-g-VIvVHR4zblhbi9p-YGgBbvi5g5sUcNtYyJSdSIpy9_SFG--4U1&amp;t=639086680906651216" type="text/javascript"></script>
+
+
+<script src="/MILARA/Scripts/dialog.js" type="text/javascript"></script>
+<script src="/MILARA/Customization/MILARA/globalcustomscriptbefore.js" type="text/javascript"></script><script type="text/javascript" language="javascript">
+var relevantControls_ctl00_PlaceHolderMain_educationRelationSearchForm_ddlCountry = new Array();
+relevantControls_ctl00_PlaceHolderMain_educationRelationSearchForm_ddlCountry[0]='ctl00_PlaceHolderMain_educationRelationSearchForm_txtPhone1_IDD';
+relevantControls_ctl00_PlaceHolderMain_educationRelationSearchForm_ddlCountry[1]='ctl00_PlaceHolderMain_educationRelationSearchForm_txtPhone2_IDD';
+relevantControls_ctl00_PlaceHolderMain_educationRelationSearchForm_ddlCountry[2]='ctl00_PlaceHolderMain_educationRelationSearchForm_txtFax_IDD';
+</script>
+<script type="text/javascript" language="javascript">
+var iddList = new Array();
+iddList[0] = new Array('BV','');
+iddList[1] = new Array('HM','');
+iddList[2] = new Array('GS','');
+iddList[3] = new Array('TF','');
+iddList[4] = new Array('SJ','');
+iddList[5] = new Array('UM','');
+iddList[6] = new Array('MN','1');
+iddList[7] = new Array('EG','20');
+iddList[8] = new Array('MA','212');
+iddList[9] = new Array('DZ','213');
+iddList[10] = new Array('TN','216');
+iddList[11] = new Array('LY','218');
+iddList[12] = new Array('GM','220');
+iddList[13] = new Array('SN','221');
+iddList[14] = new Array('MR','222');
+iddList[15] = new Array('ML','223');
+iddList[16] = new Array('GN','224');
+iddList[17] = new Array('CI','225');
+iddList[18] = new Array('BF','226');
+iddList[19] = new Array('NE','227');
+iddList[20] = new Array('TG','228');
+iddList[21] = new Array('BJ','229');
+iddList[22] = new Array('MU','230');
+iddList[23] = new Array('LR','231');
+iddList[24] = new Array('SL','232');
+iddList[25] = new Array('GH','233');
+iddList[26] = new Array('NG','234');
+iddList[27] = new Array('TD','235');
+iddList[28] = new Array('CF','236');
+iddList[29] = new Array('CM','237');
+iddList[30] = new Array('CV','238');
+iddList[31] = new Array('ST','239');
+iddList[32] = new Array('GQ','240');
+iddList[33] = new Array('GA','241');
+iddList[34] = new Array('BS','242');
+iddList[35] = new Array('CG','242');
+iddList[36] = new Array('CD','243');
+iddList[37] = new Array('AO','244');
+iddList[38] = new Array('GW','245');
+iddList[39] = new Array('IO','246');
+iddList[40] = new Array('BB','246');
+iddList[41] = new Array('SC','248');
+iddList[42] = new Array('SD','249');
+iddList[43] = new Array('RW','250');
+iddList[44] = new Array('ET','251');
+iddList[45] = new Array('SO','252');
+iddList[46] = new Array('DJ','253');
+iddList[47] = new Array('KE','254');
+iddList[48] = new Array('TZ','255');
+iddList[49] = new Array('UG','256');
+iddList[50] = new Array('BI','257');
+iddList[51] = new Array('MZ','258');
+iddList[52] = new Array('ZM','260');
+iddList[53] = new Array('MG','261');
+iddList[54] = new Array('RE','262');
+iddList[55] = new Array('ZW','263');
+iddList[56] = new Array('NA','264');
+iddList[57] = new Array('AI','264');
+iddList[58] = new Array('MW','265');
+iddList[59] = new Array('LS','266');
+iddList[60] = new Array('BW','267');
+iddList[61] = new Array('SZ','268');
+iddList[62] = new Array('AG','268');
+iddList[63] = new Array('YT','269');
+iddList[64] = new Array('KM','269');
+iddList[65] = new Array('ZA','27');
+iddList[66] = new Array('VG','284');
+iddList[67] = new Array('SH','290');
+iddList[68] = new Array('ER','291');
+iddList[69] = new Array('AW','297');
+iddList[70] = new Array('FO','298');
+iddList[71] = new Array('GL','299');
+iddList[72] = new Array('CA','3');
+iddList[73] = new Array('GR','30');
+iddList[74] = new Array('NL','31');
+iddList[75] = new Array('BE','32');
+iddList[76] = new Array('FR','33');
+iddList[77] = new Array('ES','34');
+iddList[78] = new Array('VI','340');
+iddList[79] = new Array('KY','345');
+iddList[80] = new Array('GI','350');
+iddList[81] = new Array('PT','351');
+iddList[82] = new Array('LU','352');
+iddList[83] = new Array('IE','353');
+iddList[84] = new Array('IS','354');
+iddList[85] = new Array('AL','355');
+iddList[86] = new Array('MT','356');
+iddList[87] = new Array('CY','357');
+iddList[88] = new Array('AX','358');
+iddList[89] = new Array('FI','358');
+iddList[90] = new Array('BG','359');
+iddList[91] = new Array('HU','36');
+iddList[92] = new Array('LT','370');
+iddList[93] = new Array('LV','371');
+iddList[94] = new Array('EE','372');
+iddList[95] = new Array('MD','373');
+iddList[96] = new Array('AM','374');
+iddList[97] = new Array('BY','375');
+iddList[98] = new Array('AD','376');
+iddList[99] = new Array('MC','377');
+iddList[100] = new Array('SM','378');
+iddList[101] = new Array('VA','379');
+iddList[102] = new Array('UA','380');
+iddList[103] = new Array('CS','381');
+iddList[104] = new Array('HR','385');
+iddList[105] = new Array('SI','386');
+iddList[106] = new Array('BA','387');
+iddList[107] = new Array('MK','389');
+iddList[108] = new Array('IT','39');
+iddList[109] = new Array('US','4');
+iddList[110] = new Array('RO','40');
+iddList[111] = new Array('CH','41');
+iddList[112] = new Array('CZ','420');
+iddList[113] = new Array('SK','421');
+iddList[114] = new Array('LI','423');
+iddList[115] = new Array('AT','43');
+iddList[116] = new Array('GB','44');
+iddList[117] = new Array('BM','441');
+iddList[118] = new Array('DK','45');
+iddList[119] = new Array('SE','46');
+iddList[120] = new Array('NO','47');
+iddList[121] = new Array('GD','473');
+iddList[122] = new Array('PN','48');
+iddList[123] = new Array('PL','48');
+iddList[124] = new Array('DE','49');
+iddList[125] = new Array('FK','500');
+iddList[126] = new Array('BZ','501');
+iddList[127] = new Array('GT','502');
+iddList[128] = new Array('SV','503');
+iddList[129] = new Array('HN','504');
+iddList[130] = new Array('NI','505');
+iddList[131] = new Array('CR','506');
+iddList[132] = new Array('PA','507');
+iddList[133] = new Array('PM','508');
+iddList[134] = new Array('HT','509');
+iddList[135] = new Array('PE','51');
+iddList[136] = new Array('MX','52');
+iddList[137] = new Array('CU','53');
+iddList[138] = new Array('HK','533');
+iddList[139] = new Array('AR','54');
+iddList[140] = new Array('BR','55');
+iddList[141] = new Array('CL','56');
+iddList[142] = new Array('CO','57');
+iddList[143] = new Array('VE','58');
+iddList[144] = new Array('GP','590');
+iddList[145] = new Array('BO','591');
+iddList[146] = new Array('GY','592');
+iddList[147] = new Array('EC','593');
+iddList[148] = new Array('GF','594');
+iddList[149] = new Array('PY','595');
+iddList[150] = new Array('MQ','596');
+iddList[151] = new Array('SR','597');
+iddList[152] = new Array('UY','598');
+iddList[153] = new Array('AN','599');
+iddList[154] = new Array('MY','60');
+iddList[155] = new Array('AU','61');
+iddList[156] = new Array('CC','61');
+iddList[157] = new Array('CX','62');
+iddList[158] = new Array('ID','62');
+iddList[159] = new Array('PH','63');
+iddList[160] = new Array('NZ','64');
+iddList[161] = new Array('TC','649');
+iddList[162] = new Array('SG','65');
+iddList[163] = new Array('TH','66');
+iddList[164] = new Array('MP','670');
+iddList[165] = new Array('TL','670');
+iddList[166] = new Array('GU','671');
+iddList[167] = new Array('NF','672');
+iddList[168] = new Array('AQ','672');
+iddList[169] = new Array('BN','673');
+iddList[170] = new Array('NR','674');
+iddList[171] = new Array('PG','675');
+iddList[172] = new Array('TO','676');
+iddList[173] = new Array('SB','677');
+iddList[174] = new Array('VU','678');
+iddList[175] = new Array('FJ','679');
+iddList[176] = new Array('PW','680');
+iddList[177] = new Array('WF','681');
+iddList[178] = new Array('CK','682');
+iddList[179] = new Array('NU','683');
+iddList[180] = new Array('AS','684');
+iddList[181] = new Array('WS','685');
+iddList[182] = new Array('EH','685');
+iddList[183] = new Array('KI','686');
+iddList[184] = new Array('NC','687');
+iddList[185] = new Array('TV','688');
+iddList[186] = new Array('PF','689');
+iddList[187] = new Array('TK','690');
+iddList[188] = new Array('FM','691');
+iddList[189] = new Array('MH','692');
+iddList[190] = new Array('RU','7');
+iddList[191] = new Array('KZ','7');
+iddList[192] = new Array('LC','758');
+iddList[193] = new Array('DM','767');
+iddList[194] = new Array('VC','784');
+iddList[195] = new Array('PR','787');
+iddList[196] = new Array('DO','809');
+iddList[197] = new Array('JP','81');
+iddList[198] = new Array('KR','82');
+iddList[199] = new Array('VN','84');
+iddList[200] = new Array('KP','850');
+iddList[201] = new Array('MO','853');
+iddList[202] = new Array('KH','855');
+iddList[203] = new Array('LA','856');
+iddList[204] = new Array('CN','86');
+iddList[205] = new Array('TT','868');
+iddList[206] = new Array('KN','869');
+iddList[207] = new Array('JM','876');
+iddList[208] = new Array('BD','880');
+iddList[209] = new Array('TW','886');
+iddList[210] = new Array('TR','90');
+iddList[211] = new Array('IN','91');
+iddList[212] = new Array('PK','92');
+iddList[213] = new Array('AF','93');
+iddList[214] = new Array('LK','94');
+iddList[215] = new Array('MM','95');
+iddList[216] = new Array('MV','960');
+iddList[217] = new Array('LB','961');
+iddList[218] = new Array('JO','962');
+iddList[219] = new Array('SY','963');
+iddList[220] = new Array('IQ','964');
+iddList[221] = new Array('KW','965');
+iddList[222] = new Array('SA','966');
+iddList[223] = new Array('YE','967');
+iddList[224] = new Array('OM','968');
+iddList[225] = new Array('PS','970');
+iddList[226] = new Array('AE','971');
+iddList[227] = new Array('IL','972');
+iddList[228] = new Array('BH','973');
+iddList[229] = new Array('QA','974');
+iddList[230] = new Array('BT','975');
+iddList[231] = new Array('MS','976');
+iddList[232] = new Array('NP','977');
+iddList[233] = new Array('IR','98');
+iddList[234] = new Array('TJ','992');
+iddList[235] = new Array('TM','993');
+iddList[236] = new Array('AZ','994');
+iddList[237] = new Array('GE','995');
+iddList[238] = new Array('KG','996');
+iddList[239] = new Array('UZ','998');
+
+            function onCountryChange(selectedLangId,relPhoneCltsArrName) {
+                var relevantControls = eval(relPhoneCltsArrName);
+
+                if(relevantControls != null) {
+                    var idd = getIDDbyLanguageID(selectedLangId);
+                    for(var i=0;i<relevantControls.length;i++) {
+                        var objCountryCode = document.getElementById(relevantControls[i]);
+                        if(objCountryCode != null) {
+                            objCountryCode.value = idd;
+                        }
+                    }
+                }
+
+                if (typeof (myValidationErrorPanel) != 'undefined'){
+                    myValidationErrorPanel.clearErrors();
+                }
+            }
+
+            function getIDDbyLanguageID(langId) {
+                for(var i=0;i<iddList.length;i++) {
+                    if(iddList[i][0] == langId) {
+                        return iddList[i][1];
+                    }
+                }
+                return '';
+            }</script>
+<script type="text/javascript" language="javascript">
+var relevantControls_ctl00_PlaceHolderMain_refExamSearchForm_ddlCountry = new Array();
+relevantControls_ctl00_PlaceHolderMain_refExamSearchForm_ddlCountry[0]='ctl00_PlaceHolderMain_refExamSearchForm_txtPhone1_IDD';
+relevantControls_ctl00_PlaceHolderMain_refExamSearchForm_ddlCountry[1]='ctl00_PlaceHolderMain_refExamSearchForm_txtPhone2_IDD';
+relevantControls_ctl00_PlaceHolderMain_refExamSearchForm_ddlCountry[2]='ctl00_PlaceHolderMain_refExamSearchForm_txtFax_IDD';
+</script>
+<script type="text/javascript" language="javascript">
+var relevantControls_ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlCountry = new Array();
+relevantControls_ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlCountry[0]='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone1_IDD';
+relevantControls_ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlCountry[1]='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtPhone2_IDD';
+relevantControls_ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlCountry[2]='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFax_IDD';
+</script>
+<script type="text/javascript" language="javascript">
+var relevantControls_ctl00_PlaceHolderMain_refFoodFacilitySearchForm_ddlCountry = new Array();
+relevantControls_ctl00_PlaceHolderMain_refFoodFacilitySearchForm_ddlCountry[0]='ctl00_PlaceHolderMain_refFoodFacilitySearchForm_txtPhone1_IDD';
+relevantControls_ctl00_PlaceHolderMain_refFoodFacilitySearchForm_ddlCountry[1]='ctl00_PlaceHolderMain_refFoodFacilitySearchForm_txtPhone2_IDD';
+relevantControls_ctl00_PlaceHolderMain_refFoodFacilitySearchForm_ddlCountry[2]='ctl00_PlaceHolderMain_refFoodFacilitySearchForm_txtFax_IDD';
+</script>
+
+<script src="/MILARA/Scripts/ACCELAGRIDVIEW_JS.js" type="text/javascript"></script>
+<script src="/MILARA/Scripts/Validation.js" type="text/javascript"></script>
+<script src="/MILARA/WebResource.axd?d=oOLzn4x6UCkzDk73gJEjyKKHBYQK3oAV4jz8ILoDiFUB0rh9ozcZSe3imzCBf_Duyl__EapJej0Deb0PtYtWa9dMpVwaTG5XH6Vejmft0MGi01ZJrKNq7rONVdj54k9Tl3ee4fq5gvzN596JQCMDgQ1muWo1&amp;t=639262789020000000" type="text/javascript"></script>
+<script src="/MILARA/WebResource.axd?d=l2dj_uwwJYhrJ3qNqC4b0L7FEp3BC8DcOMrfmLxAJahv1j9cpcp_oGRddWyTFQp38ONn3xqPWoSatadkXluZjeh2RbgrYWdnTjhrvteAv1b4BIpoOpgYSPBbRcHVAebV7h8JSEv9R4D771xyeVa1uHtTYPY1&amp;t=639262789020000000" type="text/javascript"></script>
+<script src="/MILARA/WebResource.axd?d=-7h3I5JBId5Q_Xci-Y7iPoEJkfh296P15DDDyNjehZ_vw5UGZpCBR0bPNEDAHVz2DpVT-1-fzbsti_kFR6qEe2nDTva9fH9BL-bMLW4dzLTfoM_ghrOYRqtOiPvv4S8AZ00r3g2&amp;t=639262789020000000" type="text/javascript"></script>
+<script src="/MILARA/ScriptResource.axd?d=BuJKyuMlQ9ihDHkKRspv5-_M9_7RuSRHVkgkhfGbmJu2rtTtHDfNysfQHNQ_nnJJbmLH8R_ActQjxmw2InzKeIXmKhnezDeaW1LhYxtTwLLTvJoriHX9JQHnf8_EKPHAlVhdwpGPUOSmXUe4QcTUqXNH6J81&amp;t=ffffffffacea8b1a" type="text/javascript"></script>
+<script src="/MILARA/ScriptResource.axd?d=dw-rli8fVv9LQT7sT_P_ykkYemDq5tURAhS13SdOcVmy6E7hYiOLbpG1GbTdxR7JPnldq_rjiy3OuTVLEk_D32KC2QqiyFsRMzqbnhXYUVFtYS6oIU08w0K38iwj8uRxWCTs2qe9GTFvEEiFeR_bb6gYSfc_6KSGg_IKPSB1wT5wLwW40&amp;t=ffffffffacea8b1a" type="text/javascript"></script>
+<script src="/MILARA/WebService/AnnouncementService.asmx/js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var PageMethods = function() {
+PageMethods.initializeBase(this);
+this._timeout = 0;
+this._userContext = null;
+this._succeeded = null;
+this._failed = null;
+}
+PageMethods.prototype = {
+_get_path:function() {
+ var p = this.get_path();
+ if (p) return p;
+ else return PageMethods._staticInstance.get_path();},
+GetContactAddressUsedInDailyAsPrimary:function(contactAddressID,agencyCode,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetContactAddressUsedInDailyAsPrimary',false,{contactAddressID:contactAddressID,agencyCode:agencyCode},succeededCallback,failedCallback,userContext); },
+ClearUIData:function(serializedUIDataTypes,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ClearUIData',false,{serializedUIDataTypes:serializedUIDataTypes},succeededCallback,failedCallback,userContext); },
+GetInstructionByKey:function(labelKey,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetInstructionByKey',false,{labelKey:labelKey},succeededCallback,failedCallback,userContext); }}
+PageMethods.registerClass('PageMethods',Sys.Net.WebServiceProxy);
+PageMethods._staticInstance = new PageMethods();
+PageMethods.set_path = function(value) { PageMethods._staticInstance.set_path(value); }
+PageMethods.get_path = function() { return PageMethods._staticInstance.get_path(); }
+PageMethods.set_timeout = function(value) { PageMethods._staticInstance.set_timeout(value); }
+PageMethods.get_timeout = function() { return PageMethods._staticInstance.get_timeout(); }
+PageMethods.set_defaultUserContext = function(value) { PageMethods._staticInstance.set_defaultUserContext(value); }
+PageMethods.get_defaultUserContext = function() { return PageMethods._staticInstance.get_defaultUserContext(); }
+PageMethods.set_defaultSucceededCallback = function(value) { PageMethods._staticInstance.set_defaultSucceededCallback(value); }
+PageMethods.get_defaultSucceededCallback = function() { return PageMethods._staticInstance.get_defaultSucceededCallback(); }
+PageMethods.set_defaultFailedCallback = function(value) { PageMethods._staticInstance.set_defaultFailedCallback(value); }
+PageMethods.get_defaultFailedCallback = function() { return PageMethods._staticInstance.get_defaultFailedCallback(); }
+PageMethods.set_enableJsonp = function(value) { PageMethods._staticInstance.set_enableJsonp(value); }
+PageMethods.get_enableJsonp = function() { return PageMethods._staticInstance.get_enableJsonp(); }
+PageMethods.set_jsonpCallbackParameter = function(value) { PageMethods._staticInstance.set_jsonpCallbackParameter(value); }
+PageMethods.get_jsonpCallbackParameter = function() { return PageMethods._staticInstance.get_jsonpCallbackParameter(); }
+PageMethods.set_path("PropertyLookUp.aspx");
+PageMethods.GetContactAddressUsedInDailyAsPrimary= function(contactAddressID,agencyCode,onSuccess,onFailed,userContext) {PageMethods._staticInstance.GetContactAddressUsedInDailyAsPrimary(contactAddressID,agencyCode,onSuccess,onFailed,userContext); }
+PageMethods.ClearUIData= function(serializedUIDataTypes,onSuccess,onFailed,userContext) {PageMethods._staticInstance.ClearUIData(serializedUIDataTypes,onSuccess,onFailed,userContext); }
+PageMethods.GetInstructionByKey= function(labelKey,onSuccess,onFailed,userContext) {PageMethods._staticInstance.GetInstructionByKey(labelKey,onSuccess,onFailed,userContext); }
+//]]>
+</script>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="3C5FD6E4" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'aspnetForm', ['tctl00$HeaderNavigation$panButton','','tctl00$PlaceHolderMain$updatePanel','','tctl00$UpdatePanel4Expression',''], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+        <div class="aca_wrapper">
+            <div style="width: 80em; margin: 0 auto;">
+                
+
+<script src="/MILARA/Scripts/Announcement.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+
+    function RedirectTo(url) {
+        location.href = '/MILARA/' + url;
+        return false;
+    }
+
+    function showTabPropertyPanel(navBar) {
+        parent.LoadTabInfo(navBar);
+        parent.LoadEastPanelTitle(2);
+    }
+
+    function updateCartNumber(cartNumber) {
+        $get("ctl00_HeaderNavigation_lblShoppingCart").innerHTML = cartNumber;
+    }
+
+    // hide report link and report arrow if no reports available.
+    function hideReportLink(hasLogin) {
+        var reportLinkId = hasLogin ? 'reportLink2' : 'reportLink';
+
+        $get(reportLinkId).style.display = 'none';
+    }
+
+    var menu;
+    var reportMenuTimeOutId;
+    var menuId;
+    var isRTL = false;   // in Arabic, it's true
+
+    // bind reports menu
+    function bindReports(reports, hasLogin, reportLabel) {
+        if ($.global.isAdmin || typeof (reports) == "undefined" || reports == null) {
+            return;
+        }
+
+        var targetId;
+        //var isRTL = false;   // in Arabic, it's true
+
+        if (!hasLogin) {
+            menuId = 'reportList';
+            targetId = 'reportLink';
+            $get('ctl00_HeaderNavigation_lblReports').innerHTML = reportLabel;
+        }
+        else {
+            menuId = 'reportList2';
+            targetId = 'reportLink2';
+            $get('ctl00_HeaderNavigation_lblReports2').innerHTML = reportLabel;
+        }
+
+        if ('False' == 'True') {
+            isRTL = true;
+        }
+
+        var prop = [['isRTL', isRTL], ['align', 'right'], ['menuId', menuId], ['targetId', targetId], ['sign', 'report_menu']];
+        var items = reports;
+        var events = [[['eventType', 'click'], ['func', openReport]]];
+
+        menu = new Menu(items, prop, events);
+    }
+
+    // when clicking report link, show report list and set time out 
+    function showReports() {
+        CheckAndSetNoAsk();
+        if (menu == undefined) return;
+        $get(menuId).style.display = 'block';
+        menu.showMenu();
+
+        hideReportByTimer();
+
+        //when click report link or a report, don't need pop up the query window.
+        SetNotAskWhenClick();
+    }
+
+    if ($.global.isAdmin == false && 'True'.toLowerCase() == 'true') {
+        if ('5' != null && '5' != '') {
+            setInterval("ShowAnnouncementByTimer()", '5' * 60000);
+        }
+        else {
+            setInterval("ShowAnnouncementByTimer()", 5 * 60000);
+        }
+    }
+
+    function hideReportByTimer() {
+        clearTimeout(reportMenuTimeOutId);
+        reportMenuTimeOutId = null;
+        reportMenuTimeOutId = setTimeout(hideReport, 3000);
+    }
+
+
+    function SetFocusIn() {
+        clearTimeout(reportMenuTimeOutId);
+        reportMenuTimeOutId = null;
+    }
+
+    function SetBlurOut() {
+        hideReportByTimer();
+    }
+
+    function SetNotAskWhenClick() {
+        if (typeof (SetNotAsk) != 'undefined') {
+            SetNotAsk();
+        }
+    }
+
+    function onMouseOver() {
+        if (menu) {
+            menu.showMenu();
+            clearTimeout(reportMenuTimeOutId);
+            reportMenuTimeOutId = null;
+        }
+    }
+
+    function onMouseOut() {
+        var e = getEvent();
+        var el = $get(menuId);
+        var target = e.target || e.srcElement;
+        var relatedTarget = e.relatedTarget || e.toElement;
+
+        if (relatedTarget == undefined) {
+            return;
+        }
+        //closeMenu();
+        clearTimeout(reportMenuTimeOutId);
+        reportMenuTimeOutId = null;
+        reportMenuTimeOutId = setTimeout(hideReport, 700);
+    }
+
+    var isMultiWindow = false;
+    var url;
+
+    function openReport(e) {
+        var obj = e.srcElement ? e.srcElement : e.target;
+        if (obj.nodeName != "A")  // if click img or space, don't open parameter window
+        {
+            return;
+        }
+        isMultiWindow = this.isMultiWindow;
+        url = this.url;
+        // do post back for getting the latest cap ids.
+        __doPostBack('ctl00_HeaderNavigation_btnPostForReport');
+    }
+
+    function openParamWin(altIDs) {
+        var IDs = altIDs;
+        var idStr = '';
+        // the requried number of parameter windows. 
+        // If single window or no alt ids, open a window. 1 means one window
+        var openNumbers = (IDs.length > 0 && isMultiWindow) ? IDs.length : 1;
+
+        // if single window, concat the cap alt ids with ",".
+        if (IDs.length > 0 && openNumbers == 1) {
+            for (var i = 0; i < IDs.length; i++) {
+                idStr += IDs[i] + ",";
+            }
+            idStr = idStr.substring(0, idStr.length - 1);  // remove the last ","         
+        }
+
+        var paramWindows = new Array(); // use the array to store the opened windows.
+
+        for (var i = 0; i < openNumbers; i++) {
+            var newUrl = url;
+            if (IDs.length > 0) {
+                var id = openNumbers > 1 ? IDs[i] : idStr;  // if multiple window, pass each id to each window.
+                //newUrl = url + "&ID=" + id;
+                var appendUrl = String.format("&{0}={1}", 'ID', id)
+                newUrl = url + appendUrl;
+            }
+
+            var iLeft = 200;
+            if (i > 0) {
+                // resize the window. Set it padding 50px to the previous window. 
+                // if the open window is more than 5(i>3), set it overlapped the previous window(i=3).
+                var m = i > 3 ? 3 : i - 1;
+                var preWinLeft = paramWindows[m].screenLeft == undefined ?
+                    paramWindows[m].screenX : paramWindows[m].screenLeft;  //FF use screeX
+
+                iLeft = isRTL ? preWinLeft - 50 : preWinLeft + 50;  //if in Arabic, set the next window padding right the previous one.
+            }
+
+            var parameters =
+            String.format("top=200,left={0},height=600,width=800,status=yes,toolbar=no,menubar=no,location=no,resizable=yes,scrollbars=yes", iLeft);
+
+            paramWindows[i] = window.open(newUrl, "_blank", parameters);
+        }
+
+        hideReport();
+
+        SetNotAskWhenClick();
+    }
+
+    function hideReport() {
+        $GetObject(menuId).style.display = 'none';
+    }
+
+    async function validateSSOLogin(ele) {
+        let isPPEnabled = 'False';
+        let isACASSOEnabled = 'False';
+
+        if (IsTrue(isPPEnabled) && ele.id?.endsWith('btnLogin')) {
+            ele.href = "#";
+            let ppLoginUrl = '/auth/login';
+            navigateToPortalpage(ppLoginUrl);
+            return false;
+        }
+        else if (IsTrue(isACASSOEnabled)) {
+            ele.href = "#";
+
+            let superAgencyCode = 'MILARA';
+            let cloudApiUrl = 'https://api-prod.accela.com';
+            let tenantName = 'MILARA-PROD';
+            loadSSOLogin(superAgencyCode, cloudApiUrl, tenantName);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function navigateToPortalpage(url) {
+        if (window !== window.parent) {
+            window.parent.location.href = url;
+        }
+        else {
+            window.location.href = url;
+        }
+        return false;
+    }
+</script>
+
+<div id="overlayAnnouncement" class="ACA_Announcement_Window_Detail_Overlayer"></div>
+<div id="winAnnouncement" class="ACA_Hide PopUpDlg ACA_Announcement_Window">
+  
+     
+    <div id="announcementWindowHeader" class="ACA_Announcement_Window_Header">
+        <span id="close">
+            <span class="ACA_AlignRightOrLeft CloseImage ACA_FRight" >        
+                <input id="closeWinAnn" onclick="return false;" type="image" src='/MILARA/app_themes/Default/assets/closepopup.png' class="ACA_ActionIMG" alt="Close" title="Close"/>
+            </span>
+        </span>
+    </div>
+    <div class="ACA_Announcement_Window_Detail">
+        <div id="winAnnouncementContentTitle" class="ACA_Popup_Title ACA_Announcement_Title_Center"></div> 
+        <div class="ACA_TabRow ACA_Line_Content"></div>
+        <div id="winAnnouncementContentAll" class="ACA_Announcement_Content"></div> 
+    </div>
+    
+</div>
+
+<!-- Start HeadNavigation Block -->
+<div id="ctl00_HeaderNavigation_hsLine" style="height:2px;clear:both;width:100%;">&nbsp;</div>
+
+<div id="ctl00_HeaderNavigation_divNavigation" ng-non-bindable="true">
+    <div class="ACA_NaviTitle">
+        <div id="ACARegisterLoginMenu" class="ACA_RegisterLogin ACA_RegisterLogin_FontSize">
+            <table role='presentation' border="0" cellpadding="0" cellspacing="0" summary="">
+                <tr valign="bottom">
+                    <td>
+                        
+                        <div id="ctl00_HeaderNavigation_beforeLogin">
+                            <!--Login link-->
+                            <div class="ACA_FRight">
+                                <table role='presentation' border='0' cellspacing='0' cellpadding='0'>
+                                    <tr>
+                                        <td>
+                                            <a href="/MILARA/Login.aspx" id="ctl00_HeaderNavigation_btnLogin" onclick="validateSSOLogin(this);">
+                                                <span id="ctl00_HeaderNavigation_lblLogin" class="ACA_Body_Text ACA_Body_Text_FontSize"><font size="4">Login</font></span>
+                                            </a>
+                                        </td>
+                                        <td class="ACA_TabRow_Line">
+                                            &nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--Login link-->
+                            
+                            <!--Report-->
+                            <div class="ACA_FRight">
+                                <div>
+                                    <table role='presentation' border='0' cellspacing='0' cellpadding='0'>
+                                        <tr id='reportLink'>
+                                            <td class="ACA_TabRow_Line">
+                                                <a href="javascript:void(0);" onclick="showReports();" class="nav_more_arro ACA_Report_Arrow NotShowLoading" title="Report List">
+                                                    <span id="ctl00_HeaderNavigation_lblReports"></span>
+                                                    <span id="ctl00_HeaderNavigation_lblAdminReports" class="ACA_Body_Text ACA_Body_Text_FontSize" style="display:none;"></span>
+                                                    <img alt="Report List" src="/MILARA/app_themes/Default/assets/caret_expanded.gif"
+                                                        style="border-width: 0px;" />
+                                                </a>
+                                            </td>
+                                            <td class="ACA_TabRow_Line">
+                                                
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style='display: none; position: absolute; z-index: 10;'>
+                                    <div id='reportList' class='ACA_Report_Menu ActionMenu_Link' onmouseover="onMouseOver();"
+                                        onmouseout="onMouseOut();">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Report-->
+                            <!--Register link-->
+                            <div class="ACA_FRight">
+                                <table role='presentation' border='0' cellspacing='0' cellpadding='0'>
+                                    <tr>
+                                        <td class="ACA_TabRow_Line">
+                                            <a href="/MILARA/CommunityView/account/new" id="ctl00_HeaderNavigation_btnRegister" onclick="validateSSOLogin(this);">
+                                                <span id="ctl00_HeaderNavigation_lblRegister" class="ACA_Body_Text ACA_Body_Text_FontSize"><font size="4"><strong>Register for an Account</strong></font></span>
+                                            </a>
+                                        </td>
+                                        <td class="ACA_TabRow_Line">
+                                            <span id="ctl00_HeaderNavigation_lblSplit2">&nbsp; | &nbsp;</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--Register link-->
+                            <!--Announcement-->
+                            
+<div class="ACA_FRight">
+    <div>
+        <table role='presentation' border='0' cellspacing='0' cellpadding='0'>
+            <tr>
+                <td class="ACA_TabRow_Line">
+                    <span class="ACA_FLeft"><a href="/MILARA/Announcement/AnnouncementList.aspx" id="ctl00_HeaderNavigation_ucAnnBeforeLogin_A2">
+                        <span id="ctl00_HeaderNavigation_ucAnnBeforeLogin_lblAnnounementLink" class="ACA_Body_Text ACA_Body_Text_FontSize">Announcements</span></a></span><span
+                                class="ACA_FLeft" id="spanAnnouncementCount" style="display: none"><a href="/MILARA/Announcement/AnnouncementList.aspx" id="ctl00_HeaderNavigation_ucAnnBeforeLogin_A3">(<span id="announcementCount"></span>)</a></span>
+                </td>
+                <td valign="top" class="ACA_TabRow_Line">
+                    <div id="divExpandAnnouncement" style="display: block;">
+                        <a id="A4" href="javascript:void(0)" onclick="OpenAnnouncementAuto(); return false;"
+                             class="nav_more_arrow NotShowLoading" title="Announcement List">
+                            <img alt="Announcement List" src="/MILARA/app_themes/Default/assets/caret_expanded.gif" /></a>
+                    </div>
+                </td>
+                <td class="ACA_TabRow_Line">
+                    <span id="ctl00_HeaderNavigation_ucAnnBeforeLogin_lblSplitAnnouncement">&nbsp; | &nbsp;</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <div id='divAnnouncement' class="ACA_Anouncement_Popup_Window ACA_Report_Menu">
+            <div id="announcementId" class="ACA_Hide">
+            </div>
+            <div id="announcementContentFull" class="ACA_Hide">
+            </div>
+            <div id="announcementContentTitle" class="ACA_Hide">
+            </div>
+            <div id="announcementContentPart" class="ACA_Anouncement_Poupu_Window_Part_Height">
+            </div>
+            <div class="ACA_Anouncement_Poupu_Window_MarkAsRead">
+                <div id="closeMarkAsReadOfAnnouncementBtn" class="ACA_FRight">
+                    <a href="javascript:void(0);" onclick="MarkAsReadOfAnnouncement(); return false;" class="ACA_LinkButton NotShowLoading">
+                        Mark as Read</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+                            </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="ACA_BannerAndSearch">
+            <div class="ACA_NavBanner">
+                <span id="ctl00_HeaderNavigation_lblNavBanner" class="ACA_Page_Instruction ACA_Page_Instruction_FontSize"><b><font size="3">Once you are logged into your MiPLUS account, you can apply for a license, submit a request, or view existing records, by clicking on the word “Licenses”.</font></b></span>
+            </div>
+            
+        </div>
+
+    </div>
+    
+    <div class="nav_bar_container">
+        <div id="ctl00_HeaderNavigation_divMenu">
+            <div id="divNaviMenu">
+                <div id="divMoreTabTemplate" style="display:none;">
+	<div id="__divMoreTemplate">
+		
+                            <table role='presentation' id="span_more_tab" border="0" cellspacing="0" cellpadding="0" summary="See More Tab Item">
+                                <tr>
+                                    <td class="ACA_MoreItemLeft ACA_LeftOff">
+                                    </td>
+                                    <td class="ACA_MoreItemCenter ACA_CenterOff more_tab">
+                                        <a href="#" onfocus="onfocusMore();" onblur="SetBlurOutForMore();" class="NotShowLoading">
+                                            <span id="ctl00_HeaderNavigation___divMoreTemplate_lblMoreTab" module="more" class="more_button font12px">more</span>
+                                        </a>
+                                    </td>
+                                    <td class='ACA_CenterOff' style="width: 15px;">
+                                        <a href="javascript:void(0)" onclick="CheckAndSetNoAsk();" id="moreArrowLink" class="nav_more_arrow NotShowLoading"
+                                            title="more">
+                                            <img alt="more" src="/MILARA/app_themes/Default/assets/caret_arrow.gif"
+                                                style="border-width: 0px;" /></a>
+                                    </td>
+                                    <td class="ACA_MoreItemRight ACA_RightOff">
+                                    </td>
+                                </tr>
+                            </table>
+                        
+	</div><div id="__divMoreLinkBtnTemplate">
+		
+                            <a href="javascript:void(0)" onfocus="onfocusMoreLink();" class="NotShowLoading" title="more menu, press tab to expand">
+                                <span id="ctl00_HeaderNavigation___divMoreLinkBtnTemplate_lblMoreLinks" class="more_button font12px">more</span>
+                                <img alt="" src="/MILARA/app_themes/Default/assets/caret_arrow.gif" />
+                            </a>
+                        
+	</div>
+</div><table role='presentation' style='visibility:hidden'><tr><td id='tdTabContainer'></td></tr></table><div id='nav_parent_container' class='ACA_NaviMenu'><span id='tab_item_place_holder' style='visibility:hidden;'></span><span id='more_tab_place_holder'></span><div id='divNavMenu' style='display:none;position:absolute;'></div></div><div id='nav_link_place_holder' class='ACA_SubMenuList' align='center'><b><span id='nav_link_content'><span id='nav_span_links' class='font11px'></span><span id='nav_span_more_link'></span></span><div id='divLinkMenu' class='font11px' style='display:none;'></div></b></div><script type="text/javascript">
+//<![CDATA[
+window.__TabInit = function() {
+if(!window.NavBar_Loaded || !window.TabBar_Utils_Loaded)
+	{window.setTimeout('window.__TabInit()', 50); return; }
+
+window.__Tab = new TabBar();
+__Tab.TabItems= [['Tabs',[[['Links',[[['Links',[[['Active','False'],['Label','<i class="material-icons">search</i>Search for a Licensee'],['Key','Home_Search'],['Title',],['URL','/MILARA/GeneralProperty/PropertyLookUp.aspx?isLicensee=Y&TabName=Home'],['Module',],['Order',0]],[['Links',[[['Active','False'],['Label','Licenses'],['Key','Home_Search_Records'],['Title',],['URL','/MILARA/Cap/CapHome.aspx?module=Licenses&TabName=Home'],['Module',],['Order',0]]]],['Active','False'],['Label','Search Records/Applications'],['Key','Home_Search'],['Title','Search Records/Applications menu, press tab to expand'],['URL','/MILARA/Welcome.aspx?TabName=Home'],['Module',],['Order',1]]]],['Active','False'],['Label','Advanced Search'],['Key','Home'],['Title','Advanced Search menu, press tab to expand'],['URL','/MILARA/Welcome.aspx?TabName=Home'],['Module',],['Order',0]]]],['Active','False'],['Label','Home'],['Key','Home'],['Title','Home'],['URL','/MILARA/Welcome.aspx?TabName=Home'],['Module',],['Order',0]],[['Links',[[['Active','False'],['Label','<i class="material-icons">assignment</i>Apply for a License or Submit a Request (Certified License Verification)'],['Key','Licenses'],['Title',],['URL','/MILARA/Cap/CapApplyDisclaimer.aspx?module=Licenses&TabName=Licenses'],['Module',],['Order',0]],[['Active','False'],['Label','Search Applications'],['Key','Licenses'],['Title',],['URL','/MILARA/Cap/CapHome.aspx?module=Licenses&TabName=Licenses'],['Module',],['Order',1]]]],['Active','False'],['Label','Licenses'],['Key','Licenses'],['Title','Licenses'],['URL','/MILARA/Cap/CapHome.aspx?module=Licenses&TabName=Licenses'],['Module','Licenses'],['Order',1]],[['Links',[[['Active','False'],['Label','<i class="material-icons">assignment_late</i>Enter a Complaint'],['Key','Enforcement'],['Title',],['URL','/MILARA/Cap/CapApplyDisclaimer.aspx?module=Enforcement&TabName=Enforcement&FilterName=Complaints'],['Module',],['Order',0]]]],['Active','False'],['Label','Enforcement'],['Key','Enforcement'],['Title','Enforcement'],['URL','/MILARA/Cap/CapHome.aspx?module=Enforcement&TabName=Enforcement'],['Module','Enforcement'],['Order',2]]]]];
+__Tab.ItemTemplate='                        <table role=\'presentation\' tag="navbar" border="0" cellspacing="0" cellpadding="0" class="tab_bar_table ACA_Nowrap" summary="Tab Item">            	            <tr>            		            <td class="ACA_ItemLeft ACA_LeftOff"></td>            		                <td class="ACA_ItemCenter ACA_ItemCenter_FontSize ACA_CenterOff">                                        <div>                                            <a  title="## getItem(\'Title\') ##" href="javascript:void(0);" module="## getItem(\'Module\') ##">## getItem(\'Label\') ##</a>                                        </div>            		                </td>            		                <td class="ACA_ItemRight ACA_RightOff"></td>            	            </tr>                        </table>                    ';
+__Tab.SelectedItemTemplate='                        <table role=\'presentation\' tag="navbar" border="0" cellspacing="0" cellpadding="0" class="tab_bar_table ACA_Nowrap" summary="Selected Tab Item">            	            <tr>            		            <td class="ACA_ItemLeft ACA_LeftOn"></td>            		            <td class="ACA_ItemCenter ACA_ItemCenter_FontSize ACA_CenterOn">                                    <div>                                        <a title="## getItem(\'Title\') ##" href="javascript:void(0);" module="## getItem(\'Module\') ##">## getItem(\'Label\') ##</a>                                    </div>            		            </td>            		            <td class="ACA_ItemRight ACA_RightOn"></td>            	            </tr>                        </table>                    ';
+__Tab.DropDownMenuTemplate='                        <div class="ACA_MenuItem ACA_MenuItem_FontSize">                            <a title=\'## getItem(\'Title\') ##\' onfocus="SetFocusInForMore();" onblur="SetBlurOutForMore();"  href="javascript:void(0);"  module="## getItem(\'Module\') ##">## getItem(\'Label\') ##</a>                        </div>                    ';
+__Tab.LinkItemTemplate='                        <span style="display: inline-block;">                            <a title=\'## getItem(\'Title\') ##\'  href="javascript:void(0);">## getItem(\'Label\') ##</a>                        </span>                    ';
+var tab_properties = [['IsFirstLoad',1],['LinkAlign','center'],['CurrentTabName','apo'],['DefaultTabName','home'],['CurrentTabIndex',0]];
+__Tab.PPHomeUrl='';
+window.setProperties(__Tab, tab_properties);
+__Tab.preRender();
+}
+
+__TabInit();
+
+//]]>
+</script>
+
+            </div>
+        </div>
+    </div>
+    </div>
+<input type="hidden" name="ctl00$HeaderNavigation$hdnShoppingCartItemNumber" id="ctl00_HeaderNavigation_hdnShoppingCartItemNumber" />
+<input type="hidden" name="ctl00$HeaderNavigation$hdnShowReportLink" id="ctl00_HeaderNavigation_hdnShowReportLink" value="N" />
+<div id="ctl00_HeaderNavigation_panButton">
+	
+        <a id="ctl00_HeaderNavigation_btnPostForReport" tabindex="-1" href="javascript:__doPostBack(&#39;ctl00$HeaderNavigation$btnPostForReport&#39;,&#39;&#39;)" style="display: none"></a>
+    
+</div>
+<!-- End HeadNavigation Block -->
+
+<script language="javascript" type="text/javascript">
+
+    var objTimeout = null;
+
+    function hideMenu() {
+        clearTimeout(objTimeout);
+        objTimeout = null;
+        objTimeout = setTimeout(DelayShowMenu, 3000);
+    }
+
+    function SetFocusInForCollection() {
+        clearTimeout(objTimeout);
+        objTimeout = null;
+    }
+
+    function SetBlurOutForCollection() {
+        hideMenu();
+    }
+
+    function displayMenu() {
+        clearTimeout(objTimeout);
+        objTimeout = null;
+    }
+
+    function DelayShowMenu() {
+        collection_menu.hideMenu();
+    }
+
+    function showMenu(target) {
+        CheckAndSetNoAsk();
+        if (collection_menu == undefined) return;
+        collection_menu.showMenu();
+        hideMenu();
+    }
+
+    var objTimerForMore = null;
+    function onfocusMore(obj) {
+        window.popUp(window.__Tab.dropDownMenu.element, $get('span_more_tab'), $.global.isRTL);
+        //$("#divNavMenu").find('a').get(0).focus();
+        $("#moreArrowLink").attr("tabindex", "-1");
+        clearTimeout(objTimerForMore);
+        objTimerForMore = null;
+    }
+
+    function onfocusMoreLink() {
+        window.popUp($get('divLinkMenu'), $get('nav_span_more_link'), $.global.isRTL);
+    }
+
+    function SetFocusInForMore() {
+        clearTimeout(objTimerForMore);
+        objTimerForMore = null;
+    }
+
+    function SetBlurOutForMore() {
+        clearTimeout(objTimerForMore);
+        objTimerForMore = null;
+        objTimerForMore = setTimeout(onblurMore, 700);
+    }
+
+    function onblurMore() {
+        window.__Tab.moreTab.closeMenu(window.__Tab.dropDownMenu);
+    }
+
+    //The method defined in Bage page.
+    function SupportAccessibility(obj) {
+        if (obj) {
+            PageMethods.SetAccessibilityCookie(obj.checked, RefreshPage);
+        }
+    }
+
+    // When check/uncheck Accessibility Support, refresh the whole page.
+    function RefreshPage() {
+        window.parent.location.reload(true);
+    }
+
+    var OnAnnouncementList = 'False';
+
+    $(document).ready(function () {
+        if ($.global.isAdmin == false && 'True'.toLowerCase() == 'true') {
+            ShowAnnouncementInit();
+        }
+    });
+
+    //Header responsive
+    if (window.matchMedia("(max-width: 480px)").matches) {
+        var showRegisterPopup = true;
+        setRegisterListMenuItems();
+    }
+    
+    function showRegisterListMenu(obj) {
+        if (showRegisterPopup) {
+            document.getElementById("ACARegisterLoginMenu").style.display = "block";
+            obj.src = '/MILARA/app_themes/Default/assets/closepopup.png';
+            showRegisterPopup = false;
+        } else {
+            document.getElementById("ACARegisterLoginMenu").style.display = "none";
+            obj.src = '/MILARA/app_themes/Default/assets/u15_normal.png';
+            showRegisterPopup = true;
+        }
+    }
+    function setRegisterListMenuItems() {
+         var beforeLoginNode = document.getElementById("ctl00_HeaderNavigation_beforeLogin");
+        var afterLoginNode = document.getElementById("ctl00_HeaderNavigation_afterLogin");
+        var actualReturnTo = document.getElementById("divRtaTitle");
+        var returnToNode = document.createElement("DIV");
+        returnToNode.className = "ACA_FRight";
+        returnToNode.style.paddingTop = "0.2em";
+        while (actualReturnTo.childNodes.length) { returnToNode.appendChild(actualReturnTo.firstChild); }
+        
+        if(beforeLoginNode) beforeLoginNode.insertBefore(returnToNode, beforeLoginNode.childNodes[0]);
+        if(afterLoginNode) afterLoginNode.insertBefore(returnToNode, afterLoginNode.childNodes[0]);
+    }
+</script>
+
+                <span id="goTOMessage" href="#messageSpan" tabindex="-1"></span>
+                <div class="ACA_Content ACA_Hide">
+                    <!-- The h1 element is only for WCAG2.0 rule 1.1.1 H42 -->
+                    <h1 class="ACA_Hide">Message Bar</h1>
+                    <span id="messageSpan" name="messageSpan"></span>
+                </div>
+                <script type="text/javascript" language="javascript">
+                    //Init validation error panel for form validation.
+                    if (typeof (InitValidationErrorPanel) == "function") {
+                        $(document).ready(InitValidationErrorPanel);
+                    }
+                </script>
+                <div>
+                    <a class="skip-link" href="#mainContent" aria-label="Skip to main content"  ></a>
+                    <span id="ErrorList1"></span>
+                    <main id="mainContent" tabindex="-1">
+                        
+
+    <script language="javascript" type="text/javascript">
+         var prm = Sys.WebForms.PageRequestManager.getInstance();
+         prm.add_initializeRequest(InitializeRequest);
+         prm.add_endRequest(EndRequest);
+         prm.add_beginRequest(beginRequest);
+
+         function InitializeRequest(sender, args)
+         {
+             document.body.style.cursor = 'wait';
+             var btn = document.getElementById('ctl00_PlaceHolderMain_btnNewSearch');
+             if(btn)
+             {
+                btn.style.cursor = 'wait';
+             }       
+         }
+         
+         function EndRequest(sender, args){
+             document.body.style.cursor = '';
+             var btn = document.getElementById('ctl00_PlaceHolderMain_btnNewSearch');
+             if(btn)
+             {
+                 btn.style.cursor = 'pointer';
+             }
+
+             if ($.global.isAdmin)
+             { 
+                 var ddl = $get('ctl00_PlaceHolderMain_ddlSearchType'); 
+                 ddl.click(); 
+             }
+             
+             //export file.
+             ExportCSV(sender, args);
+         }
+        
+        function beginRequest()
+        {
+            prm._scrollPosition = null;
+        }
+    </script>
+
+    <div class="ACA_Content">
+        <iframe width="0" height="0" id="iframeExport" class="ACA_Hide" title="Sorry, your browser does not support iframes; try a browser that supports W3 standards.">Sorry, your browser does not support iframes; try a browser that supports W3 standards.</iframe>
+        <h1>
+            <div ng-non-bindable="true">
+               <span id="ctl00_PlaceHolderMain_lblSearchTypeTitle"><FONT style="TEXT-ALIGN: left">Search for Licensee</FONT></span>
+            </div>
+        </h1>
+        <div ng-non-bindable="true" class="ACA_Page ACA_Page_FontSize">
+            <span id="ctl00_PlaceHolderMain_lblSearchDescription" class="ACA_Body_Text ACA_Body_Text_FontSize"><p><font face="arial">Enter information below to search for a Licensee.<br><br><strong>Disclaimer:</strong> Licensing and registration records are made available on this website by LARA to provide immediate access to information for the convenience of interested persons. This information is updated once a day. All users have the responsibility to determine whether information obtained from this site is still accurate, current, and complete. LARA assumes no responsibility for any errors or omissions, or for the use of information obtained from this site.<br><br>A status of “<strong>Temporary Foreign Waiver</strong>” indicates that the license was issued during the COVID-19 emergency to someone holding a license in a foreign country and the license will be null and void when the emergency is over despite the expiration date listed in this search.<br><br></font></p><p><font face="arial">A status of “<strong>Temporary Emergency</strong>” indicates the license was issued during the COVID-19 emergency to someone who was unable to take the required exam for licensure and the license will be null and void 6 months after the emergency is declared over, unless they meet all the requirements for licensure during that 6 month time period, despite the expiration date listed in this search. <br><br><br><span style="color: rgb(56, 86, 35); font-family: &quot;Calibri&quot;,sans-serif; font-size: 12pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;"><font color="#000000" face="arial">To request a certified license verification click <a href="https://www.michigan.gov/lara/0,4601,7-154-89334_72600_92899---,00.html">here</a></font></span></font></p><font face="arial"><span style="color: rgb(56, 86, 35); font-family: &quot;Calibri&quot;,sans-serif; font-size: 12pt; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;"><font color="#000000" face="arial"></font></span></font></span>
+        </div>
+        <div>
+            <div id="ctl00_PlaceHolderMain_updatePanel">
+	
+                 <a name="SearchForm_Start" id="SearchForm_Start"></a>
+                    <div ng-non-bindable="true" class="ACA_InfoTitle ACA_InfoTitle_FontSize">
+                        <h1>
+                            <span id="ctl00_PlaceHolderMain_lblSelectedSearchType" class="ACA_FLeft">Search for Licensee</span>
+                        </h1>
+                        <span class="ACA_FRight">
+                            
+                        </span>
+                    </div>
+                    
+
+                    <div id="divSearchPaneltoPressEnter" class="ACA_TabRow">
+                        <div id="ctl00_PlaceHolderMain_divLicenseeSearchForm" ng-non-bindable="true">
+                            <div class="container_40">
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_parentGrid" class="grid_13 suffix_1">
+	<table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/MILARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType'>License Type:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType_td' style='width:100%; '><select name="ctl00$PlaceHolderMain$refLicenseeSearchForm$ddlLicenseType" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_ddlLicenseType" title="Keyboard Operating Instruction: Please hold ALT and press UP ARROW to expand the list, then press UP ARROW or DOWN ARROW to select an item, and finally press ENTER." style="width:100%;z-index:10;">
+		<option value="" selected="selected">--Select--</option>
+		<option value="Accountancy Firm">Accountancy Firm</option>
+		<option value="Accountant - Licensed">Accountant - Licensed</option>
+		<option value="Accountant - Registered">Accountant - Registered</option>
+		<option value="Accountant - Temporary Practice Permit">Accountant - Temporary Practice Permit</option>
+		<option value="Acupuncturist - Licensed">Acupuncturist - Licensed</option>
+		<option value="Acupuncturist - Licensed Limited">Acupuncturist - Licensed Limited</option>
+		<option value="Acupuncturist - Registered">Acupuncturist - Registered</option>
+		<option value="Appraisal Management Company">Appraisal Management Company</option>
+		<option value="Architect">Architect</option>
+		<option value="Assistant Behavior Analyst">Assistant Behavior Analyst</option>
+		<option value="Athletic Trainer">Athletic Trainer</option>
+		<option value="Audiologist">Audiologist</option>
+		<option value="Audiologist Limited">Audiologist Limited</option>
+		<option value="Bachelors Social Worker">Bachelors Social Worker</option>
+		<option value="Bachelors Social Worker Limited">Bachelors Social Worker Limited</option>
+		<option value="Barber">Barber</option>
+		<option value="Barber College">Barber College</option>
+		<option value="Barber College Temporary">Barber College Temporary</option>
+		<option value="Barber Instructor">Barber Instructor</option>
+		<option value="Barber Student">Barber Student</option>
+		<option value="Barber Student Instructor">Barber Student Instructor</option>
+		<option value="Barbershop">Barbershop</option>
+		<option value="Barbershop Apprentice">Barbershop Apprentice</option>
+		<option value="Barbershop Temporary">Barbershop Temporary</option>
+		<option value="Behavior Analyst">Behavior Analyst</option>
+		<option value="Chiropractor">Chiropractor</option>
+		<option value="Chiropractor Educational Limited">Chiropractor Educational Limited</option>
+		<option value="Chiropractor Temporary">Chiropractor Temporary</option>
+		<option value="Collection Agency Non-Owner Managed">Collection Agency Non-Owner Managed</option>
+		<option value="Collection Agency Non-Owner Manager">Collection Agency Non-Owner Manager</option>
+		<option value="Collection Agency Owner Managed">Collection Agency Owner Managed</option>
+		<option value="Controlled Substance">Controlled Substance</option>
+		<option value="Controlled Substance Animal Euthanasia">Controlled Substance Animal Euthanasia</option>
+		<option value="Controlled Substance Animal Sedation">Controlled Substance Animal Sedation</option>
+		<option value="Controlled Substance Automated Device">Controlled Substance Automated Device</option>
+		<option value="Controlled Substance Lab">Controlled Substance Lab</option>
+		<option value="Controlled Substance License - Compact">Controlled Substance License - Compact</option>
+		<option value="Cosmetologist">Cosmetologist</option>
+		<option value="Cosmetology Establishment">Cosmetology Establishment</option>
+		<option value="Cosmetology Establishment Apprentice">Cosmetology Establishment Apprentice</option>
+		<option value="Cosmetology Establishment Limited">Cosmetology Establishment Limited</option>
+		<option value="Cosmetology Instructor">Cosmetology Instructor</option>
+		<option value="Cosmetology Limited Instructor">Cosmetology Limited Instructor</option>
+		<option value="Cosmetology Limited School">Cosmetology Limited School</option>
+		<option value="Cosmetology School">Cosmetology School</option>
+		<option value="Cosmetology School Branch">Cosmetology School Branch</option>
+		<option value="Dental Assistant">Dental Assistant</option>
+		<option value="Dental Assistant Clinical Academic Limited">Dental Assistant Clinical Academic Limited</option>
+		<option value="Dental Assistant Nonclinical Academic Limited">Dental Assistant Nonclinical Academic Limited</option>
+		<option value="Dental Hygienist">Dental Hygienist</option>
+		<option value="Dental Hygienist Clinical Academic Limited">Dental Hygienist Clinical Academic Limited</option>
+		<option value="Dental Hygienist Nonclinical Academic Limited">Dental Hygienist Nonclinical Academic Limited</option>
+		<option value="Dental Therapist">Dental Therapist</option>
+		<option value="Dentist">Dentist</option>
+		<option value="Dentist Clinical Academic Limited">Dentist Clinical Academic Limited</option>
+		<option value="Dentist Educational Limited">Dentist Educational Limited</option>
+		<option value="Dentist Nonclinical Academic Limited">Dentist Nonclinical Academic Limited</option>
+		<option value="Drug Control">Drug Control</option>
+		<option value="Drug Treatment Program Prescriber">Drug Treatment Program Prescriber</option>
+		<option value="Electrologist">Electrologist</option>
+		<option value="Electrology Instructor">Electrology Instructor</option>
+		<option value="Electrology Limited Instructor">Electrology Limited Instructor</option>
+		<option value="Esthetician">Esthetician</option>
+		<option value="Esthetician Limited Instructor">Esthetician Limited Instructor</option>
+		<option value="Expedited Medical Compact">Expedited Medical Compact</option>
+		<option value="Genetic Counselor">Genetic Counselor</option>
+		<option value="Hearing Aid Dealer">Hearing Aid Dealer</option>
+		<option value="Hearing Aid Salesperson">Hearing Aid Salesperson</option>
+		<option value="Hearing Aid Trainee">Hearing Aid Trainee</option>
+		<option value="Licensed Landscape Architect">Licensed Landscape Architect</option>
+		<option value="Licensed Practical Nurse">Licensed Practical Nurse</option>
+		<option value="Licensed Professional Counselor">Licensed Professional Counselor</option>
+		<option value="Limited Licensed Counselor">Limited Licensed Counselor</option>
+		<option value="Manicuring Limited Instructor">Manicuring Limited Instructor</option>
+		<option value="Manicurist">Manicurist</option>
+		<option value="Manufacturer">Manufacturer</option>
+		<option value="Marriage and Family Therapist">Marriage and Family Therapist</option>
+		<option value="Marriage and Family Therapist Educational Limited">Marriage and Family Therapist Educational Limited</option>
+		<option value="Massage Therapist">Massage Therapist</option>
+		<option value="Masters Limited Psychologist">Masters Limited Psychologist</option>
+		<option value="Masters Limited Psychologist - Temporary Educational Limited">Masters Limited Psychologist - Temporary Educational Limited</option>
+		<option value="Masters Social Worker">Masters Social Worker</option>
+		<option value="Masters Social Worker Limited">Masters Social Worker Limited</option>
+		<option value="Medical Doctor">Medical Doctor</option>
+		<option value="Medical Doctor Clinical Academic Limited">Medical Doctor Clinical Academic Limited</option>
+		<option value="Medical Doctor Educational Limited">Medical Doctor Educational Limited</option>
+		<option value="Medical Doctor Limited">Medical Doctor Limited</option>
+		<option value="Medical Doctor Nonclinical Academic Limited">Medical Doctor Nonclinical Academic Limited</option>
+		<option value="Mfr Wholesaler">Mfr Wholesaler</option>
+		<option value="Midwife">Midwife</option>
+		<option value="Natural Hair Cultivation Limited Instructor">Natural Hair Cultivation Limited Instructor</option>
+		<option value="Natural Hair Culturist">Natural Hair Culturist</option>
+		<option value="Nursing Home Administrator">Nursing Home Administrator</option>
+		<option value="Occupational Therapist">Occupational Therapist</option>
+		<option value="Occupational Therapist Limited">Occupational Therapist Limited</option>
+		<option value="Occupational Therapy Assistant">Occupational Therapy Assistant</option>
+		<option value="Occupational Therapy Assistant Limited">Occupational Therapy Assistant Limited</option>
+		<option value="Optometrist">Optometrist</option>
+		<option value="Optometrist Clinical Academic Limited">Optometrist Clinical Academic Limited</option>
+		<option value="Optometrist Educational Limited">Optometrist Educational Limited</option>
+		<option value="Optometrist Limited">Optometrist Limited</option>
+		<option value="Optometrist Nonclinical Academic Limited">Optometrist Nonclinical Academic Limited</option>
+		<option value="Osteopathic Physician">Osteopathic Physician</option>
+		<option value="Osteopathic Physician Clinical Academic Limited">Osteopathic Physician Clinical Academic Limited</option>
+		<option value="Osteopathic Physician Educational Limited">Osteopathic Physician Educational Limited</option>
+		<option value="Personnel Agency A">Personnel Agency A</option>
+		<option value="Personnel Agency Agent">Personnel Agency Agent</option>
+		<option value="Personnel Agency B">Personnel Agency B</option>
+		<option value="Pharmacist">Pharmacist</option>
+		<option value="Pharmacist Intern">Pharmacist Intern</option>
+		<option value="Pharmacist Temporary">Pharmacist Temporary</option>
+		<option value="Pharmacy">Pharmacy</option>
+		<option value="Pharmacy Technician">Pharmacy Technician</option>
+		<option value="Pharmacy Technician Limited">Pharmacy Technician Limited</option>
+		<option value="Pharmacy Technician Temporary">Pharmacy Technician Temporary</option>
+		<option value="Physical Therapist">Physical Therapist</option>
+		<option value="Physical Therapist Assistant">Physical Therapist Assistant</option>
+		<option value="Physical Therapist Assistant Limited">Physical Therapist Assistant Limited</option>
+		<option value="Physical Therapist Temporary">Physical Therapist Temporary</option>
+		<option value="Physicians Assistant">Physicians Assistant</option>
+		<option value="Physicians Assistant Temporary">Physicians Assistant Temporary</option>
+		<option value="Podiatrist">Podiatrist</option>
+		<option value="Podiatrist Educational Limited">Podiatrist Educational Limited</option>
+		<option value="Professional Engineer">Professional Engineer</option>
+		<option value="Professional Surveyor">Professional Surveyor</option>
+		<option value="Provider">Provider</option>
+		<option value="Psychologist">Psychologist</option>
+		<option value="Psychologist - Doctoral Educational Limited">Psychologist - Doctoral Educational Limited</option>
+		<option value="Psychologist - Doctoral Temporary Educational Limited">Psychologist - Doctoral Temporary Educational Limited</option>
+		<option value="Real Estate Appraiser - Certified General">Real Estate Appraiser - Certified General</option>
+		<option value="Real Estate Appraiser - Certified Residential">Real Estate Appraiser - Certified Residential</option>
+		<option value="Real Estate Appraiser - Limited">Real Estate Appraiser - Limited</option>
+		<option value="Real Estate Appraiser - State Licensed">Real Estate Appraiser - State Licensed</option>
+		<option value="Real Estate Appraiser - Temporary Practice Permit">Real Estate Appraiser - Temporary Practice Permit</option>
+		<option value="Real Estate Branch Office">Real Estate Branch Office</option>
+		<option value="Real Estate Broker Company">Real Estate Broker Company</option>
+		<option value="Real Estate Broker Individual">Real Estate Broker Individual</option>
+		<option value="Real Estate Non Principal Associate Broker">Real Estate Non Principal Associate Broker</option>
+		<option value="Real Estate Principal Associate Broker">Real Estate Principal Associate Broker</option>
+		<option value="Real Estate Salesperson">Real Estate Salesperson</option>
+		<option value="Registered Landscape Architect">Registered Landscape Architect</option>
+		<option value="Registered Nurse">Registered Nurse</option>
+		<option value="Registered Nurse Temporary">Registered Nurse Temporary</option>
+		<option value="Remote Pharmacy">Remote Pharmacy</option>
+		<option value="Respiratory Therapist">Respiratory Therapist</option>
+		<option value="Respiratory Therapist Temporary">Respiratory Therapist Temporary</option>
+		<option value="Sanitarian">Sanitarian</option>
+		<option value="Social Service Technician">Social Service Technician</option>
+		<option value="Social Service Technician Limited">Social Service Technician Limited</option>
+		<option value="Special Volunteer">Special Volunteer</option>
+		<option value="Speech - Language Pathologist">Speech - Language Pathologist</option>
+		<option value="Speech - Language Pathologist Educational Limited">Speech - Language Pathologist Educational Limited</option>
+		<option value="Speech - Language Pathologist Educational Limited Temporary">Speech - Language Pathologist Educational Limited Temporary</option>
+		<option value="Speech - Language Pathologist Limited">Speech - Language Pathologist Limited</option>
+		<option value="Temporary Cosmetology Establishment">Temporary Cosmetology Establishment</option>
+		<option value="Temporary Cosmetology Establishment Limited">Temporary Cosmetology Establishment Limited</option>
+		<option value="Temporary Licensed Genetic Counselor">Temporary Licensed Genetic Counselor</option>
+		<option value="Temporary Midwife">Temporary Midwife</option>
+		<option value="Temporary Military Dependent Health">Temporary Military Dependent Health</option>
+		<option value="Temporary Military Dependent Occupation">Temporary Military Dependent Occupation</option>
+		<option value="Veterinarian">Veterinarian</option>
+		<option value="Veterinarian Clinical Academic Limited">Veterinarian Clinical Academic Limited</option>
+		<option value="Veterinarian Educational Limited">Veterinarian Educational Limited</option>
+		<option value="Veterinarian Limited">Veterinarian Limited</option>
+		<option value="Veterinarian Nonapproved Program Limited">Veterinarian Nonapproved Program Limited</option>
+		<option value="Veterinarian Senior Student Limited">Veterinarian Senior Student Limited</option>
+		<option value="Veterinary Technician">Veterinary Technician</option>
+		<option value="Wholesale Distributor">Wholesale Distributor</option>
+		<option value="Wholesale Distributor-Broker">Wholesale Distributor-Broker</option>
+
+	</select></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_parentGrid" class="grid_11 suffix_1">
+	<table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/MILARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber'>License Number:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtLicenseNumber" type="text" maxlength="40" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLicenseNumber" class="ACA_NLonger" style="width:17.1em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiLicense_parentGrid" class="grid_11"><table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiLicense_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiLicense_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiLicense_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/MILARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiLicense_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiLicense_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiLicense'>Former License Number:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiLicense_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiLicense_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiLicense_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtBusiLicense" type="text" maxlength="15" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiLicense" class="ACA_NLong" style="width:17.1em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div class="clear"></div>
+	</div>
+	<div class="container_40">
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_parentGrid" class="grid_7 suffix_1">
+	<table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/MILARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName'>First Name:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtFirstName" type="text" maxlength="70" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtFirstName" class="ACA_NLong" style="width:10.7em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_parentGrid" class="grid_6 suffix_2">
+	<table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/MILARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial'>Middle Initial:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtMiddleInitial" type="text" maxlength="70" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtMiddleInitial" class="ACA_NShot" style="width:9.1em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_parentGrid" class="grid_8"><table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/MILARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName'>Last Name:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtLastName" type="text" maxlength="70" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtLastName" class="ACA_NLong" style="width:12.3em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div class="clear"></div>
+	</div>
+	<div class="container_40">
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_parentGrid" class="grid_19 suffix_1">
+	<table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/MILARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName'>Organization Name:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtBusiName" type="text" maxlength="255" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtBusiName" class="ACA_XLong" style="width:29.9em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtTitle_parentGrid" class="grid_19"><table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtTitle_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtTitle_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtTitle_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/MILARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtTitle_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtTitle_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtTitle'>DBA/Trade Name:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtTitle_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtTitle_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtTitle_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtTitle" type="text" maxlength="255" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtTitle" class="ACA_MLonger" style="width:29.9em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div class="clear"></div>
+	</div>
+	<div class="container_40">
+	<div id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtInsuranceCompany_parentGrid" class="grid_12"><table role='presentation' parentcontrol='true' cellpadding=0 cellspacing=0 id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtInsuranceCompany_table' class='ACA_TDAlignLeftOrRightTop' ><tr><td><div class='ACA_Form ASI_Vertical_Field' id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtInsuranceCompany_element_group'><div class='ACA_Label font12px ACA_LabelHeight'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td><div id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtInsuranceCompany_err_indicator' class='ACA_Error_Indicator' style='display:none;'><img src='/MILARA/WebResource.axd?d=pRQzGliJj2XjSZL7SVaGneE50U3kaDPSIIVbLcOiuHa5P4HpdQ2-2U3TpXn-cFCuMoJcRNoS-Nn1ymETXmf_03kHxRs6K5C83XP6HcFbYbBxLtgsDR8S0hzjv7izkRqtMI3wls4UFdNVRXxP6PmNBsKzjaA1&t=639262789020000000' alt='An error has occurred.' /></div><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtInsuranceCompany_label_0'></span><label id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtInsuranceCompany_label_1' for='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtInsuranceCompany'>County:</label><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtInsuranceCompany_label_2' class='ACA_ErrorMessageLabel'></span><span id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtInsuranceCompany_label_exp' class='ACA_VerticalExpressionMessageLabel'></span></td></tr></table></div><div style='margin-bottom: 2px;'><table role='presentation' cellpadding='0' cellspacing='0' border='0' class='subTable'><tr><td id='ctl00_PlaceHolderMain_refLicenseeSearchForm_txtInsuranceCompany_td' style='width:100%; '><input name="ctl00$PlaceHolderMain$refLicenseeSearchForm$txtInsuranceCompany" type="text" maxlength="65" id="ctl00_PlaceHolderMain_refLicenseeSearchForm_txtInsuranceCompany" class="ACA_MLonger" style="width:18.7em;z-index:10;" /></td><td style="white-space: nowrap; padding-top: 5px;">&nbsp;</td></tr></table></div></div></td></tr></table></div>
+	<div class="clear"></div>
+	</div>
+	
+
+                        </div>
+                        
+                        
+						
+                        
+                        
+                    </div>
+
+                    <div class="ACA_TabRow">  &nbsp;</div>
+                    <div ng-non-bindable="true" class="ACA_Row ACA_LiLeft">
+                        <div>
+                            <ul>                      
+                                <li>
+                                    <div id='ctl00_PlaceHolderMain_btnNewSearch_container'><div class='ACA_LgButton ACA_LgButton_FontSize'><a id="ctl00_PlaceHolderMain_btnNewSearch" title="Search" href="javascript:__doPostBack(&#39;ctl00$PlaceHolderMain$btnNewSearch&#39;,&#39;&#39;)"><span>Search</span></a></div></div>
+                                </li>
+                                <li>
+                                    <div id='ctl00_PlaceHolderMain_btnResetSearch_container'><div class='ACA_LgButton ACA_LgButton_FontSize'><a id="ctl00_PlaceHolderMain_btnResetSearch" title="Clear" href="javascript:__doPostBack(&#39;ctl00$PlaceHolderMain$btnResetSearch&#39;,&#39;&#39;)"><span>Clear</span></a></div></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div ng-non-bindable="true" class="ACA_Row">
+                        
+ <div class="ACA_Show">
+ 
+
+ 
+</div>  
+
+                    </div>
+                    <a name="PageResult" id="PageResult" href="#PageResult" tabindex="-1" aria-label="Page Results"></a>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <script type="text/javascript">
+                            $("#divSearchPaneltoPressEnter").keydown(function (event) {
+                                pressEnter2TriggerClick(event, $("#ctl00_PlaceHolderMain_btnNewSearch"));
+                            });
+                        </script>
+                    
+
+                
+</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (typeof (myValidationErrorPanel) != "undefined") {
+                myValidationErrorPanel.registerIDs4Recheck("ctl00_PlaceHolderMain_ddlSearchType");
+            }
+        });
+
+        var prefix = "#ctl00_PlaceHolderMain_";
+        if ($.global.isAdmin) {
+            HideAllSections();
+            var lblSearchInstruction = $get("ctl00_PlaceHolderMain_lblSearchInstruction");
+
+            if('Y' == 'Y')
+            {
+                $(prefix + "divLicenseeSearchForm").show();
+                lblSearchInstruction.labelKey = "per_propertylookup_instruction_searchforlicensee";
+            }
+            else if ('' == 'Y') {
+                $(prefix + "divFoodFacilitySearchForm").show();
+                lblSearchInstruction.labelKey = "aca_foodfacility_label_searchinstruction";
+            }
+            else if ('' == 'Y') {
+                $(prefix + "divCertBusinessSearchForm").show();
+                lblSearchInstruction.labelKey = "aca_certbusiness_label_searchinstruction";
+            }
+            else if ('' == 'Y') {
+                $(prefix + "divDocumentSearchForm").show();
+                lblSearchInstruction.labelKey = "aca_searchdocument_label_searchinstruction";
+                $('#ctl00_PlaceHolderMain_btnNewSearch').hide();
+            }
+            else
+            {
+                $(prefix + "divEduRelationSearchForm").show();
+                lblSearchInstruction.labelKey = "per_propertylookup_instruction_searchforprovider";
+                
+            }
+            
+            $get("ctl00_PlaceHolderMain_ddlSearchType").SectionInfo = new KeyValuePair();
+        }
+
+        function HideAllSections() {
+            $(prefix + "divLicenseeSearchForm").hide();
+            $(prefix + "divEduRelationSearchForm").hide();
+            $(prefix + "divRefExamSearchForm").hide();
+            $(prefix + "divFoodFacilitySearchForm").hide();
+            $(prefix + "divCertBusinessSearchForm").hide();
+            $(prefix + "divDocumentSearchForm").hide();
+        }
+
+        function ChangeType(ddl) {
+            HideAllSections();
+            var divId;
+            var sectionId;
+            var elementPrefix;
+            var myArray = ddl.value.split("||");
+            var str = myArray[myArray.length - 1];
+            $get("ctl00_PlaceHolderMain_lblSelectedSearchType").innerHTML = ddl[ddl.selectedIndex].text;
+            var selectedSection = myArray[0].replace("-", "");
+            var lblInstruction = $get("ctl00_PlaceHolderMain_lblSearchInstruction");
+            $('#ctl00_PlaceHolderMain_btnNewSearch').show();
+            $('#ctl00_PlaceHolderMain_btnResetSearch').show();
+            
+            switch (selectedSection) {
+                case '0':
+                    divId = "divEduRelationSearchForm";
+                    sectionId = "60075";
+                    elementPrefix = "ctl00_PlaceHolderMain_educationRelationSearchForm_";
+                    lblInstruction.labelKey = 'per_propertylookup_instruction_searchforprovider';
+                    break;
+                case '1':
+                    divId = "divRefExamSearchForm";
+                    sectionId = "60076";
+                    elementPrefix = "ctl00_PlaceHolderMain_refExamSearchForm_";
+                    lblInstruction.labelKey = 'per_propertylookup_instruction_searchforeducation';                   
+                    break;
+                case '2':
+                    divId = "divLicenseeSearchForm";
+                    sectionId = "60086";
+                    elementPrefix = "ctl00_PlaceHolderMain_refLicenseeSearchForm_";
+                    lblInstruction.labelKey = 'per_propertylookup_instruction_searchforlicensee';
+                    break;
+                case '3':
+                    divId = "divFoodFacilitySearchForm";
+                    sectionId = "60115";
+                    elementPrefix = "ctl00_PlaceHolderMain_refFoodFacilitySearchForm_";
+                    lblInstruction.labelKey = 'aca_foodfacility_label_searchinstruction';
+                    break;
+                case '4':
+                    divId = "divCertBusinessSearchForm";
+                    sectionId = "60119";
+                    elementPrefix = "ctl00_PlaceHolderMain_certifiedBusinessSearchForm_";
+                    lblInstruction.labelKey = 'aca_certbusiness_label_searchinstruction';
+                    break;
+                case '5':
+                    divId = "divDocumentSearchForm";
+                    elementPrefix = "ctl00_PlaceHolderMain_documentSearchForm_";
+                    lblInstruction.labelKey = 'aca_searchdocument_label_searchinstruction';
+                    $('#ctl00_PlaceHolderMain_btnNewSearch').hide();
+                    $('#ctl00_PlaceHolderMain_btnResetSearch').hide();
+                    break;
+            }
+
+            var storedInstruction = ddl.SectionInfo.GetByKey(lblInstruction.labelKey);
+            if (!storedInstruction) {
+                PageMethods.GetInstructionByKey(lblInstruction.labelKey, function(value)
+                {
+                   lblInstruction.innerHTML = value;
+                   ddl.SectionInfo.Add(lblInstruction.labelKey, value);
+                });
+            }
+            else
+            {
+               lblInstruction.innerHTML = storedInstruction;
+            }
+            
+            $(prefix + divId).show();
+            ddl.SectionInfo.Add(ddl.parentObj._sectionIdValue, ddl.parentObj._sectionFields);
+            var sectionIdValue = "MILARA" + "\f" + sectionId + "\f" + elementPrefix;
+
+            if (selectedSection == "5") {
+                sectionIdValue = "MILARA" + "\f" + elementPrefix;
+            }
+
+            ddl.parentObj._sectionFields = ddl.SectionInfo.GetByKey(sectionIdValue);
+            ddl.parentObj._sectionIdValue = sectionIdValue;
+
+            parent.parent.LoadProperties(16, ddl.parentObj);
+        }
+    </script>
+
+                    </main>
+                    <!--
+                In Chorme and Opera 15, need add the div,
+                because when content div set float property, not hodler height in container
+                -->
+                    <div style="clear: both;"></div>
+                </div>
+                <div id="divLoadingTemplate" class="ACA_Loading_Message" style="width: auto">
+                    <img alt="Please wait..." src="/MILARA/app_themes/Default/assets/loading.gif" />
+                    <span id="ctl00_lblLoading" class="ACA_SmLabel ACA_SmLabel_FontSize">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <div id="ctl00_UpdatePanel4Expression">
+	
+                <input name="ctl00$HDExpressionParam" type="hidden" id="ctl00_HDExpressionParam" class="HDExpressionResultCss" />
+            
+</div>
+        <script type="text/javascript">
+            setInterval("iframeAutoFit()", 300);
+
+            with (Sys.WebForms.PageRequestManager.getInstance()) {
+                add_beginRequest(onBeginRequest);
+                add_endRequest(onEndRequest);
+                add_pageLoaded(onPageLoaded);
+            }
+            
+            function onBeginRequest(sender, args) {
+                if ($.global.isAdmin) {
+                    //1. in admin, if async request, we need record the client id of last selected object.
+                    var obj = document.currentSelectedObj;
+
+                    if (obj && obj._element) {
+                        parent.document.currentSelectedID = obj._element.id;
+                    }
+
+                    $('*').css('cursor', 'wait');
+                }
+            }
+
+            var processLoading = new ProcessLoading();
+            function onPageLoaded(sender, args) {
+                if ($.global.isAdmin) {
+                    //2. in admin, if async request, use last selected object id to get the object and trigger it select.
+                    var selectedId = parent.document.currentSelectedID;
+
+                    if (selectedId) {
+                        invokeClick($get(selectedId));
+
+                        //3. when it select completed, clear this.
+                        parent.document.currentSelectedID = null;
+                    }
+
+                    $('*').css('cursor', '');
+                } else {
+                    firstErrorMsgId = '';
+                    processLoading.initControlLoading();
+
+                    addPrintErrors2SubmitButton();
+                }
+            }
+
+            function onEndRequest(sender, arg) {
+                if (!$.global.isAdmin) {
+                    var sourceElement = sender._postBackSettings.sourceElement;
+
+                    if (sourceElement == null || (sourceElement != null && $(sourceElement).hasClass('NotShowLoading') == false)) {
+                        processLoading.hideLoading();
+                    }
+
+                    if (delayShowLoadingTimer) {
+                        window.clearTimeout(delayShowLoadingTimer);
+                    }
+                }
+            }
+
+            function ShowLoading() {
+                var processLoading = new ProcessLoading();
+                processLoading.showLoading();
+            }
+
+            function HideLoading(needHide) {
+                var processLoading = new ProcessLoading();
+                processLoading.hideLoading(needHide);
+            }
+
+        </script>
+
+        
+
+        <input type="hidden" name="Submit" value="Submit" class="HiddenButton" onclick="return false;" />
+    
+
+<script type="text/javascript">
+//<![CDATA[
+ACADialog.close_image_url='/MILARA/app_themes/Default/assets/closepopup.png';ACADialog.spacer_image_url='/MILARA/app_themes/Default/assets/spacer.gif';ACADialog.begin_alt='It is at the beginning of the form.';ACADialog.end_alt='This is the end of the form. Press the Tab key to move the focus to the beginning.';ACADialog.close_alt='Close';ACADialog.iframe_title='Accela Citizen Access popup page.';ACADialog.agencyCode='MILARA';var curWindow = this.window;
+                                  curWindow.scrollTo(0, 0);
+                                  while (curWindow.parent!= null && curWindow.parent != curWindow) { 
+                                        try{                                           
+                                            curWindow = curWindow.parent;
+                                            curWindow.scrollTo(0, 0);
+                                        }catch(ex){
+                                           
+                                        }
+                                  };hideReportLink(false);//]]>
+</script>
+</form>
+    <noscript>Your browser does not support JavaScript.</noscript>
+</body>
+</html>

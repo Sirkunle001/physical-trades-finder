@@ -46,6 +46,10 @@ BOARDS = {
         "label": "NY (NYC): DOB construction-trades licenses (Socrata)",
         "impl": "nyc_dob",
     },
+    "mi-trades": {
+        "label": "MI: construction trades across the Accela portal (browser pass per search)",
+        "impl": "mi_accela",
+    },
     "fl-cilb": {
         "label": "FL: Construction Industry Licensing Board (bulk register)",
         "impl": "fl_cilb",
@@ -61,10 +65,10 @@ BOARDS = {
 }
 
 PENDING_BOARDS = {
+    "MI-MILARA": "aca-prod.accela.com/MILARA persona search decoded (169 license types: barbers, cosmetology, vets, real estate); browser adapter pending",
     "FL-other": "Other FL DBPR boards (barbers, real estate, ...) share the same bulk-record host: catalog rows as requested",
     "GA": "verify.sos.ga.gov - Cloudflare 403 (browser-mode build)",
     "IL": "IDFPR - Human Verification gate on lookup endpoint",
-    "MI": "LARA val app - search API not yet decoded",
     "OH": "OCILB eLicense - webforms popup/async pattern not yet decoded",
 }
 
@@ -72,8 +76,8 @@ PENDING_BOARDS = {
 def _rows_from_board(board: str):
     if board not in BOARDS:
         raise SystemExit(f"unknown board: {board}; catalog shows the supported ones")
-    from . import cslb, ncbeec, nyc_dob, tdlr, arl, pals, fl_cilb
-    mods = {"cslb": cslb, "tdlr": tdlr, "ncbeec": ncbeec, "nyc_dob": nyc_dob, "arl": arl, "pals": pals, "fl_cilb": fl_cilb}
+    from . import cslb, ncbeec, nyc_dob, tdlr, arl, pals, fl_cilb, mi_accela
+    mods = {"cslb": cslb, "tdlr": tdlr, "ncbeec": ncbeec, "nyc_dob": nyc_dob, "arl": arl, "pals": pals, "fl_cilb": fl_cilb, "mi_accela": mi_accela}
     return mods[BOARDS[board]["impl"]]
 
 
@@ -158,6 +162,9 @@ def main(argv: list[str] | None = None) -> int:
         from .pals import PalsSession
         session = PalsSession(delay=args.delay)
         rows = session.sweep(prefixes, facility=args.board == "pa-pals-facility")
+    elif BOARDS[args.board]["impl"] == "mi_accela":
+        from .mi_accela import sweep as mi_sweep
+        rows = mi_sweep(prefixes, license_type=args.class_filter or "Electrical Contractor")
     elif BOARDS[args.board]["impl"] == "fl_cilb":
         from .fl_cilb import all_rows
         rows = all_rows(status=args.status or "Active")

@@ -1,0 +1,17 @@
+[
+ {
+  "url": "https://aca-prod.accela.com/lara/header.html",
+  "method": "GET",
+  "body": null
+ },
+ {
+  "url": "https://aca-prod.accela.com/lara/bottom.html",
+  "method": "GET",
+  "body": null
+ },
+ {
+  "url": "https://aca-prod.accela.com/LARA/WebService/AnnouncementService.asmx/GetAnnouncementOfSession",
+  "method": "GET",
+  "body": null
+ }
+]
