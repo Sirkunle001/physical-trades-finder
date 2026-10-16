@@ -61,10 +61,9 @@ BOARDS = {
 }
 
 PENDING_BOARDS = {
-    "FL": "DBPR - Cloudflare wall + async JS search (browser-mode build)",
+    "FL-other": "Other FL DBPR boards (barbers, real estate, ...) share the same bulk-record host: catalog rows as requested",
     "GA": "verify.sos.ga.gov - Cloudflare 403 (browser-mode build)",
     "IL": "IDFPR - Human Verification gate on lookup endpoint",
-    "PA": "PALS - SPA with 'I'm not a robot' gate",
     "MI": "LARA val app - search API not yet decoded",
     "OH": "OCILB eLicense - webforms popup/async pattern not yet decoded",
 }
