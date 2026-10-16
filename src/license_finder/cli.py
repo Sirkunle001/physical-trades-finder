@@ -67,7 +67,7 @@ BOARDS = {
 PENDING_BOARDS = {
     "MI-MILARA": "aca-prod.accela.com/MILARA persona search decoded (169 license types: barbers, cosmetology, vets, real estate); browser adapter pending",
     "FL-other": "Other FL DBPR boards (barbers, real estate, ...) share the same bulk-record host: catalog rows as requested",
-    "GA": "verify.sos.ga.gov - Cloudflare 403 (browser-mode build)",
+    "GA": "GOALS (goals.sos.ga.gov, Salesforce) decoded: picklists + search controller captured; blocked at reCAPTCHA v3 'Invalid key type' (their own misconfig) - browser flow needs a human click on the widget once per burst, or the controller gets its captcha requirement lifted",
     "IL": "IDFPR - Human Verification gate on lookup endpoint",
     "OH": "OCILB eLicense - webforms popup/async pattern not yet decoded",
 }
