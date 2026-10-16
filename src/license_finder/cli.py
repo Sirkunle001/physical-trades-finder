@@ -28,7 +28,19 @@ BOARDS = {
     },
     "nc-electrical": {
         "label": "NC: Board of Examiners of Electrical Contractors",
-        "impl": "ncbeec",
+        "impl": "arl",
+    },
+    "nc-plumbing": {
+        "label": "NC: Board of Examiners of Plumbing / HVAC / Fire Sprinkler",
+        "impl": "arl",
+    },
+    "nc-general": {
+        "label": "NC: Licensing Board for General Contractors",
+        "impl": "arl",
+    },
+    "nc-all": {
+        "label": "NC: all trade boards unified (electrical + plumbing + general)",
+        "impl": "arl",
     },
     "nyc-construction": {
         "label": "NY (NYC): DOB construction-trades licenses (Socrata)",
@@ -49,8 +61,8 @@ PENDING_BOARDS = {
 def _rows_from_board(board: str):
     if board not in BOARDS:
         raise SystemExit(f"unknown board: {board}; catalog shows the supported ones")
-    from . import cslb, ncbeec, nyc_dob, tdlr
-    return {"cslb": cslb, "tdlr": tdlr, "ncbeec": ncbeec, "nyc_dob": nyc_dob}[BOARDS[board]["impl"]]
+    from . import cslb, ncbeec, nyc_dob, tdlr, arl
+    return {"cslb": cslb, "tdlr": tdlr, "ncbeec": ncbeec, "nyc_dob": nyc_dob, "arl": arl}[BOARDS[board]["impl"]]
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -123,7 +135,14 @@ def main(argv: list[str] | None = None) -> int:
         print(f"out: {args.out}")
         return 0
 
-    if BOARDS[args.board]["impl"] == "tdlr":
+    if BOARDS[args.board]["impl"] == "arl":
+        from .arl import NC_FAMILY, unify_nc
+        if args.board == "nc-all":
+            rows = unify_nc(prefixes)
+        else:
+            board = next(b for b in NC_FAMILY if b.board == args.board)
+            rows = board.session().sweep(prefixes)
+    elif BOARDS[args.board]["impl"] == "tdlr":
         from .tdlr import TxSession
         session = TxSession(delay=args.delay)
         rows = session.sweep(prefixes)
