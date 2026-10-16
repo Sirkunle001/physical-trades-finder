@@ -46,6 +46,14 @@ BOARDS = {
         "label": "NY (NYC): DOB construction-trades licenses (Socrata)",
         "impl": "nyc_dob",
     },
+    "pa-pals": {
+        "label": "PA: statewide professional licensing (PALS, all boards)",
+        "impl": "pals",
+    },
+    "pa-pals-facility": {
+        "label": "PA: businesses/facilities only (PALS)",
+        "impl": "pals",
+    },
 }
 
 PENDING_BOARDS = {
@@ -61,8 +69,8 @@ PENDING_BOARDS = {
 def _rows_from_board(board: str):
     if board not in BOARDS:
         raise SystemExit(f"unknown board: {board}; catalog shows the supported ones")
-    from . import cslb, ncbeec, nyc_dob, tdlr, arl
-    return {"cslb": cslb, "tdlr": tdlr, "ncbeec": ncbeec, "nyc_dob": nyc_dob, "arl": arl}[BOARDS[board]["impl"]]
+    from . import cslb, ncbeec, nyc_dob, tdlr, arl, pals
+    return {"cslb": cslb, "tdlr": tdlr, "ncbeec": ncbeec, "nyc_dob": nyc_dob, "arl": arl, "pals": pals}[BOARDS[board]["impl"]]
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -142,6 +150,10 @@ def main(argv: list[str] | None = None) -> int:
         else:
             board = next(b for b in NC_FAMILY if b.board == args.board)
             rows = board.session().sweep(prefixes)
+    elif BOARDS[args.board]["impl"] == "pals":
+        from .pals import PalsSession
+        session = PalsSession(delay=args.delay)
+        rows = session.sweep(prefixes, facility=args.board == "pa-pals-facility")
     elif BOARDS[args.board]["impl"] == "tdlr":
         from .tdlr import TxSession
         session = TxSession(delay=args.delay)

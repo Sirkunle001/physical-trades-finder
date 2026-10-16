@@ -1,0 +1,18 @@
+[
+ {
+  "url": "https://www.pals.pa.gov/api/Search/FetchLookupData",
+  "body": "[{\"LookupType\":\"COUNTRY\",\"LookupID\":1,\"Filter\":\"\"},{\"LookupType\":\"STATE\",\"LookupID\":2,\"Filter\":\"\"},{\"LookupType\":\"CountyList\",\"LookupID\":3,\"Filter\":\"\"},{\"LookupType\":\"ProfessionList\",\"LookupID\":4,\"Filter\":\"Person\"},{\"LookupType\":\"LicenseTypeList\",\"LookupID\":5,\"Filter\":\"Person\"},{\"LookupType\":\"DisciplinaryActionTypeList\",\"LookupID\":6,\"Filter\":\"\"},{\"LookupType\":\"ExternalProfessionList\",\"LookupID\":7,\"Filter\":\"Person\"},{\"LookupType\":\"ExternalLicenseTypeList\",\"LookupID\":8,\"Filter\":\"Person\"}]",
+  "headers": {
+   "referer": "https://www.pals.pa.gov/",
+   "content-type": "application/json;charset=UTF-8"
+  }
+ },
+ {
+  "url": "https://www.pals.pa.gov/api/Search/SearchForPersonOrFacilty",
+  "body": "{\"OptPersonFacility\":\"Person\",\"LastName\":\"ROOFING\",\"State\":\"\",\"Country\":\"ALL\",\"County\":null,\"IsFacility\":0,\"PersonId\":null,\"PageNo\":1}",
+  "headers": {
+   "referer": "https://www.pals.pa.gov/",
+   "content-type": "application/json;charset=UTF-8"
+  }
+ }
+]
