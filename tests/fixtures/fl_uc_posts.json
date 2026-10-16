@@ -1,0 +1,6 @@
+[
+ {
+  "url": "https://www.myfloridalicense.com/portalsearches/VerifyLicensee/Search",
+  "body": "------WebKitFormBoundary3fD1B4KkWp3nbrS7\r\nContent-Disposition: form-data; name=\"__RequestVerificationToken\"\r\n\r\nTew_1o_KGVgaX_FzTe9K2hUuxSlfyGZ3bpJZTxMrKQh8d9_uPV7psZPMP4HBxNEjyrFv2spCdttar3fgpS4gOhVo5ONcNQLgEP1oXi2H6681\r\n------WebKitFormBoundary3fD1B4KkWp3nbrS7\r\nContent-Disposition: form-data; name=\"BoardType\"\r\n\r\n\r\n------WebKitFormBoundary3fD1B4KkWp3nbrS7\r\nContent-Disposition: form-data; name=\"SearchType\"\r\n\r\nSearchByName\r\n------WebKitFormBoundary3fD1B4KkWp3nbrS7--\r\n"
+ }
+]
