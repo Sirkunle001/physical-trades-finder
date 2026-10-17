@@ -46,6 +46,10 @@ BOARDS = {
         "label": "NY (NYC): DOB construction-trades licenses (Socrata)",
         "impl": "nyc_dob",
     },
+    "il-idfpr": {
+        "label": "IL: IDFPR professional register (Socrata bulk, all boards)",
+        "impl": "il_soda",
+    },
     "mi-trades": {
         "label": "MI: construction trades across the Accela portal (browser pass per search)",
         "impl": "mi_accela",
@@ -70,14 +74,15 @@ PENDING_BOARDS = {
     "GA": "GOALS (goals.sos.ga.gov, Salesforce) decoded: picklists + search controller captured; blocked at reCAPTCHA v3 'Invalid key type' (their own misconfig) - browser flow needs a human click on the widget once per burst, or the controller gets its captcha requirement lifted",
     "IL": "IDFPR - Human Verification gate on lookup endpoint",
     "OH": "OCILB eLicense - webforms popup/async pattern not yet decoded",
+    "IL": "IDFPR ILookup server-gated for bots; the open-data bulk dataset SHIPS the register",
 }
 
 
 def _rows_from_board(board: str):
     if board not in BOARDS:
         raise SystemExit(f"unknown board: {board}; catalog shows the supported ones")
-    from . import cslb, ncbeec, nyc_dob, tdlr, arl, pals, fl_cilb, mi_accela
-    mods = {"cslb": cslb, "tdlr": tdlr, "ncbeec": ncbeec, "nyc_dob": nyc_dob, "arl": arl, "pals": pals, "fl_cilb": fl_cilb, "mi_accela": mi_accela}
+    from . import cslb, ncbeec, nyc_dob, tdlr, arl, pals, fl_cilb, mi_accela, il_soda
+    mods = {"cslb": cslb, "tdlr": tdlr, "ncbeec": ncbeec, "nyc_dob": nyc_dob, "arl": arl, "pals": pals, "fl_cilb": fl_cilb, "mi_accela": mi_accela, "il_soda": il_soda}
     return mods[BOARDS[board]["impl"]]
 
 
@@ -162,6 +167,11 @@ def main(argv: list[str] | None = None) -> int:
         from .pals import PalsSession
         session = PalsSession(delay=args.delay)
         rows = session.sweep(prefixes, facility=args.board == "pa-pals-facility")
+    elif BOARDS[args.board]["impl"] == "il_soda":
+        from .il_soda import all_rows as il_rows
+        from .il_soda import soda_where
+        where = soda_where(args.prefix, args.class_filter, args.status)
+        rows = il_rows(where=where)
     elif BOARDS[args.board]["impl"] == "mi_accela":
         from .mi_accela import sweep as mi_sweep
         rows = mi_sweep(prefixes, license_type=args.class_filter or "Electrical Contractor")

@@ -1,0 +1,7 @@
+[
+ {
+  "url": "https://verify.sos.ga.gov/verification/Search.aspx",
+  "method": "POST",
+  "body": "__EVENTTARGET=&__EVENTARGUMENT=&__LASTFOCUS=&__VIEWSTATE=%2FwEPDwUJNzM2NTgwNzkyD2QWAgIBD2QWAmYPZBYCAgEPZBYCAgEPZBYCAgEPZBYEAgMPZBYCAgEPZBYCZg8QZGQWAWZkAgQPZBYCAgEPZBYCZg8QZGQWAWZkZNz8J8WcuOSN6%2FIHtl9Tvr10W32%2F5ODNmRz55OMofxCU&__VIEWSTATEGENERATOR=85FE3531&__EVENTVALIDATION=%2FwEdAA9eYwoINEs%2Fkb3yYFec%2F0ie6ZfwyzJRDqI3IFW1OG01ezGAhArPKlBQ0vS5w0omS7djpdaxVbm68kXrMDpZ1FMqFn9lyUSatL3W2vDnmL9AseLBNCfVdJUvDm8GQLYso8yPLaeAPOADZJgQ0vxwTbXxGf2vFYmf6Kn2%2BHNFhJ1lMoJ5%2FKrCvjjD9A0gyrNkcNyOB9Q5bgVuY%2BlmFCMLFfztviF91vcLeTDpQ%2BgjDkG7ASp31hekvLqfTdwDh7Dd91GRiyYh8hSCmFI4ho%2B%2FRqhcWOoyTCsb6Gw2mWt7ElxaYWZ0ykqcWIOKRv0u40f%2F2wl9Jkpzgkm6K3bY2S6FB8pHkN9WQT4p3ZICUsOxYr4yvQ%3D%3D&t_web_lookup__profession_name=&t_web_lookup__first_name=&t_web_lookup__license_type_name=&t_web_lookup__last_name=ROOF&t_web_lookup__license_no=&sch_button=Search"
+ }
+]
