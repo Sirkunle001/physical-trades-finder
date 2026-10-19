@@ -53,6 +53,24 @@ def write_csv(rows: list[LicenseRow], out_path: str, source_col: str = "") -> Co
     return Counter()  # callers track counts
 
 
+def dedupe_rows(rows: list[dict]) -> list[dict]:
+    """Dedupe dict rows. License/account number is the primary key; when a row has
+    none, a composite key keeps distinct records apart (name alone collapses people)."""
+    seen: set[str] = set()
+    out: list[dict] = []
+    for row in rows:
+        key = str(row.get("license_number") or row.get("account") or "")
+        if not key:
+            key = "|".join(str(row.get(k, "")) for k in ("board", "name", "city", "zip", "expire_date"))
+        if not key.strip("|"):
+            continue
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(row)
+    return out
+
+
 def write_csv_rows(dict_rows: list[dict], out_path: str) -> None:
     """Write arbitrary-board dict rows with a normalized column order."""
     cols: list[str] = []

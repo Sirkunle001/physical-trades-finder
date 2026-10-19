@@ -34,7 +34,7 @@ def normalize_status(raw: str) -> str:
 
 
 def count() -> int:
-    http = cr.Session(impersonate="chrome124")
+    http = cr.Session(impersonate="chrome")
     r = http.get(COUNT_URI, timeout=30)
     r.raise_for_status()
     return int(r.json()[0]["count"])
@@ -42,14 +42,15 @@ def count() -> int:
 
 def all_rows(**kw) -> Iterator[dict]:
     """Stream every row of the dataset (status/type filters optional)."""
-    http = cr.Session(impersonate="chrome124")
+    http = cr.Session(impersonate="chrome")
     offset = 0
     while True:
         params = {"$limit": PAGE_LIMIT, "$offset": offset}
         if kw.get("license_type"):
             params["license_type"] = kw["license_type"]
-        if kw.get("status"):
-            params["license_status"] = kw["status"]
+        st = (kw.get("status") or "").strip()
+        if st and st.lower() not in ("all", "any"):
+            params["license_status"] = st.upper()
         r = http.get(SODA, params=params, timeout=90)
         r.raise_for_status()
         rows = r.json()

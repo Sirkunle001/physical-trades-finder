@@ -144,7 +144,7 @@ def stream_down(url: str) -> str:
     headers = {}
     if ua:
         headers["user-agent"] = ua
-    http = cr.Session(impersonate="chrome124")
+    http = cr.Session(impersonate="chrome")
     for attempt in range(3):
         headers["cookie"] = "; ".join(f"{c['name']}={c['value']}" for c in cookies
                                       if c.get("name") and c.get("value"))

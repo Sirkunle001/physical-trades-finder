@@ -26,7 +26,16 @@ if sys.stdout and hasattr(sys.stdout, "reconfigure"):
 
 _TDLR_ROW_RE = re.compile(
     r"([A-Z]{2,6}[A-Z0-9]{0,10})[\s|]*(\d{2}/\d{2}/\d{4})[\s|]*([A-Z][^|]{3,120})[\s|]*[|\s]*([A-Za-z][A-Za-z ]+)")
-_ZIP_RE = re.compile(r"(\d{5})")
+def status_from_expiry(exp: str) -> str:
+    """TDLR's results grid carries no status column, so liveness is the expiry date."""
+    m = re.match(r"^(\d{2})/(\d{2})/(\d{4})$", (exp or "").strip())
+    if not m:
+        return ""
+    mm, dd, yy = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    today = time.localtime()
+    if (yy, mm, dd) < (today.tm_year, today.tm_mon, today.tm_mday):
+        return "Expired"
+    return "Active"
 
 
 def _pipe_text(html: str) -> list[dict]:
@@ -38,17 +47,18 @@ def _pipe_text(html: str) -> list[dict]:
     rows = []
     for m in _TDLR_ROW_RE.finditer(txt):
         lic, exp, owner, city = m.groups()
-        tail = txt[m.end(): m.end() + 60]
-        zm = _ZIP_RE.search(tail)
+        owner = owner.strip(" |,").strip()
+        if owner.lower() in ("expired", "active", "inactive"):
+            owner = ""
         rows.append({
             "license_number": lic,
             "expire_date": exp,
-            "owner": owner.strip(" |,").strip(),
+            "owner": owner,
             "city": city.strip().title(),
-            "zip": zm.group(1) if zm else "",
+            "zip": "",
             "county": "",
             "phone": "",
-            "status": "Active",
+            "status": status_from_expiry(exp),
         })
     return rows
 
@@ -63,7 +73,7 @@ def normalize_status(raw: str) -> str:
 
 
 class TxSession:
-    def __init__(self, impersonate: str = "chrome124", delay: float = POLITE_DELAY):
+    def __init__(self, impersonate: str = "chrome", delay: float = POLITE_DELAY):
         self.http = cr.Session(impersonate=impersonate)
         self.delay = delay
         self._warm = False

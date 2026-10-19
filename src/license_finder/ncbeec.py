@@ -95,7 +95,7 @@ def normalize_status(raw: str) -> str:
 
 
 class NcSession:
-    def __init__(self, impersonate: str = "chrome124", delay: float = POLITE_DELAY):
+    def __init__(self, impersonate: str = "chrome", delay: float = POLITE_DELAY):
         self.http = cr.Session(impersonate=impersonate)
         self.delay = delay
 

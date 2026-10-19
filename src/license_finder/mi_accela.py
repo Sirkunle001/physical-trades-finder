@@ -99,6 +99,7 @@ def parse_csv_rows(text: str, license_type_guess: str = "") -> list[dict]:
         person = " ".join(x for x in (first, mi, last) if x)
         biz = (row.get("Business Name") or "").strip()
         name = biz or person
+        exp = (row.get("License Expiration Date") or "").strip()
         out.append({
             "license_number": (row.get("License Number") or "").strip(),
             "name": name.strip(),
@@ -107,11 +108,21 @@ def parse_csv_rows(text: str, license_type_guess: str = "") -> list[dict]:
             "city": (row.get("City") or "").title(),
             "state": (row.get("State") or "MI").strip().upper(),
             "zip": (row.get("Zip") or "").strip(),
-            "expire_date": (row.get("License Expiration Date") or "").strip(),
-            "status": "Active" if (row.get("License Expiration Date") or "").strip() else "",
+            "expire_date": exp,
+            "status": status_from_expiry(exp),
             "contact": person,
         })
     return out
+
+
+def status_from_expiry(exp: str) -> str:
+    """Accela's export carries expiry, not status; derive liveness from the date."""
+    m = re.match(r"^(\d{1,2})/(\d{1,2})/(\d{4})$", (exp or "").strip())
+    if not m:
+        return ""
+    mm, dd, yy = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    today = time.localtime()
+    return "Expired" if (yy, mm, dd) < (today.tm_year, today.tm_mon, today.tm_mday) else "Active"
 
 
 def sweep(prefixes: str, license_type: str = "Electrical Contractor", **kw) -> Iterator[dict]:

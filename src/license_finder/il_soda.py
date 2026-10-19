@@ -43,7 +43,7 @@ def normalize_status(raw: str) -> str:
 
 
 def count(where: str = "") -> int:
-    http = cr.Session(impersonate="chrome124")
+    http = cr.Session(impersonate="chrome")
     params = {"$select": "count(*)"}
     if where:
         params["$where"] = where
@@ -69,7 +69,7 @@ def soda_where(prefix: str = "", class_filter: str = "", status: str = "") -> st
 
 def all_rows(where: str = "", **kw) -> Iterator[dict]:
     """Stream the dataset (optionally filtered). status/body filters applied locally."""
-    http = cr.Session(impersonate="chrome124")
+    http = cr.Session(impersonate="chrome")
     offset = 0
     while True:
         params = {"$limit": PAGE_LIMIT, "$offset": offset}

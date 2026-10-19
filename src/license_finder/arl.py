@@ -36,7 +36,7 @@ class ARLBoard:
         self.form_url = self.base + form_path.lstrip("/")
         self.search_url = re.sub(r"[Ss]earch$", "_Search/", self.form_url)
 
-    def session(self, impersonate: str = "chrome124", delay: float = POLITE_DELAY) -> "ARLSession":
+    def session(self, impersonate: str = "chrome", delay: float = POLITE_DELAY) -> "ARLSession":
         return ARLSession(self, impersonate, delay)
 
 
@@ -119,7 +119,7 @@ def parse_rows(html: str, board: str = "", label: str = "") -> list[dict]:
 
 
 class ARLSession:
-    def __init__(self, board: ARLBoard, impersonate: str = "chrome124", delay: float = POLITE_DELAY):
+    def __init__(self, board: ARLBoard, impersonate: str = "chrome", delay: float = POLITE_DELAY):
         self.board = board
         self.http = cr.Session(impersonate=impersonate)
         self.delay = delay

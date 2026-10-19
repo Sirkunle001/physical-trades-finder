@@ -96,15 +96,17 @@ def main(argv: list[str] | None = None) -> int:
 
     lp = sub.add_parser("list", help="board sweep -> clean CSV")
     lp.add_argument("--board", default="ca-contractors", choices=list(BOARDS))
-    lp.add_argument("--prefix", required=True, help="comma-separated name prefixes (e.g. AB,SC)")
-    lp.add_argument("--status", default="Active", help="row status filter (Active default)")
+    lp.add_argument("--prefix", default="",
+                    help="sweep prefixes or a filter, per board: name prefixes on CA/TX/NC/PA/MI, "
+                         "license-type filter on IL, name substring on FL/NYC (optional there)")
+    lp.add_argument("--status", default="Active", help="row status filter (Active default, 'all' keeps everything)")
     lp.add_argument("--class-filter", default="", dest="class_filter",
-                    help="substring filter on classifications (e.g. C-10)")
-    lp.add_argument("--no-details", action="store_true", help="skip per-license detail fetches")
+                    help="substring filter on classifications (CA: 'C-10'; MI: license type; IL: description)")
+    lp.add_argument("--no-details", action="store_true", help="CA only: skip per-license detail fetches")
     lp.add_argument("--out", default="licensees.csv")
     lp.add_argument("--delay", type=float, default=0.45)
 
-    dp = sub.add_parser("detail", help="fetch one license record")
+    dp = sub.add_parser("detail", help="fetch one license record (ca-contractors only)")
     dp.add_argument("--board", default="ca-contractors", choices=list(BOARDS))
     dp.add_argument("license")
 
@@ -126,13 +128,22 @@ def main(argv: list[str] | None = None) -> int:
 
     mod = _rows_from_board(args.board)
     if args.cmd == "detail":
+        if args.board != "ca-contractors":
+            raise SystemExit("detail is only implemented for ca-contractors (the other boards export from 'list')")
         session = CslbSession(delay=0.45)
         d = session.license_detail(args.license)
         import pprint
         pprint.pprint(d)
         return 0
 
-    prefixes = [p for p in args.prefix.split(",") if p]
+    prefixes = [p for p in (args.prefix or "").split(",") if p]
+
+    SWEEP_BOARDS = {"ca-contractors", "tx-trades", "nc-electrical", "nc-plumbing",
+                    "nc-general", "nc-all", "pa-pals", "pa-pals-facility", "mi-trades"}
+    if args.board in SWEEP_BOARDS and not prefixes:
+        raise SystemExit(f"--prefix is required for {args.board} (see catalog for the board list)")
+    if args.board not in SWEEP_BOARDS and not prefixes:
+        prefixes = [""]  # bulk boards: one pass over the whole register
 
     # board dispatch: cslb keeps its own session type; others return dicts
     from .cslb import CslbSession
@@ -194,7 +205,7 @@ def main(argv: list[str] | None = None) -> int:
     collected = []
     counts = {"prefixes": len(prefixes), "rows": 0, "status_pass": 0, "class_pass": 0, "written": 0}
     status = normalize_status(args.status) if (args.status and args.status not in ("all", "All")) else ""
-    from .cslb import LicenseRow
+    bulk_name_filter = [p.lower() for p in prefixes if p] if args.board in ("fl-cilb", "nyc-construction") else []
     for row in rows:
         counts["rows"] += 1
         st = row.get("status", "")
@@ -204,18 +215,15 @@ def main(argv: list[str] | None = None) -> int:
         classes_txt = row.get("classes", "") or row.get("classification", "") or row.get("license_type", "")
         if args.class_filter and args.class_filter.lower() not in classes_txt.lower():
             continue
+        if bulk_name_filter:
+            nm = (row.get("name") or "").lower()
+            if not any(f in nm for f in bulk_name_filter):
+                continue
         counts["class_pass"] += 1
         collected.append(row)
 
-    from .export import write_csv_rows
-    seen = set()
-    deduped = []
-    for row in collected:
-        key = row.get("license_number") or row.get("account") or row.get("name")
-        if key in seen:
-            continue
-        seen.add(key)
-        deduped.append(row)
+    from .export import dedupe_rows, write_csv_rows
+    deduped = dedupe_rows(collected)
     counts["written"] = len(deduped)
     write_csv_rows(deduped, args.out)
     print(" -> ".join(f"{k}:{v}" for k, v in counts.items()))

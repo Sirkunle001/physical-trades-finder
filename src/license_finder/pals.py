@@ -91,7 +91,7 @@ def parse_rows(xml_text: str, page: int = 1) -> list[dict]:
 
 
 class PalsSession:
-    def __init__(self, impersonate: str = "chrome124", delay: float = POLITE_DELAY):
+    def __init__(self, impersonate: str = "chrome", delay: float = POLITE_DELAY):
         self.http = cr.Session(impersonate=impersonate)
         self.delay = delay
 
