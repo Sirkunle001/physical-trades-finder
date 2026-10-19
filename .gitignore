@@ -8,3 +8,5 @@ pa_live.csv
 nc_*_live.csv
 pa_pals_results.xml.keep
 .pwtmp
+pip-metadata-*/
+pip-unpack-*/
