@@ -17,6 +17,17 @@ from .export import write_csv
 
 _CLASSES_FILE = pathlib.Path(__file__).parent / "ca_classes.json"
 
+HELD_BACK = {
+    # Decoded and working, kept out of the shipped catalogue until the source improves:
+    # NC (ARL Systems): results carry no city/zip, so lists are weak for local outreach.
+    # NYC (DOB Socrata): construction-trade individuals only, no address, one city not the state.
+    "nc-electrical": {"label": "NC: Board of Examiners of Electrical Contractors", "impl": "arl"},
+    "nc-plumbing": {"label": "NC: Board of Examiners of Plumbing / HVAC / Fire Sprinkler", "impl": "arl"},
+    "nc-general": {"label": "NC: Licensing Board for General Contractors", "impl": "arl"},
+    "nc-all": {"label": "NC: all trade boards unified", "impl": "arl"},
+    "nyc-construction": {"label": "NY (NYC): DOB construction-trades licenses (Socrata)", "impl": "nyc_dob"},
+}
+
 BOARDS = {
     "ca-contractors": {
         "label": "CA: Contractors State License Board (CSLB)",
@@ -25,26 +36,6 @@ BOARDS = {
     "tx-trades": {
         "label": "TX: TDLR License Data Search (AC, plumbers, electricians, ...)",
         "impl": "tdlr",
-    },
-    "nc-electrical": {
-        "label": "NC: Board of Examiners of Electrical Contractors",
-        "impl": "arl",
-    },
-    "nc-plumbing": {
-        "label": "NC: Board of Examiners of Plumbing / HVAC / Fire Sprinkler",
-        "impl": "arl",
-    },
-    "nc-general": {
-        "label": "NC: Licensing Board for General Contractors",
-        "impl": "arl",
-    },
-    "nc-all": {
-        "label": "NC: all trade boards unified (electrical + plumbing + general)",
-        "impl": "arl",
-    },
-    "nyc-construction": {
-        "label": "NY (NYC): DOB construction-trades licenses (Socrata)",
-        "impl": "nyc_dob",
     },
     "il-idfpr": {
         "label": "IL: IDFPR professional register (Socrata bulk, all boards)",
@@ -69,16 +60,15 @@ BOARDS = {
 }
 
 PENDING_BOARDS = {
-    "MI-MILARA": "aca-prod.accela.com/MILARA persona search decoded (169 license types: barbers, cosmetology, vets, real estate); browser adapter pending",
-    "FL-other": "Other FL DBPR boards (barbers, real estate, ...) share the same bulk-record host: catalog rows as requested",
-    "GA": "GOALS (goals.sos.ga.gov, Salesforce) decoded: picklists + search controller captured; blocked at reCAPTCHA v3 'Invalid key type' (their own misconfig) - browser flow needs a human click on the widget once per burst, or the controller gets its captcha requirement lifted",
-    "IL": "IDFPR - Human Verification gate on lookup endpoint",
-    "OH": "OCILB eLicense - webforms popup/async pattern not yet decoded",
+    "MI-MILARA": "MI: other professions (barbers, cosmetology, vets, real estate) live on the same Accela portal; adapter pending",
+    "FL-other": "FL: the other DBPR boards (barbers, real estate, home inspectors) share the same bulk-record host; catalog rows as requested",
+    "GA": "GA: GOALS decode done (picklists + search controller captured), blocked by the state's own broken reCAPTCHA v3 key",
+    "OH": "OH: OCILB eLicense lookup not yet decoded",
 }
 
 
 def _rows_from_board(board: str):
-    if board not in BOARDS:
+    if board not in BOARDS and board not in HELD_BACK:
         raise SystemExit(f"unknown board: {board}; catalog shows the supported ones")
     from . import cslb, ncbeec, nyc_dob, tdlr, arl, pals, fl_cilb, mi_accela, il_soda
     mods = {"cslb": cslb, "tdlr": tdlr, "ncbeec": ncbeec, "nyc_dob": nyc_dob, "arl": arl, "pals": pals, "fl_cilb": fl_cilb, "mi_accela": mi_accela, "il_soda": il_soda}

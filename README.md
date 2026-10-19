@@ -1,94 +1,93 @@
 # Physical Trades Finder
 
-Build prospect lists of local trade businesses in California: every electrician,
-plumber, roofer, landscaper, solar installer, pool builder, welder and 40 more
-trades, exported as a clean CSV that is ready for your CRM, dialer or mail merge.
+Build prospect lists of local trade businesses across US states: every electrician,
+plumber, roofer, HVAC company, solar installer, builder and more, exported as a clean
+CSV that is ready for your CRM, dialer or mail merge.
 
-The data comes straight from the state's public contractors register, read
-directly. No API key, no account, no headless browser.
-
-## What you can build with it
-
-- A list of every active electrician (C-10) in the state
-- A list of HVAC companies (C-20) in the cities you serve
-- A list of new businesses: anyone who got licensed in the last year
-- A list of sole owners (the operator answers the phone themselves) vs
-  companies (an office with staff)
-- A renewal-timing list: license expiry dates tell you when each business is
-  doing paperwork, which is a natural time to reach out
-
-Every list is one command. Pick a trade, optionally filter by city, get the CSV.
+The data comes straight from the state boards that issue the licenses, read directly.
+No API key, no account, no paid data vendor.
 
 ```
-# all active pool builders
-license-finder list --prefix A*,B*,C*,D*,E*,F*,G*,H*,I*,J*,K*,L*,M*,N*,O*,P*,Q*,R*,S*,T*,U*,V*,W*,X*,Y*,Z* --class-filter "C-53" --status Active --out pool_builders.csv
-
-# quick sample: everything named ACME
-license-finder list --prefix ACME --out sample.csv
-
-# one full record, every field
-license-finder detail 1098046
+license-finder catalog          # every state and board it can read right now
+license-finder classes          # California: the board's 46 official trade classes
+license-finder list --board ca-contractors --prefix ACME,REDWOOD --out ca.csv
 ```
 
-Small slices come out in seconds. A whole trade is one command and a batch run.
+## What it covers today
 
-## What is on each row
+| board | state | source | you get |
+|---|---|---|---|
+| `ca-contractors` | CA | Contractors State License Board | license #, business name, 46 trade classes, city, zip, street, phone, entity, status, issue + expiry |
+| `tx-trades` | TX | TDLR license search | license #, business name, city, status, expiry (HVAC, electrical, plumbing, elevators and more in one register) |
+| `fl-cilb` | FL | DBPR construction register (bulk) | license #, name, trade type, city, zip, street, issue + expiry, status |
+| `il-idfpr` | IL | IDFPR professional register (4.37M rows) | license #, name, business name, license type, description, city, zip, county, issue + expiry, status |
+| `pa-pals` / `pa-pals-facility` | PA | PA Licensing System (PALS) | license #, name, board, license type, city, county, zip, phone, email, status |
+| `mi-trades` | MI | LARA construction trades (Accela) | license #, business name, trade type, contact person, city, zip, expiry, status |
 
-| column | what it tells you |
-|---|---|
-| `name` | the business name on the register |
-| `classes` | the trade(s) the business is licensed for, e.g. C-10 ELECTRICAL |
-| `city`, `state`, `zip`, `street` | where the business is located |
-| `phone` | the phone on the register |
-| `entity` | sole owner, corporation, LLC and so on |
-| `status` | Active, Expired, Cancelled, Suspended (normalized, filterable) |
-| `issue_date`, `expire_date` | when the license started, when it is up for renewal |
-| `license_number` | the register's own ID, kept for reference and dedupe |
-
-## The trades it covers
-
-California has 46 trade classes and all of them are inside the tool, captured
-from the board's own classifications page:
+## Command examples
 
 ```
-license-finder classes
+# California: all active electricians named "Watt" (C-10)
+license-finder list --board ca-contractors --prefix WATT --class-filter C-10 --out ca_electricians.csv
+
+# Texas: everything plumbing-named in the TDLR register
+license-finder list --board tx-trades --prefix PLUMB --status all --out tx_plumbing.csv
+
+# Florida: the whole active construction register
+license-finder list --board fl-cilb --status Active --out florida_contractors.csv
+
+# Illinois: every roofing contractor in the register
+license-finder list --board il-idfpr --prefix ROOFING --out il_roofing.csv
+
+# Pennsylvania: every license held by a surname, plus the business-side search
+license-finder list --board pa-pals --prefix MILLER --out pa_miller.csv
+license-finder list --board pa-pals-facility --prefix CONTRACT --out pa_facility.csv
+
+# Michigan: electrical contractors (license type chosen with --class-filter)
+license-finder list --board mi-trades --prefix ELECTRIC --class-filter "Electrical Contractor" --out mi_electricians.csv
 ```
 
-A sample of what is in there:
+## How the flags work
 
-- A: General Engineering
-- B: General Building (remodelers, homebuilders, GCs)
-- C-10: Electrical
-- C-20: HVAC
-- C-36: Plumbing
-- C-39: Roofing
-- C-46: Solar
-- C-27: Landscaping
-- C-53: Swimming Pool
-- C-60: Welding
-- C-49: Tree and Palm
-- ... and 35 more, from insulation (C-2) to well drilling (C-57)
+`--prefix` is a sweep or a filter, depending on the board:
 
-Each trade is its own list. The CSV's `classes` column carries the trade per
-row, so one export can be sliced any way you want afterward.
+- CA, TX, MI, PA: business-name / surname prefixes (`ACME,REDWOOD` sweeps both).
+- IL: a license-type filter (`ROOFING`).
+- FL: an optional business-name filter; omit it and you get the whole register.
 
-## How it works for you
+`--status` defaults to `Active`. Pass `all` to keep expired, cancelled and deceased
+licenses too. Where a state's grid has no status column (TX, MI), the tool derives
+Active/Expired from the expiry date rather than guessing.
 
-1. Pick the trade (or run `classes` to browse the 46).
-2. Run the command. The tool sweeps the register by name prefix so nothing gets
-   skipped, fetches the full record for every match, normalizes the statuses,
-   dedupes, and prints exactly what it found and what it filtered.
-3. Open the CSV. City and zip are columns, so territory slicing is a
-   spreadsheet filter. Sole owner vs company is a column. Renewal date is a
-   column.
+`--class-filter` narrows by trade: `C-10` on CA, a license type on MI, a description
+fragment on IL.
+
+Every run prints its funnel (`rows -> status_pass -> class_pass -> written`) so you can
+see exactly what was dropped, and rows are deduped by license number before writing.
 
 ## Install
 
 ```
-pip install physical-trades-finder   # or: pip install -e .
+pip install -e .
 ```
 
-Requires Python 3.10+.
+Florida and Michigan read through a browser session (one state portal gates automated
+requests, the other renders results client-side):
+
+```
+playwright install chromium
+```
+
+Every other board runs on plain HTTP.
+
+## Notes
+
+- All data is public record, published by the state boards. The tool reads it, normalizes
+  statuses and dedupes; it does not enrich contacts beyond what the state publishes
+  (Pennsylvania is the only board that publishes emails).
+- Registers refresh on the states' own schedules; Illinois and NYC-style Socrata datasets
+  move daily, bulk files move with each board cycle.
+- Built for list building, not verification. A license status is a point-in-time read.
 
 ## License
 
