@@ -74,7 +74,6 @@ PENDING_BOARDS = {
     "GA": "GOALS (goals.sos.ga.gov, Salesforce) decoded: picklists + search controller captured; blocked at reCAPTCHA v3 'Invalid key type' (their own misconfig) - browser flow needs a human click on the widget once per burst, or the controller gets its captcha requirement lifted",
     "IL": "IDFPR - Human Verification gate on lookup endpoint",
     "OH": "OCILB eLicense - webforms popup/async pattern not yet decoded",
-    "IL": "IDFPR ILookup server-gated for bots; the open-data bulk dataset SHIPS the register",
 }
 
 
