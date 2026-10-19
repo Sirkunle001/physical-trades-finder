@@ -91,7 +91,8 @@ def parse_row(cells: list[str]) -> dict | None:
     }
 
 
-COOKIE_CACHE = r"C:\Users\Gafar\Gafar Grinds\license-finder\.pwtmp\fl_cookies.json"
+INFRA = os.path.join(os.path.expanduser("~"), ".physical-trades")
+COOKIE_CACHE = os.path.join(INFRA, "fl_cookies.json")
 CF_ENTRY = "https://www2.myfloridalicense.com/construction-industry/public-records/"
 
 
@@ -119,14 +120,10 @@ def ensure_cookies(refresh: bool = False):
             pass
     from playwright.sync_api import sync_playwright  # local import: browser only needed once
 
-    os.environ["TMP"] = os.path.dirname(COOKIE_CACHE)
-    os.environ["TEMP"] = os.environ["TMP"]
-
-    chrome_exe = r"C:\Users\Gafar\Gafar Grinds\license-finder\.pwtmp\browsers\chromium-1243\chrome-win64\chrome.exe"
-    profile = r"C:\Users\Gafar\Gafar Grinds\license-finder\.pwtmp\chrome-fl"
+    profile = os.path.join(INFRA, "chrome-fl")
     with sync_playwright() as p:
         ctx = p.chromium.launch_persistent_context(
-            profile, executable_path=chrome_exe, headless=False,
+            profile, headless=False,
             args=["--no-sandbox", "--disable-blink-features=AutomationControlled"])
         page = ctx.pages[0] if ctx.pages else ctx.new_page()
         page.goto(CF_ENTRY, wait_until="networkidle", timeout=90000)
@@ -166,13 +163,10 @@ def stream_down_browser(url: str) -> str:
     (browser fingerprint + cookies travel together, clearance always valid)."""
     from playwright.sync_api import sync_playwright
 
-    os.environ["TMP"] = os.path.dirname(COOKIE_CACHE)
-    os.environ["TEMP"] = os.environ["TMP"]
-    chrome_exe = r"C:\Users\Gafar\Gafar Grinds\license-finder\.pwtmp\browsers\chromium-1243\chrome-win64\chrome.exe"
-    profile = r"C:\Users\Gafar\Gafar Grinds\license-finder\.pwtmp\chrome-fl"
+    profile = os.path.join(INFRA, "chrome-fl")
     with sync_playwright() as p:
         ctx = p.chromium.launch_persistent_context(
-            profile, executable_path=chrome_exe, headless=False,
+            profile, headless=False,
             args=["--no-sandbox", "--disable-blink-features=AutomationControlled"])
         r = ctx.request.get(url, timeout=600000)
         text = r.text()

@@ -22,21 +22,16 @@ if sys.stdout and hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 FORM_URL = "https://aca3.accela.com/lara/GeneralProperty/PropertyLookUp.aspx?isLicensee=Y&TabName=APO"
-INFRA = r"C:\Users\Gafar\Gafar Grinds\license-finder\.pwtmp"
-PROFILE = INFRA + "\\chrome-mi"   # sweep() makes a per-process copy; MI needs no server-side session
-CHROME = INFRA + r"\browsers\chromium-1243\chrome-win64\chrome.exe"
+INFRA = os.path.join(os.path.expanduser("~"), ".physical-trades")
+PROFILE = os.path.join(INFRA, "chrome-mi")  # sweep() makes a per-process copy; MI needs no server-side session
 COOKIE_CACHE = INFRA + r"\fl_cookies.json"
 POLITE_DELAY = 2.0
 
 
 def _pw_ctx(p):
-    for env_key in ("TMPDIR", "TMP", "TEMP", "PLAYWRIGHT_BROWSERS_PATH"):
-        val = {"TMPDIR": INFRA, "TMP": INFRA, "TEMP": INFRA, "PLAYWRIGHT_BROWSERS_PATH": INFRA + r"\browsers"}.get(env_key)
-        if val:
-            os.environ[env_key] = val
+    os.makedirs(INFRA, exist_ok=True)
     return p.chromium.launch_persistent_context(
-        PROFILE, executable_path=CHROME, headless=False,
-        args=["--no-sandbox"])
+        PROFILE, headless=False, args=["--no-sandbox"])
 
 
 def _pipeline(page, prefix: str, license_type: str) -> str:
@@ -130,11 +125,8 @@ def sweep(prefixes: str, license_type: str = "Electrical Contractor", **kw) -> I
     MI Accela tolerates zero-profile fresh sessions but cannot survive
     re-launches against a reused one (verified: reused profile -> TargetClosed)."""
     global PROFILE
-    os.environ["TMP"] = INFRA
-    os.environ["TEMP"] = INFRA
-    os.environ["TMPDIR"] = INFRA
-    os.environ["PLAYWRIGHT_BROWSERS_PATH"] = INFRA + r"\browsers"
-    runtime_profile = INFRA + f"\\chrome-mi-{os.getpid()}-{int(time.time())}"
+    os.makedirs(INFRA, exist_ok=True)
+    runtime_profile = os.path.join(INFRA, f"chrome-mi-{os.getpid()}-{int(time.time())}")
     PROFILE = runtime_profile
     seen: set[str] = set()
     try:
@@ -159,7 +151,7 @@ def sweep(prefixes: str, license_type: str = "Electrical Contractor", **kw) -> I
                 time.sleep(POLITE_DELAY)
             ctx.close()
     finally:
-        PROFILE = INFRA + "\\chrome-mi"
+        PROFILE = os.path.join(INFRA, "chrome-mi")
         import shutil
         try:
             shutil.rmtree(runtime_profile, ignore_errors=True)
